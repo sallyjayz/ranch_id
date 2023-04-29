@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:strokeWidth="2dp"
+    app:strokeColor="@color/stroke_tint"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/sixteen_dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cameraImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            tools:src="@drawable/ic_launcher_background"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/image_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Image.jpeg"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:textSize="@dimen/eighteen_sp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/cameraImage"
+            app:layout_constraintStart_toEndOf="@id/cameraImage"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/image_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="349.42kb"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:fontFamily="@font/inter_regular"
+            app:layout_constraintTop_toBottomOf="@id/image_name"
+            app:layout_constraintStart_toEndOf="@id/cameraImage"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/re_capture_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/cameraImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/re_capture_portrait"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:padding="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAllCaps="false"
+            android:paddingTop="@dimen/twenty_dp"
+            android:paddingBottom="@dimen/twenty_dp"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/camera_icon"
+            android:layout_width="@dimen/forty_dp"
+            android:layout_height="@dimen/forty_dp"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_name"
+            android:contentDescription="@string/camera_icon" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/capture_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/camera_icon"
+            android:text="@string/capture_portrait"
+            android:padding="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:textAllCaps="false"
+            android:paddingTop="@dimen/twenty_dp"
+            android:paddingBottom="@dimen/twenty_dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

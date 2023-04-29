@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/twenty_dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/header_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            tools:src="@mipmap/ic_launcher"
+            android:padding="5dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/stroke_tint"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize50Percent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Ajala Bukky"
+            android:text="Ajala Bukky"
+            app:layout_constraintStart_toStartOf="@id/header_image"
+            app:layout_constraintTop_toBottomOf="@id/header_image"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="@dimen/sixteen_sp"
+            android:textColor="@color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="bukky@yahoo.co.uk"
+            android:text="bukky@yahoo.co.uk"
+            app:layout_constraintStart_toStartOf="@id/header_name"
+            app:layout_constraintTop_toBottomOf="@id/header_name"
+            android:fontFamily="@font/inter_regular"
+            android:textSize="@dimen/thirteen_sp"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header_role_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/role"
+            app:layout_constraintStart_toStartOf="@id/header_email"
+            app:layout_constraintTop_toBottomOf="@id/header_email"
+            android:fontFamily="@font/inter_regular"
+            android:textSize="@dimen/thirteen_sp"
+            android:textColor="@color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/header_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text=" Enumerator"
+            android:text=" Enumerator"
+            android:textAllCaps="true"
+            android:fontFamily="@font/inter_regular"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/header_role_label"
+            app:layout_constraintTop_toBottomOf="@id/header_email"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/edit_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

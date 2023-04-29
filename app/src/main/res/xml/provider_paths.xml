@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-files-path
+        name="ranchid_images"
+        path="Android/data/${applicationId}/files/Pictures"/>
+
+    <external-files-path
+        name="debug_ranchid_images"
+        path="/storage/emulated/0/Android/data/${applicationId}/files/Pictures"/>
+
+    <external-files-path
+        name="root_ranchid_images"
+        path="/"/>
+</paths>

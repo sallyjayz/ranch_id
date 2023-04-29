@@ -1,0 +1,160 @@
+package com.sallyjayz.ranchid
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
+import com.sallyjayz.ranchid.databinding.ActivityLoginBinding
+import com.sallyjayz.ranchid.model.auth.Auth
+import com.sallyjayz.ranchid.utils.ApiResponse
+import com.sallyjayz.ranchid.viewmodel.*
+import dagger.hilt.android.AndroidEntryPoint
+
+
+@AndroidEntryPoint
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+    private val viewModel: AuthViewModel by viewModels()
+    private val tokenViewModel: TokenViewModel by viewModels()
+    private val networkStatusViewModel: NetworkStatusViewModel by viewModels()
+    private var loginButtonClicked: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
+        tokenViewModel.token.observe(this) { token ->
+            /*if (token != null)
+                startActivity(Intent(this, DashboardActivity::class.java))*/
+
+//            call logout api and test again
+            if (token != null) {
+                startActivity(Intent(this, DashboardActivity::class.java))
+                finish()
+                /*val intent = Intent(this, DashboardActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)*/
+            }
+        }
+
+        networkStatusViewModel.state.observe(this) { connection ->
+            when(connection) {
+                MyState.Fetched -> {
+                    binding.offlineError.isVisible = false
+                    binding.loginButton.isClickable = true
+                    binding.loginButton.alpha = 1.0F
+                    loginButtonClicked = false
+
+                    viewModel.loginResponse.observe(this) {
+                        when(it) {
+//                is ApiResponse.Failure -> binding.loginError.text = it.errorMessage
+//                ApiResponse.Loading -> binding.loginError.text = "Loading"
+                            is ApiResponse.Failure -> {
+//                            binding.loginError.text = it.errorMessage
+                                binding.loginError.text = getString(R.string.incorrect_username_password)
+                                binding.loginProgress.isVisible = false
+                                binding.loginButton.isClickable = true
+                                binding.loginButton.alpha = 1.0F
+                            }
+                            ApiResponse.Loading -> {
+                                if (loginButtonClicked){
+                                    binding.loginProgress.isVisible = true
+                                    binding.loginButton.isClickable = false
+                                    binding.loginButton.alpha = 0.5F
+                                }
+                            }
+                            is ApiResponse.Success -> {
+                                val name = "${it.data.user.surname} ${it.data.user.otherName}"
+                                tokenViewModel.saveToken(it.data.token, it.data.user.username, name,
+                                    it.data.user.userEmail, it.data.user.role/*, it.data.user.photo*/)
+                            }
+                        }
+                    }
+                }
+                MyState.Error -> {
+                    binding.offlineError.isVisible = true
+                    binding.loginButton.isClickable = true
+                    binding.loginButton.alpha = 1.0F
+                }
+            }
+        }
+
+        binding.loginButton.setOnClickListener {
+
+            loginButtonClicked = true
+
+            if (isEntryValid()) {
+                viewModel.login(
+                    Auth(
+                        binding.email.text.toString(),
+                        binding.password.text.toString()
+                    ),
+                    object: CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+//                          binding.loginError.text = "Error! $message"
+                            binding.offlineError.isVisible = true
+                            binding.loginButton.isClickable = true
+                            binding.loginButton.alpha = 1.0F
+                        }
+                    }
+                )
+            } else {
+                binding.loginError.text = getString(R.string.all_fields_required)
+            }
+        }
+
+        /*viewModel.loginResponse.observe(this) {
+            when(it) {
+//                is ApiResponse.Failure -> binding.loginError.text = it.errorMessage
+//                ApiResponse.Loading -> binding.loginError.text = "Loading"
+                is ApiResponse.Failure -> {
+//                            binding.loginError.text = it.errorMessage
+                    binding.loginError.text = "Incorrect Username or Password"
+                    binding.loginProgress.isVisible = false
+                    binding.loginButton.isClickable = true
+                    binding.loginButton.alpha = 1.0F
+                }
+                ApiResponse.Loading -> {
+                    binding.loginProgress
+                    binding.loginButton.isClickable = false
+                    binding.loginButton.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+                    val name = "${it.data.user.surname} ${it.data.user.otherName}"
+                    tokenViewModel.saveToken(it.data.token, it.data.user.username, name,
+                        it.data.user.userEmail, it.data.user.role*//*, it.data.user.photo*//*)
+                }
+            }
+        }
+
+        binding.loginButton.setOnClickListener {
+            if (isEntryValid()) {
+                viewModel.login(
+                    Auth(
+                        binding.email.text.toString(),
+                        binding.password.text.toString()
+                    ),
+                    object: CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+//                           binding.loginError.text = "Error! $message"
+                        }
+                    }
+                )
+            } else {
+                binding.loginError.text = "All fields are required"
+            }
+        }*/
+
+    }
+
+    private fun isEntryValid(): Boolean {
+        return viewModel.isEntryValid(
+            binding.email.text.toString(),
+            binding.password.text.toString()
+        )
+    }
+
+}

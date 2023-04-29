@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_fragment">
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.sallyjayz.ranchid.home.HomeFragment"
+        android:label="@string/dashboard"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_register_fragment"
+            app:destination="@id/register_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_tag_fragment"
+            app:destination="@id/tag_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_report_fragment"
+            app:destination="@id/report_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_offline_fragment"
+            app:destination="@id/offline_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_fragment"
+        android:name="com.sallyjayz.ranchid.register.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_fragment_to_addLivestockOwnerStepOneFragment"
+            app:destination="@id/addLivestockOwnerStepOneFragment" />
+        <action
+            android:id="@+id/action_register_fragment_to_addLivestockKeeperStepOneFragment"
+            app:destination="@id/addLivestockKeeperStepOneFragment" />
+        <action
+            android:id="@+id/action_register_fragment_to_addLivestockLocationFragment"
+            app:destination="@id/addLivestockLocationFragment" />
+        <action
+            android:id="@+id/action_register_fragment_to_tagLivestockStepOneFragment"
+            app:destination="@id/tagLivestockStepOneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/report_fragment"
+        android:name="com.sallyjayz.ranchid.report.ReportFragment"
+        android:label="@string/reports"
+        tools:layout="@layout/fragment_report" />
+    <fragment
+        android:id="@+id/tag_fragment"
+        android:name="com.sallyjayz.ranchid.tag.TagFragment"
+        android:label="@string/tags"
+        tools:layout="@layout/fragment_tag" />
+    <fragment
+        android:id="@+id/offline_fragment"
+        android:name="com.sallyjayz.ranchid.offline.OfflineFunctionFragment"
+        android:label="@string/offline_function"
+        tools:layout="@layout/fragment_offline_function" >
+        <action
+            android:id="@+id/action_offline_fragment_to_offlineOwnerFragment"
+            app:destination="@id/offlineOwnerFragment" />
+        <action
+            android:id="@+id/action_offline_fragment_to_offlineFragmentKeeper"
+            app:destination="@id/offlineFragmentKeeper" />
+        <action
+            android:id="@+id/action_offline_fragment_to_offlineFragmentTagLivestock"
+            app:destination="@id/offlineFragmentTagLivestock" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockOwnerStepOneFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockowner.AddLivestockOwnerStepOneFragment"
+        android:label="@string/add_livestock_owner"
+        tools:layout="@layout/fragment_add_livestock_owner_step_one" >
+        <action
+            android:id="@+id/action_addLivestockOwnerStepOneFragment_to_addLivestockOwnerStepTwoFragment"
+            app:destination="@id/addLivestockOwnerStepTwoFragment" />
+        <action
+            android:id="@+id/action_addLivestockOwnerStepOneFragment_to_register_fragment"
+            app:destination="@id/register_fragment"
+            app:popUpTo="@id/register_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockOwnerStepTwoFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockowner.AddLivestockOwnerStepTwoFragment"
+        android:label="@string/add_livestock_owner"
+        tools:layout="@layout/fragment_add_livestock_owner_step_two" >
+        <action
+            android:id="@+id/action_addLivestockOwnerStepTwoFragment_to_addLivestockOwnerStepOneFragment"
+            app:destination="@id/addLivestockOwnerStepOneFragment"
+            app:popUpTo="@id/addLivestockOwnerStepOneFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addLivestockOwnerStepTwoFragment_to_addLivestockOwnerStepThreeFragment"
+            app:destination="@id/addLivestockOwnerStepThreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockKeeperStepOneFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockkeeper.AddLivestockKeeperStepOneFragment"
+        android:label="@string/add_livestock_keeper"
+        tools:layout="@layout/fragment_add_livestock_keeper_step_one" >
+        <action
+            android:id="@+id/action_addLivestockKeeperStepOneFragment_to_addLivestockKeeperStepTwoFragment"
+            app:destination="@id/addLivestockKeeperStepTwoFragment" />
+        <action
+            android:id="@+id/action_addLivestockKeeperStepOneFragment_to_register_fragment"
+            app:destination="@id/register_fragment"
+            app:popUpTo="@id/register_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockKeeperStepTwoFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockkeeper.AddLivestockKeeperStepTwoFragment"
+        android:label="@string/add_livestock_keeper"
+        tools:layout="@layout/fragment_add_livestock_keeper_step_two" >
+        <action
+            android:id="@+id/action_addLivestockKeeperStepTwoFragment_to_addLivestockKeeperStepOneFragment"
+            app:destination="@id/addLivestockKeeperStepOneFragment"
+            app:popUpTo="@id/addLivestockKeeperStepOneFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addLivestockKeeperStepTwoFragment_to_addLivestockKeeperStepThreeFragment"
+            app:destination="@id/addLivestockKeeperStepThreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockLocationFragment"
+        android:name="com.sallyjayz.ranchid.register.location.AddLivestockLocationFragment"
+        android:label="@string/add_livestock_location"
+        tools:layout="@layout/fragment_add_livestock_location" >
+        <action
+            android:id="@+id/action_addLivestockLocationFragment_to_register_fragment"
+            app:destination="@id/register_fragment"
+            app:popUpTo="@id/register_fragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_addLivestockLocationFragment_to_addLivestockLocationConfirmationFragment"
+            app:destination="@id/addLivestockLocationConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tagLivestockStepOneFragment"
+        android:name="com.sallyjayz.ranchid.register.taglivestock.TagLivestockStepOneFragment"
+        android:label="@string/tag_livestock"
+        tools:layout="@layout/fragment_tag_livestock_step_one" >
+        <action
+            android:id="@+id/action_tagLivestockStepOneFragment_to_tagLivestockStepTwoFragment"
+            app:destination="@id/tagLivestockStepTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tagLivestockStepTwoFragment"
+        android:name="com.sallyjayz.ranchid.register.taglivestock.TagLivestockStepTwoFragment"
+        android:label="@string/tag_livestock"
+        tools:layout="@layout/fragment_tag_livestock_step_two" >
+        <action
+            android:id="@+id/action_tagLivestockStepTwoFragment_to_tagLivestockStepThreeFragment"
+            app:destination="@id/tagLivestockStepThreeFragment" />
+        <action
+            android:id="@+id/action_tagLivestockStepTwoFragment_to_tagLivestockStepOneFragment"
+            app:destination="@id/tagLivestockStepOneFragment"
+            app:popUpTo="@id/tagLivestockStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="scannedTagID"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/tagLivestockStepThreeFragment"
+        android:name="com.sallyjayz.ranchid.register.taglivestock.TagLivestockStepThreeFragment"
+        android:label="@string/tag_livestock"
+        tools:layout="@layout/fragment_tag_livestock_step_three" >
+        <action
+            android:id="@+id/action_tagLivestockStepThreeFragment_to_tagLivestockStepFourFragment"
+            app:destination="@id/tagLivestockStepFourFragment" />
+        <action
+            android:id="@+id/action_tagLivestockStepThreeFragment_to_tagLivestockStepTwoFragment"
+            app:destination="@id/tagLivestockStepTwoFragment"
+            app:popUpTo="@id/tagLivestockStepTwoFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/tagLivestockStepFourFragment"
+        android:name="com.sallyjayz.ranchid.register.taglivestock.TagLivestockStepFourFragment"
+        android:label="@string/tag_livestock"
+        tools:layout="@layout/fragment_tag_livestock_step_four" >
+        <action
+            android:id="@+id/action_tagLivestockStepFourFragment_to_tagLivestockSuccessfulFragment"
+            app:destination="@id/tagLivestockSuccessfulFragment" />
+        <action
+            android:id="@+id/action_tagLivestockStepFourFragment_to_tagLivestockUnsuccessfulFragment"
+            app:destination="@id/tagLivestockUnsuccessfulFragment" />
+        <action
+            android:id="@+id/action_tagLivestockStepFourFragment_to_offlineTagLivestockSuccess"
+            app:destination="@id/offlineTagLivestockSuccess" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockLocationSuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.location.AddLivestockLocationSuccessfulFragment"
+        android:label="fragment_add_livestock_location_successful"
+        tools:layout="@layout/fragment_add_livestock_location_successful" >
+        <action
+            android:id="@+id/action_addLivestockLocationSuccessfulFragment_to_addLivestockLocationFragment"
+            app:destination="@id/addLivestockLocationFragment"
+            app:popUpTo="@id/addLivestockLocationFragment"
+            app:popUpToInclusive="true"
+            />
+        <action
+            android:id="@+id/action_addLivestockLocationSuccessfulFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockLocationUnsuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.location.AddLivestockLocationUnsuccessfulFragment"
+        android:label="fragment_add_livestock_location_unsuccessful"
+        tools:layout="@layout/fragment_add_livestock_location_unsuccessful" >
+        <action
+            android:id="@+id/action_addLivestockLocationUnsuccessfulFragment_to_addLivestockLocationFragment"
+            app:destination="@id/addLivestockLocationFragment"
+            app:popUpTo="@id/addLivestockLocationFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockOwnerSuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockowner.AddLivestockOwnerSuccessfulFragment"
+        android:label="AddLivestockOwnerSuccessfulFragment"
+        tools:layout="@layout/fragment_add_livestock_owner_successful">
+        <action
+            android:id="@+id/action_addLivestockOwnerSuccessfulFragment_to_addLivestockOwnerStepOneFragment"
+            app:destination="@id/addLivestockOwnerStepOneFragment"
+            app:popUpTo="@id/addLivestockOwnerStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_addLivestockOwnerSuccessfulFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockOwnerUnsuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockowner.AddLivestockOwnerUnSuccessfulFragment"
+        android:label="fragment_add_livestock_owner_unsuccessful"
+        tools:layout="@layout/fragment_add_livestock_owner_unsuccessful" >
+        <action
+            android:id="@+id/action_addLivestockOwnerUnsuccessfulFragment_to_addLivestockOwnerStepOneFragment"
+            app:destination="@id/addLivestockOwnerStepOneFragment"
+            app:popUpTo="@id/addLivestockOwnerStepOneFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockKeeperSuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockkeeper.AddLivestockKeeperSuccessfulFragment"
+        android:label="AddLivestockKeeperSuccessfulFragment"
+        tools:layout="@layout/fragment_add_livestock_keeper_successful">
+        <action
+            android:id="@+id/action_addLivestockKeeperSuccessfulFragment_to_addLivestockKeeperStepOneFragment"
+            app:destination="@id/addLivestockKeeperStepOneFragment"
+            app:popUpTo="@id/addLivestockKeeperStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_addLivestockKeeperSuccessfulFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockKeeperUnsuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockkeeper.AddLivestockKeeperUnsuccessfulFragment"
+        android:label="fragment_add_livestock_keeper_unsuccessful"
+        tools:layout="@layout/fragment_add_livestock_keeper_unsuccessful" >
+        <action
+            android:id="@+id/action_addLivestockKeeperUnsuccessfulFragment_to_addLivestockKeeperStepOneFragment"
+            app:destination="@id/addLivestockKeeperStepOneFragment"
+            app:popUpTo="@id/addLivestockKeeperStepOneFragment"
+            app:popUpToInclusive="true"/>
+
+        <!--<argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="phoneNumber"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="nin"
+            app:argType="string"
+            app:nullable="true" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/tagLivestockSuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.taglivestock.TagLivestockSuccessfulFragment"
+        android:label="fragment_tag_livestock_successful"
+        tools:layout="@layout/fragment_tag_livestock_successful" >
+        <action
+            android:id="@+id/action_tagLivestockSuccessfulFragment_to_tagLivestockStepOneFragment"
+            app:destination="@id/tagLivestockStepOneFragment"
+            app:popUpTo="@id/tagLivestockStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_tagLivestockSuccessfulFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/tagLivestockUnsuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.register.taglivestock.TagLivestockUnsuccessfulFragment"
+        android:label="fragment_tag_livestock_unsuccessful"
+        tools:layout="@layout/fragment_tag_livestock_unsuccessful" >
+        <action
+            android:id="@+id/action_tagLivestockUnsuccessfulFragment_to_tagLivestockStepOneFragment"
+            app:destination="@id/tagLivestockStepOneFragment"
+            app:popUpTo="@id/tagLivestockStepOneFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/offlineFragmentKeeper"
+        android:name="com.sallyjayz.ranchid.offline.livestockkeeper.OfflineFragmentKeeper"
+        android:label="@string/livestock_keeper"
+        tools:layout="@layout/fragment_offline_keeper" >
+        <action
+            android:id="@+id/action_offlineFragmentKeeper_to_offline_fragment"
+            app:destination="@id/offline_fragment"
+            app:popUpTo="@id/offline_fragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_offlineFragmentKeeper_to_offlineKeeperDetailFragment"
+            app:destination="@id/offlineKeeperDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineOwnerFragment"
+        android:name="com.sallyjayz.ranchid.offline.livestockowner.OfflineOwnerFragment"
+        android:label="@string/livestock_owner"
+        tools:layout="@layout/fragment_offline_owner" >
+        <action
+            android:id="@+id/action_offlineOwnerFragment_to_offline_fragment"
+            app:destination="@id/offline_fragment"
+            app:popUpTo="@id/offline_fragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_offlineOwnerFragment_to_offlineOwnerDetailFragment"
+            app:destination="@id/offlineOwnerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineFragmentTagLivestock"
+        android:name="com.sallyjayz.ranchid.offline.taglivestock.OfflineFragmentTagLivestock"
+        android:label="@string/tagged_livestock"
+        tools:layout="@layout/fragment_offline_tag_livestock" >
+        <action
+            android:id="@+id/action_offlineFragmentTagLivestock_to_offline_fragment"
+            app:destination="@id/offline_fragment"
+            app:popUpTo="@id/offline_fragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_offlineFragmentTagLivestock_to_offlineTagLivestockDetailFragment"
+            app:destination="@id/offlineTagLivestockDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineOwnerSuccess"
+        android:name="com.sallyjayz.ranchid.offline.livestockowner.OfflineOwnerSuccess"
+        android:label="OfflineOwnerSuccess"
+        tools:layout="@layout/fragment_offline_owner_success">
+        <action
+            android:id="@+id/action_offlineOwnerSuccess_to_addLivestockOwnerStepOneFragment"
+            app:destination="@id/addLivestockOwnerStepOneFragment"
+            app:popUpTo="@id/addLivestockOwnerStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_offlineOwnerSuccess_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/offlineKeeperSuccess"
+        android:name="com.sallyjayz.ranchid.offline.livestockkeeper.OfflineKeeperSuccess"
+        android:label="OfflineKeeperSuccess"
+        tools:layout="@layout/fragment_offline_keeper_success">
+        <action
+            android:id="@+id/action_offlineKeeperSuccess_to_addLivestockKeeperStepOneFragment"
+            app:destination="@id/addLivestockKeeperStepOneFragment"
+            app:popUpTo="@id/addLivestockKeeperStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_offlineKeeperSuccess_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/offlineTagLivestockSuccess"
+        android:name="com.sallyjayz.ranchid.offline.taglivestock.OfflineTagLivestockSuccess"
+        android:label="OfflineTagLivestockSuccess"
+        tools:layout="@layout/fragment_offline_tag_livestock_success">
+        <action
+            android:id="@+id/action_offlineTagLivestockSuccess_to_tagLivestockStepOneFragment"
+            app:destination="@id/tagLivestockStepOneFragment"
+            app:popUpTo="@id/tagLivestockStepOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_offlineTagLivestockSuccess_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockOwnerStepThreeFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockowner.AddLivestockOwnerStepThreeFragment"
+        android:label="AddLivestockOwner"
+        tools:layout="@layout/fragment_add_livestock_owner_step_three">
+        <action
+            android:id="@+id/action_addLivestockOwnerStepThreeFragment_to_offlineOwnerSuccess"
+            app:destination="@id/offlineOwnerSuccess" />
+        <action
+            android:id="@+id/action_addLivestockOwnerStepThreeFragment_to_addLivestockOwnerUnsuccessfulFragment"
+            app:destination="@id/addLivestockOwnerUnsuccessfulFragment" />
+        <action
+            android:id="@+id/action_addLivestockOwnerStepThreeFragment_to_addLivestockOwnerSuccessfulFragment"
+            app:destination="@id/addLivestockOwnerSuccessfulFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockKeeperStepThreeFragment"
+        android:name="com.sallyjayz.ranchid.register.livestockkeeper.AddLivestockKeeperStepThreeFragment"
+        android:label="AddLivestockKeeper"
+        tools:layout="@layout/fragment_add_livestock_keeper_step_three">
+        <action
+            android:id="@+id/action_addLivestockKeeperStepThreeFragment_to_addLivestockKeeperSuccessfulFragment"
+            app:destination="@id/addLivestockKeeperSuccessfulFragment" />
+        <action
+            android:id="@+id/action_addLivestockKeeperStepThreeFragment_to_addLivestockKeeperUnsuccessfulFragment"
+            app:destination="@id/addLivestockKeeperUnsuccessfulFragment" />
+        <action
+            android:id="@+id/action_addLivestockKeeperStepThreeFragment_to_offlineKeeperSuccess"
+            app:destination="@id/offlineKeeperSuccess" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLivestockLocationConfirmationFragment"
+        android:name="com.sallyjayz.ranchid.register.location.AddLivestockLocationConfirmationFragment"
+        android:label="AddLivestockLocation"
+        tools:layout="@layout/fragment_add_livestock_location_confirmation">
+        <action
+            android:id="@+id/action_addLivestockLocationConfirmationFragment_to_addLivestockLocationSuccessfulFragment"
+            app:destination="@id/addLivestockLocationSuccessfulFragment" />
+        <action
+            android:id="@+id/action_addLivestockLocationConfirmationFragment_to_addLivestockLocationUnsuccessfulFragment"
+            app:destination="@id/addLivestockLocationUnsuccessfulFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineKeeperDetailFragment"
+        android:name="com.sallyjayz.ranchid.offline.livestockkeeper.OfflineKeeperDetailFragment"
+        android:label="Offline Keeper Detail"
+        tools:layout="@layout/fragment_offline_keeper_detail">
+        <argument
+            android:name="offlineKeeperDetails"
+            app:argType="com.sallyjayz.ranchid.model.offline.keeper.OfflineKeeper" />
+        <action
+            android:id="@+id/action_offlineKeeperDetailFragment_to_offlineFragmentKeeper"
+            app:destination="@id/offlineFragmentKeeper"
+            app:popUpTo="@id/offlineFragmentKeeper"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/offlineOwnerDetailFragment"
+        android:name="com.sallyjayz.ranchid.offline.livestockowner.OfflineOwnerDetailFragment"
+        android:label="Offline Owner Detail"
+        tools:layout="@layout/fragment_offline_owner_detail">
+        <action
+            android:id="@+id/action_offlineOwnerDetailFragment_to_offlineOwnerFragment"
+            app:destination="@id/offlineOwnerFragment"
+            app:popUpTo="@id/offlineOwnerFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="offlineOwner"
+            app:argType="com.sallyjayz.ranchid.model.offline.owner.OfflineOwner" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineTagLivestockDetailFragment"
+        android:name="com.sallyjayz.ranchid.offline.taglivestock.OfflineTagLivestockDetailFragment"
+        android:label="Offline TagLivestock Detail"
+        tools:layout="@layout/fragment_offline_tag_livestock_detail">
+        <action
+            android:id="@+id/action_offlineTagLivestockDetailFragment_to_offlineFragmentTagLivestock"
+            app:destination="@id/offlineFragmentTagLivestock"
+            app:popUpTo="@id/offlineFragmentTagLivestock"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="offlineTagLivestock"
+            app:argType="com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock" />
+    </fragment>
+
+</navigation>

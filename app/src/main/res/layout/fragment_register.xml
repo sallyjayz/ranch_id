@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="registerFragment"
+            type="com.sallyjayz.ranchid.register.RegisterFragment" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".register.RegisterFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/sixteen_dp">
+
+            <LinearLayout
+                android:id="@+id/add_livestock_owner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> registerFragment.addLivestockOwner()}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/add_livestock_owner_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_livestock_owner"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/owner_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/add_livestock_owner"
+                app:layout_constraintEnd_toEndOf="@id/add_livestock_owner"
+                app:layout_constraintTop_toBottomOf="@id/add_livestock_owner"
+                android:background="@color/divider"
+                />
+
+            <LinearLayout
+                android:id="@+id/add_livestock_keeper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_livestock_owner"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> registerFragment.addLivestockKeeper()}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/add_livestock_keeper_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_livestock_keeper"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/keeper_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/add_livestock_keeper"
+                app:layout_constraintEnd_toEndOf="@id/add_livestock_keeper"
+                app:layout_constraintTop_toBottomOf="@id/add_livestock_keeper"
+                android:background="@color/divider"
+                />
+
+            <LinearLayout
+                android:id="@+id/locations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_livestock_keeper"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> registerFragment.addLivestockLocation()}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/location_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/locations"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/location_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/locations"
+                app:layout_constraintEnd_toEndOf="@id/locations"
+                app:layout_constraintTop_toBottomOf="@id/locations"
+                android:background="@color/divider"
+                />
+
+            <LinearLayout
+                android:id="@+id/tag_livestock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locations"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> registerFragment.addLivestockTag()}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_tag"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/add_livestock_keeper_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tag_livestock"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/tag_livestock_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tag_livestock"
+                app:layout_constraintEnd_toEndOf="@id/tag_livestock"
+                app:layout_constraintTop_toBottomOf="@id/tag_livestock"
+                android:background="@color/divider"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

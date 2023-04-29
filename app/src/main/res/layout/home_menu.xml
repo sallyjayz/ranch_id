@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/menu"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.Card.Media">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menu_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_variant"
+            android:padding="@dimen/twenty_dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/header_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                tools:src="@mipmap/ic_launcher"
+                android:padding="5dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/stroke_tint"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Ajala Bukky"
+                android:text="Ajala Bukky"
+                android:fontFamily="@font/inter_bold"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/ten_dp"
+                app:layout_constraintStart_toEndOf="@+id/header_image"
+                app:layout_constraintTop_toTopOf="@id/header_image"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="bukky@yahoo.co.uk"
+                android:text="bukky@yahoo.co.uk"
+                app:layout_constraintStart_toStartOf="@id/header_name"
+                app:layout_constraintTop_toBottomOf="@id/header_name"
+                app:layout_constraintBottom_toTopOf="@id/header_role"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/thirteen_sp"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_role_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/role"
+                android:textColor="@color/black"
+                android:textSize="@dimen/thirteen_sp"
+                app:layout_constraintBottom_toBottomOf="@+id/header_image"
+                app:layout_constraintStart_toStartOf="@id/header_email"
+                app:layout_constraintTop_toBottomOf="@id/header_email" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/header_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:text=" Enumerator"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/header_image"
+                app:layout_constraintStart_toEndOf="@id/header_role_label"
+                app:layout_constraintTop_toBottomOf="@id/header_email"
+                tools:text=" Enumerator" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:padding="@dimen/ten_dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/header_role"
+                android:contentDescription="@string/edit_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menu_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/menu_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_register"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/register" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/register_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/menu_register"
+                app:layout_constraintEnd_toEndOf="@id/menu_register"
+                app:layout_constraintTop_toBottomOf="@id/menu_register"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:id="@+id/menu_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/menu_register"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_tag"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/tags" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tags"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/tag_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/menu_tags"
+                app:layout_constraintEnd_toEndOf="@id/menu_tags"
+                app:layout_constraintTop_toBottomOf="@id/menu_tags"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:id="@+id/menu_offline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag_divider"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_offline"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/offline_function" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/offline_function"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/offline_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/menu_offline"
+                app:layout_constraintEnd_toEndOf="@id/menu_offline"
+                app:layout_constraintTop_toBottomOf="@id/menu_offline"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:id="@+id/menu_reports"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offline_divider"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_report"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/reports" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reports"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/reports_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/menu_reports"
+                app:layout_constraintEnd_toEndOf="@id/menu_reports"
+                app:layout_constraintTop_toBottomOf="@id/menu_reports"
+                android:background="@color/divider" />
+
+
+            <LinearLayout
+                android:id="@+id/menu_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reports_divider"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_logout"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/logout" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/logout"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/logout_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/menu_logout"
+                app:layout_constraintEnd_toEndOf="@id/menu_logout"
+                app:layout_constraintTop_toBottomOf="@id/menu_logout"
+                android:background="@color/divider" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/menu_cancel"
+                android:text="@string/close"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textAllCaps="false"
+                android:elevation="0dp"
+                android:textColor="@android:color/holo_red_light"
+                android:drawableEnd="@drawable/ic_clear_red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logout_divider"
+                android:layout_margin="@dimen/thirty_two_dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="offlineKeeperSuccess"
+            type="com.sallyjayz.ranchid.offline.livestockkeeper.OfflineKeeperSuccess" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".offline.livestockkeeper.OfflineKeeperSuccess">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/success_image"
+                android:text="@string/data_stored_offline"
+                android:textColor="@color/error_red"
+                android:textSize="@dimen/twenty_four_sp"
+                android:fontFamily="@font/inter_bold"
+                android:textAlignment="center"/>
+
+            <ImageView
+                android:id="@+id/success_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/good_job"
+                android:src="@drawable/successful_icon"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/good_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/congratulations"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/eighteen_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/success_message"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/success_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/livestock_keeper_added_successfully"
+                android:fontFamily="@font/inter_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_keeper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_add"
+                android:drawableTint="@color/white"
+                android:text="@string/add_new_keeper"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/btn_color"
+                android:fontFamily="@font/inter_regular"
+                android:textAllCaps="false"
+                android:paddingTop="@dimen/twenty_dp"
+                android:paddingBottom="@dimen/twenty_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/forty_dp"
+                android:onClick="@{() -> offlineKeeperSuccess.addNewKeeper()}"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/back_to_dashboard"
+                android:text="@string/go_back_to_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:drawableTint="@color/btn_color"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textAllCaps="false"
+                android:textColor="@color/btn_color"
+                android:fontFamily="@font/inter_regular"
+                android:layout_margin="@dimen/eight_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/success_message"
+                android:onClick="@{() -> offlineKeeperSuccess.goToDashboard()}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

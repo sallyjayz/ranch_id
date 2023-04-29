@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".tag.TagFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/sixteen_dp">
+
+        <LinearLayout
+            android:id="@+id/scan_for_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_for_exit_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_for_exit_abattoir"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_for_exit_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scan_for_exit"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_for_other_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_for_exit_other"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_for_sale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scan_for_exit_other"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_for_sale_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_for_sale"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_for_owner_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scan_for_sale"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_for_owner_change_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_for_owner_change"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_for_theft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scan_for_owner_change"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_for_theft_or_loss_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_for_theft_loss"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_for_border_crossing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scan_for_theft"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_for_border_crossing_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_for_border_crossing"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/scan_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scan_for_border_crossing"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_scan"
+                android:padding="@dimen/twenty_dp"
+                android:contentDescription="@string/scan_other_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/scan_other"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="@dimen/sixteen_sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

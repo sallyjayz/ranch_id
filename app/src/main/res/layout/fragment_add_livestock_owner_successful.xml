@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<data>
+
+        <variable
+            name="viewModel"
+            type="com.sallyjayz.ranchid.viewmodel.register.LivestockOwnerViewModel" />
+
+    </data>-->
+
+    <data>
+        <variable
+            name="ownerSuccessFragment"
+            type="com.sallyjayz.ranchid.register.livestockowner.AddLivestockOwnerSuccessfulFragment" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".register.livestockowner.AddLivestockOwnerSuccessfulFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/success_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/good_job"
+                android:src="@drawable/successful_icon"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/good_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/congratulations"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/eighteen_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/success_message"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/success_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/livestock_owner_added_successfully"
+                android:fontFamily="@font/inter_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_new_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_add"
+                android:drawableTint="@color/white"
+                android:text="@string/add_new_owner"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/btn_color"
+                android:fontFamily="@font/inter_regular"
+                android:textAllCaps="false"
+                android:paddingTop="@dimen/twenty_dp"
+                android:paddingBottom="@dimen/twenty_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/forty_dp"
+                android:onClick="@{() -> ownerSuccessFragment.addNewOwner()}"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/back_to_dashboard"
+                android:text="@string/go_back_to_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:drawableTint="@color/btn_color"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textAllCaps="false"
+                android:textColor="@color/btn_color"
+                android:fontFamily="@font/inter_regular"
+                android:layout_margin="@dimen/eight_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/success_message"
+                android:onClick="@{() -> ownerSuccessFragment.goToDashboard()}"/>
+
+            <!--<com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ownertype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="owner type" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ownertype_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ownertype"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@{viewModel.ownerType}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/livestock_keeper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/ownertype"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Livestock keeper" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/keeper_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/livestock_keeper"
+                app:layout_constraintTop_toBottomOf="@id/ownertype_value"
+                android:text="@{viewModel.ownerLivestockKeeper}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/livestock_keeper"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Surname" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/surname_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/surname"
+                app:layout_constraintTop_toBottomOf="@id/keeper_value"
+                android:text="@{viewModel.ownerSurname}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/othername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/surname"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Othername" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/other_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/othername"
+                app:layout_constraintTop_toBottomOf="@id/surname_value"
+                android:text="@{viewModel.ownerOthername}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                app:layout_constraintTop_toBottomOf="@id/othername"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/gender_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gender"
+                app:layout_constraintTop_toBottomOf="@id/other_value"
+                android:text="@{viewModel.ownerGender}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth"
+                app:layout_constraintTop_toBottomOf="@id/gender"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dob_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dob"
+                app:layout_constraintTop_toBottomOf="@id/gender_value"
+                android:text="@{viewModel.ownerDateOfBirth}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                app:layout_constraintTop_toBottomOf="@id/dob"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/phone_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/phone"
+                app:layout_constraintTop_toBottomOf="@id/dob_value"
+                android:text="@{viewModel.ownerPhoneNumber}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/nin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NIN"
+                app:layout_constraintTop_toBottomOf="@id/phone"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/nin_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/nin"
+                app:layout_constraintTop_toBottomOf="@id/phone_value"
+                android:text="@{viewModel.ownerNin}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                app:layout_constraintTop_toBottomOf="@id/nin"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/email_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/email"
+                app:layout_constraintTop_toBottomOf="@id/nin_value"
+                android:text="@{viewModel.ownerEmail}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                app:layout_constraintTop_toBottomOf="@id/email"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/address_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/address"
+                app:layout_constraintTop_toBottomOf="@id/email_value"
+                android:text="@{viewModel.ownerAddress}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            &lt;!&ndash;<com.google.android.material.textview.MaterialTextView
+                android:id="@+id/address_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address Two"
+                app:layout_constraintTop_toBottomOf="@id/address"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/address_two_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/address_two"
+                app:layout_constraintTop_toBottomOf="@id/address_value"
+                android:text="@{viewModel.ownerAddressTwo}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />&ndash;&gt;
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="State"
+                app:layout_constraintTop_toBottomOf="@id/address"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/state_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/state"
+                app:layout_constraintTop_toBottomOf="@id/address_value"
+                android:text="@{viewModel.ownerState}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lga"
+                app:layout_constraintTop_toBottomOf="@id/state"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lga_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lga"
+                app:layout_constraintTop_toBottomOf="@id/state_value"
+                android:text="@{viewModel.ownerLga}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/next_of_kin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next of Kin"
+                app:layout_constraintTop_toBottomOf="@id/lga"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/kin_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/next_of_kin"
+                app:layout_constraintTop_toBottomOf="@id/lga_value"
+                android:text="@{viewModel.ownerNextOfKin}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/kin_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next of Kin Phone"
+                app:layout_constraintTop_toBottomOf="@id/next_of_kin"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/kin_phone_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/kin_phone"
+                app:layout_constraintTop_toBottomOf="@id/kin_value"
+                android:text="@{viewModel.ownerKinPhoneNumber}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/document_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Document Type"
+                app:layout_constraintTop_toBottomOf="@id/kin_phone"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/document_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/document_type"
+                app:layout_constraintTop_toBottomOf="@id/kin_phone_value"
+                android:text="@{viewModel.ownerDocumentType}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/document_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Document Number"
+                app:layout_constraintTop_toBottomOf="@id/document_type"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/document_number_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/document_number"
+                app:layout_constraintTop_toBottomOf="@id/document_value"
+                android:text="@{viewModel.ownerDocumentNumber}"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black" />-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

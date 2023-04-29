@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="locationConfirmModel"
+            type="com.sallyjayz.ranchid.viewmodel.register.LocationViewModel" />
+
+        <variable
+            name="locationConfirmationFragment"
+            type="com.sallyjayz.ranchid.register.location.AddLivestockLocationConfirmationFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".register.location.AddLivestockLocationConfirmationFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/form_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/form_summary"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/error_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/offline"
+                    android:drawableStart="@drawable/ic_warning"
+                    android:fontFamily="@font/inter_regular"
+                    android:background="@color/offline_background"
+                    android:textColor="@color/offline_text"
+                    android:padding="@dimen/four_dp"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/confirm_location_owner_name"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_owner_name"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_owner_name"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_owner_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/form_summary"
+                    app:layout_constraintEnd_toEndOf="@id/form_summary"
+                    app:layout_constraintTop_toBottomOf="@id/form_summary"
+                    android:text="@string/owner_name"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_owner_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_owner_name"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_owner_name"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_owner_name"
+                    tools:text="Location Owner Name"
+                    android:text="@{locationConfirmModel.ownerName}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_owner_name_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_owner_name"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/location_owner_name_divider"
+                    app:layout_constraintEnd_toEndOf="@id/location_owner_name_divider"
+                    app:layout_constraintTop_toBottomOf="@id/location_owner_name_divider"
+                    android:text="@string/location_name"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_name"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_name"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_name"
+                    tools:text="Location Name"
+                    android:text="@{locationConfirmModel.locationName}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_name_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_name"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/location_name_divider"
+                    app:layout_constraintEnd_toEndOf="@id/location_name_divider"
+                    app:layout_constraintTop_toBottomOf="@id/location_name_divider"
+                    android:text="@string/location_address"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_address"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_address"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_address"
+                    tools:text="Location Address"
+                    android:text="@{locationConfirmModel.locationAddress}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_address_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_address"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/location_address_divider"
+                    app:layout_constraintEnd_toEndOf="@id/location_address_divider"
+                    app:layout_constraintTop_toBottomOf="@id/location_address_divider"
+                    android:text="@string/location_type"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_type"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_type"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_type"
+                    tools:text="Location Type"
+                    android:text="@{locationConfirmModel.locationType}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_type_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_type"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/location_type_divider"
+                    app:layout_constraintEnd_toEndOf="@id/location_type_divider"
+                    app:layout_constraintTop_toBottomOf="@id/location_type_divider"
+                    android:text="@string/state"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_state"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_state"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_state"
+                    tools:text="Kaduna"
+                    android:text="@{locationConfirmModel.locationState}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_state_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_state"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_lga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/location_state_divider"
+                    app:layout_constraintEnd_toEndOf="@id/location_state_divider"
+                    app:layout_constraintTop_toBottomOf="@id/location_state_divider"
+                    android:text="@string/lga"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_lga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_lga"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_lga"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_lga"
+                    tools:text="Chikun"
+                    android:text="@{locationConfirmModel.locationLga}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_lga_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_lga"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/confirm_location_cac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/location_lga_divider"
+                    app:layout_constraintEnd_toEndOf="@id/location_lga_divider"
+                    app:layout_constraintTop_toBottomOf="@id/location_lga_divider"
+                    android:text="@string/cac_certificate_id"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/location_cac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/confirm_location_cac"
+                    app:layout_constraintEnd_toEndOf="@id/confirm_location_cac"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_location_cac"
+                    tools:text="125685655455"
+                    android:text="@{locationConfirmModel.certificate}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/location_cac_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_cac"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_cac_divider"
+                    android:background="@color/divider" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/location_submit_button"
+                    android:text="@string/submit"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    android:layout_marginBottom="@dimen/thirty_two_dp"
+                    android:drawableEnd="@drawable/ic_save"
+                    style="@style/Widget.RanchID.Button.Colored.OutlinedButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider"
+                    android:onClick="@{() -> locationConfirmationFragment.submitClicked()}"/>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/location_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="invisible"
+                    app:indicatorColor="@color/btn_color"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>
