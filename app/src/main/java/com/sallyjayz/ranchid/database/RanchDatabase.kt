@@ -34,7 +34,7 @@ import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
     OfflineTagLivestock::class,
     AnimalType::class,
     AnimalBreed::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 

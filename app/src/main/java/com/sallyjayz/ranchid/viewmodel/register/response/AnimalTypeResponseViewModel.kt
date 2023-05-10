@@ -6,8 +6,10 @@ import com.sallyjayz.ranchid.repository.AnimalTypeRepository
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.BaseViewModel
 import com.sallyjayz.ranchid.viewmodel.CoroutinesErrorHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class AnimalTypeResponseViewModel @Inject constructor(
     private val animalTypeRepository: AnimalTypeRepository
 ): BaseViewModel() {

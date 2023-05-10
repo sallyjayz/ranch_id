@@ -11,7 +11,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
+import com.sallyjayz.ranchid.HomeMenuBottomSheet
 import com.sallyjayz.ranchid.LoginActivity
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentHomeBinding
@@ -55,6 +57,10 @@ class HomeFragment : Fragment() {
     private val unusedPassportViewModel: UnusedPassportViewModel by viewModels()
     private val unusedPassportResponseViewModel: UnusedPassportResponseViewModel by viewModels()
     private val networkStatusViewModel: NetworkStatusViewModel by activityViewModels()
+    private val animalTypeViewModel: AnimalTypeViewModel by viewModels()
+    private val animalBreedViewModel: AnimalBreedViewModel by viewModels()
+    private val animalTypeResponseViewModel: AnimalTypeResponseViewModel by viewModels()
+    private val animalBreedTypeResponseViewModel: AnimalBreedResponseViewModel by viewModels()
 
     private var token: String? = null
 
@@ -106,7 +112,7 @@ class HomeFragment : Fragment() {
 
         }
 
-        tokenViewModel.name.observe(viewLifecycleOwner) { name ->
+        /*tokenViewModel.name.observe(viewLifecycleOwner) { name ->
             binding.headerName.text = name
         }
 
@@ -118,7 +124,7 @@ class HomeFragment : Fragment() {
             binding.headerRole.text = role
         }
 
-        /*tokenViewModel.userPhoto.observe(viewLifecycleOwner) { photo ->
+        *//*tokenViewModel.userPhoto.observe(viewLifecycleOwner) { photo ->
             Glide.with(requireContext())
                 .load(photo)
                 .override(70, 70)
@@ -135,6 +141,7 @@ class HomeFragment : Fragment() {
                     insertAllOwnersAndKeepersFarmLocation()
                     insertDashboardActivity()
                     insertUnusedPassport()
+                    insertAnimalTypeAndBreed()
                 }
                 MyState.Error -> {
                     binding.offlineTv.isVisible = true
@@ -473,13 +480,91 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun showMenu() {
-        binding.menu.isVisible = true
-        binding.homeFragmentConstraintLayout.alpha = 0.1F
-        binding.menuConstraintLayout.alpha = 1.0F
+    private fun insertAnimalTypeAndBreed() {
+
+        animalTypeResponseViewModel.animalTypeResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = "Failed to download Animal Type data from server"
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                    binding.menuBtn.isClickable = false
+                }
+                is ApiResponse.Success -> {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        animalTypeViewModel.deleteAllAnimalType()
+                        animalTypeViewModel.insertAnimalType(it.data.data)
+                    }
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    binding.menuBtn.isClickable = true
+                }
+            }
+        }
+
+        animalTypeResponseViewModel.getAnimalType(object : CoroutinesErrorHandler {
+            override fun onError(message: String) {
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+                binding.menuBtn.isClickable = true
+            }
+
+        })
+
+
+        /* Animal Breed*/
+
+        animalBreedTypeResponseViewModel.animalBreedResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+//                    binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
+                    binding.errorTv.text = "Failed to download Animal Breed data from server"
+                }
+                ApiResponse.Loading -> {
+//                    binding.errorTv.text = "Loading"
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                    binding.menuBtn.isClickable = false
+                }
+                is ApiResponse.Success -> {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        animalBreedViewModel.deleteAllBreed()
+                        animalBreedViewModel.insertAnimalBreed(it.data.data)
+                    }
+//                    binding.errorTv.text = "Inserted"
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    binding.menuBtn.isClickable = true
+                }
+            }
+        }
+
+        animalBreedTypeResponseViewModel.getAnimalBreed(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+                binding.menuBtn.isClickable = true
+            }
+        })
+
     }
 
-    fun closeMenu() {
+    fun showMenu() {
+        /*binding.menu.isVisible = true
+        binding.homeFragmentConstraintLayout.alpha = 0.1F
+        binding.menuConstraintLayout.alpha = 1.0F*/
+        /*val modalBottomSheet = HomeMenuBottomSheet()
+        modalBottomSheet.show(requireActivity().supportFragmentManager, HomeMenuBottomSheet.TAG)*/
+        val action = HomeFragmentDirections.actionHomeFragmentToHomeMenuBottomSheet()
+        findNavController().navigate(action)
+    }
+
+    /*fun closeMenu() {
         binding.menu.isVisible = false
         binding.homeFragmentConstraintLayout.alpha = 1.0F
     }
@@ -512,5 +597,5 @@ class HomeFragment : Fragment() {
     fun showLogoutFragment() {
         tokenViewModel.deleteToken()
         activity?.finish()
-    }
+    }*/
 }

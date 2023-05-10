@@ -1,6 +1,7 @@
 package com.sallyjayz.ranchid.register.taglivestock
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +16,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.utils.Util
 import com.sallyjayz.ranchid.databinding.FragmentTagLivestockStepTwoBinding
-import com.sallyjayz.ranchid.viewmodel.register.AllKeeperViewModel
-import com.sallyjayz.ranchid.viewmodel.register.AllOwnerViewModel
-import com.sallyjayz.ranchid.viewmodel.register.TagLivestockViewModel
-import com.sallyjayz.ranchid.viewmodel.register.UnusedPassportViewModel
+import com.sallyjayz.ranchid.viewmodel.register.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -55,10 +53,13 @@ class TagLivestockStepTwoFragment : Fragment() {
     private lateinit var selectedPassportId: String
     private var ownerId: Int = 0
     private var keeperId: Int = 0
+    private lateinit var livestockTypeAdapter: ArrayAdapter<String>
     private lateinit var livestockBreedAdapter: ArrayAdapter<String>
     private lateinit var allOwnerAdapter: ArrayAdapter<String>
     private lateinit var allKeeperAdapter: ArrayAdapter<String>
     private lateinit var passportIdAdapter: ArrayAdapter<String>
+    private val animalTypeViewModel: AnimalTypeViewModel by viewModels()
+    private val animalBreedViewModel: AnimalBreedViewModel by viewModels()
     private val args: TagLivestockStepTwoFragmentArgs by navArgs()
 
 
@@ -195,7 +196,43 @@ class TagLivestockStepTwoFragment : Fragment() {
 
     private fun livestockTypeAndBreedDropdown() {
 
-        val livestockTypeAdapter =
+        animalTypeViewModel.readAllAnimalType.observe(viewLifecycleOwner) {
+            val animalTypes = ArrayList<String>()
+            for (type in it) {
+                animalTypes.add(type.name)
+                livestockTypeAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_list_item, animalTypes)
+                (binding.livestockType.setAdapter(livestockTypeAdapter))
+            }
+        }
+
+        binding.livestockType.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+               selectedType = livestockTypeAdapter.getItem(position).toString()
+                binding.livestockBreed.setText("", false)
+
+                animalTypeViewModel.getAnimalTypeName(selectedType).observe(viewLifecycleOwner){
+                    if (selectedType.contains(it.name)) {
+                        animalBreedViewModel.getAnimalTypeBreedId(it.id).observe(viewLifecycleOwner) { animalBreedList ->
+                            val animalBreeds = ArrayList<String>()
+                            for (breed in animalBreedList) {
+                                animalBreeds.add(breed.name)
+                                livestockBreedAdapter = ArrayAdapter(
+                                    parent.context,
+                                    R.layout.dropdown_list_item, animalBreeds)
+                            }
+                            (binding.livestockBreed.setAdapter(livestockBreedAdapter))
+                        }
+                    }
+                }
+                binding.livestockBreed.onItemClickListener = AdapterView.OnItemClickListener { _, _, pos, _ ->
+                    selectedBreed = livestockBreedAdapter.getItem(pos).toString()
+                }
+            }
+
+
+
+
+        /*val livestockTypeAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_list_item, Util.LIVESTOCK_TYPE)
         (binding.livestockType.setAdapter(livestockTypeAdapter))
 
@@ -217,7 +254,7 @@ class TagLivestockStepTwoFragment : Fragment() {
                     selectedBreed = livestockBreedAdapter.getItem(pos).toString()
                 }
 
-            }
+            }*/
     }
 
     fun dateOfBirth() {

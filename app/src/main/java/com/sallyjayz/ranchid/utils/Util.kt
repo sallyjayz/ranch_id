@@ -6,14 +6,14 @@ object Util {
         "FEMALE"
     )
 
-    val LIVESTOCK_TYPE = listOf(
+    /*val LIVESTOCK_TYPE = listOf(
         "CATTLE",
         "GOAT",
         "SHEEP",
         "PIG"
-    )
+    )*/
 
-    val BREED = listOf(
+    /*val BREED = listOf(
         listOf(
             "ADAMAWA GUDALI",
             "KETEKU",
@@ -44,7 +44,7 @@ object Util {
             "YORKSHIRE",
             "LARGE BLACK"
         )
-    )
+    )*/
 
     val LOCATION_TYPE = listOf(
         "ABATTOIR/SLAUGHTERHOUSE",

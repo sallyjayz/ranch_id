@@ -5,8 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.sallyjayz.ranchid.model.animalbreed.AnimalBreed
 import com.sallyjayz.ranchid.repository.AnimalBreedRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class AnimalBreedViewModel @Inject constructor(
     private val animalBreedRepository: AnimalBreedRepository,
     context: Application

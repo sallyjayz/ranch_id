@@ -27,8 +27,8 @@ class EmptyData constructor(rv: RecyclerView?, ev: View?): RecyclerView.AdapterD
         checkIfEmpty()
     }
 
-    override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
+    /*override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
         super.onItemRangeChanged(positionStart, itemCount)
-    }
+    }*/
 
 }

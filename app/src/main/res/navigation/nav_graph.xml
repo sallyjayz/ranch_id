@@ -10,17 +10,10 @@
         android:label="@string/dashboard"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home_fragment_to_register_fragment"
-            app:destination="@id/register_fragment" />
-        <action
-            android:id="@+id/action_home_fragment_to_tag_fragment"
-            app:destination="@id/tag_fragment" />
-        <action
-            android:id="@+id/action_home_fragment_to_report_fragment"
-            app:destination="@id/report_fragment" />
-        <action
-            android:id="@+id/action_home_fragment_to_offline_fragment"
-            app:destination="@id/offline_fragment" />
+            android:id="@+id/action_home_fragment_to_homeMenuBottomSheet"
+            app:destination="@id/homeMenuBottomSheet"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/register_fragment"
@@ -489,5 +482,30 @@
             android:name="offlineTagLivestock"
             app:argType="com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock" />
     </fragment>
+    <dialog
+        android:id="@+id/homeMenuBottomSheet"
+        android:name="com.sallyjayz.ranchid.HomeMenuBottomSheet"
+        tools:layout="@layout/home_menu">
+        <action
+            android:id="@+id/action_homeMenuBottomSheet_to_register_fragment"
+            app:destination="@id/register_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeMenuBottomSheet_to_offline_fragment"
+            app:destination="@id/offline_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeMenuBottomSheet_to_report_fragment"
+            app:destination="@id/report_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeMenuBottomSheet_to_tag_fragment"
+            app:destination="@id/tag_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </dialog>
 
 </navigation>
