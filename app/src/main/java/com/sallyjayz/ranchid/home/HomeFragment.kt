@@ -2,6 +2,7 @@ package com.sallyjayz.ranchid.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -304,8 +305,12 @@ class HomeFragment : Fragment() {
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
                         allOwnerViewModel.deleteAllOwners()
+                        allOwnerViewModel.insertAllOwners(it.data.allOwnersList)
+                        Log.d("Home Fragment1", "${it.data.allOwnersList}")
+                        /* old response from server
                         allOwnerViewModel.insertAllOwners(it.data.record.allOwnersList)
-//                        Log.d("Home Fragment1", "${it.data.record.allOwnersList}")
+                        Log.d("Home Fragment1", "${it.data.record.allOwnersList}")
+                        */
                     }
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
@@ -341,7 +346,10 @@ class HomeFragment : Fragment() {
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
                         allKeeperViewModel.deleteAllKeepers()
+                        allKeeperViewModel.insertAllKeepers(it.data.allKeepersList)
+                        /*old response from server
                         allKeeperViewModel.insertAllKeepers(it.data.record.allKeepersList)
+                        */
                     }
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false

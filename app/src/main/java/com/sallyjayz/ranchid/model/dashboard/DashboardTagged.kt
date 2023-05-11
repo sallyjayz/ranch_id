@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dashboard_tagged")
 data class DashboardTagged(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val lifetime: Int,
     val thisMonth: Int,

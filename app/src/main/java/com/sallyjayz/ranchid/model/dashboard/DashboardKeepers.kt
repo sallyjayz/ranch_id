@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dashboard_keeper")
 data class DashboardKeepers(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val lifetime: Int,
     val thisMonth: Int,

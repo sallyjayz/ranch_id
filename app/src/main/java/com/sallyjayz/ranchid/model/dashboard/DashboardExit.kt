@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dashboard_exit")
 data class DashboardExit(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     val lifetime: Int,
     val thisMonth: Int,
