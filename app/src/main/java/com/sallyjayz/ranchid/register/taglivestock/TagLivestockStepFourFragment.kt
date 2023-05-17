@@ -22,6 +22,7 @@ import com.sallyjayz.ranchid.viewmodel.PermissionViewModel
 import com.sallyjayz.ranchid.viewmodel.TokenViewModel
 import com.sallyjayz.ranchid.viewmodel.offline.OfflineTagLivestockViewModel
 import com.sallyjayz.ranchid.viewmodel.register.TagLivestockViewModel
+import com.sallyjayz.ranchid.viewmodel.register.UnusedEnumeratorTagViewModel
 import com.sallyjayz.ranchid.viewmodel.register.response.TagLivestockResponseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -36,6 +37,7 @@ class TagLivestockStepFourFragment : Fragment() {
     private val sharedViewModel: TagLivestockViewModel by activityViewModels()
     private val tagLivestockResponseViewModel: TagLivestockResponseViewModel by viewModels()
     private val offlineTagLivestockView: OfflineTagLivestockViewModel by viewModels()
+    private val unusedEnumeratorTagViewModel: UnusedEnumeratorTagViewModel by viewModels()
     private lateinit var permissionViewModel: PermissionViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,6 +117,13 @@ class TagLivestockStepFourFragment : Fragment() {
                 }
                 is ApiResponse.Success -> {
 //                    binding.errorTv.text = "${it.data.data.id}"
+                    CoroutineScope(Dispatchers.IO).launch {
+                        unusedEnumeratorTagViewModel.updateEnumeratorTagById(
+                            "Unavailable",
+                            sharedViewModel.databaseId
+
+                        )
+                    }
                     val action = TagLivestockStepFourFragmentDirections
                         .actionTagLivestockStepFourFragmentToTagLivestockSuccessfulFragment()
                     findNavController().navigate(action)
@@ -176,6 +185,11 @@ class TagLivestockStepFourFragment : Fragment() {
                             "PENDING"
                         )
                         offlineTagLivestockView.insertOfflineTagLivestock(offlineTagLivestock)
+
+                        unusedEnumeratorTagViewModel.updateEnumeratorTagById(
+                            "Unavailable",
+                            sharedViewModel.databaseId
+                        )
                     }
                     val action = TagLivestockStepFourFragmentDirections
                         .actionTagLivestockStepFourFragmentToOfflineTagLivestockSuccess()

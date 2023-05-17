@@ -30,14 +30,9 @@
     <color name="white">#FFFFFFFF</color>-->
 
     <color name="background">#FAF7F1</color>
-
-
-
-
     <color name="nait_green">#00FFD3</color>
     <color name="error_red">#FF0000</color>
     <color name="offline_text">#5B626C</color>
     <color name="offline_background">#E2E1DF</color>
     <color name="capture_btn_background">#E4E8FA</color>
-
 </resources>

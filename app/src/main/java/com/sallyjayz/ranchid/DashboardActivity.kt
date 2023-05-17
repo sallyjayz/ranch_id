@@ -48,8 +48,6 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         setContentView(R.layout.activity_dashboard)
         viewModel = ViewModelProvider(this)[PermissionViewModel::class.java]
         tokenViewModel = ViewModelProvider(this)[TokenViewModel::class.java]

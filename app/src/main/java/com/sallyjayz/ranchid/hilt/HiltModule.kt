@@ -84,8 +84,9 @@ class HiltModule {
         OfflineTagLivestockRepository(offlineTagLivestockDao)
 
     @Provides
-    fun provideUnusedEnumeratorTagRepository(unusedEnumeratorTagApiService: UnusedEnumeratorTagApiService) =
-        UnusedEnumeratorTagRepository(unusedEnumeratorTagApiService)
+    fun provideUnusedEnumeratorTagRepository(unusedEnumeratorTagApiService: UnusedEnumeratorTagApiService,
+                                             unusedEnumeratorTagDao: UnusedEnumeratorTagDao) =
+        UnusedEnumeratorTagRepository(unusedEnumeratorTagApiService, unusedEnumeratorTagDao)
 
     @Provides
     fun provideAnimalTypeRepository(animalTypeBreedApiService: AnimalTypeBreedApiService, animalTypeDao: AnimalTypeDao) =

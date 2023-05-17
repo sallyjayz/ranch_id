@@ -15,7 +15,7 @@ import com.sallyjayz.ranchid.viewmodel.register.LivestockOwnerViewModel
 class AddLivestockOwnerSuccessfulFragment : Fragment() {
 
     private lateinit var binding: FragmentAddLivestockOwnerSuccessfulBinding
-    private val sharedViewModel: LivestockOwnerViewModel by activityViewModels()
+//    private val sharedViewModel: LivestockOwnerViewModel by activityViewModels()
     private val ownerViewModel: LivestockOwnerViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class AddLivestockOwnerSuccessfulFragment : Fragment() {
 
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                sharedViewModel.resetLivestockOwner()
+                ownerViewModel.resetLivestockOwner()
                 val action = AddLivestockOwnerSuccessfulFragmentDirections
                     .actionAddLivestockOwnerSuccessfulFragmentToHomeFragment()
                 findNavController().navigate(action)
@@ -53,14 +53,14 @@ class AddLivestockOwnerSuccessfulFragment : Fragment() {
     }
 
     fun goToDashboard() {
-        sharedViewModel.resetLivestockOwner()
+        ownerViewModel.resetLivestockOwner()
         val action = AddLivestockOwnerSuccessfulFragmentDirections
             .actionAddLivestockOwnerSuccessfulFragmentToHomeFragment()
         findNavController().navigate(action)
     }
 
     fun addNewOwner() {
-        sharedViewModel.resetLivestockOwner()
+        ownerViewModel.resetLivestockOwner()
 
         if (ownerViewModel.hasNoGenderSet()) {
             ownerViewModel.setGender(getString(R.string.male))

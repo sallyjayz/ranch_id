@@ -16,6 +16,7 @@ import com.sallyjayz.ranchid.model.offline.keeper.OfflineKeeper
 import com.sallyjayz.ranchid.model.offline.owner.OfflineOwner
 import com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock
 import com.sallyjayz.ranchid.model.state.States
+import com.sallyjayz.ranchid.model.unusedenumeratortag.all.AllUnusedEnumeratorTag
 import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
 
 @Database(entities = [
@@ -33,7 +34,8 @@ import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
     OfflineKeeper::class,
     OfflineTagLivestock::class,
     AnimalType::class,
-    AnimalBreed::class],
+    AnimalBreed::class,
+    AllUnusedEnumeratorTag::class],
     version = 3,
     exportSchema = false
 )
@@ -52,6 +54,7 @@ abstract class RanchDatabase : RoomDatabase() {
     abstract fun offlineTagLivestockDao(): OfflineTagLivestockDao
     abstract fun animalTypeDao(): AnimalTypeDao
     abstract fun animalBreedDao(): AnimalBreedDao
+    abstract fun unusedEnumeratorTagDao(): UnusedEnumeratorTagDao
 
     companion object {
         @Volatile private var instance: RanchDatabase? = null

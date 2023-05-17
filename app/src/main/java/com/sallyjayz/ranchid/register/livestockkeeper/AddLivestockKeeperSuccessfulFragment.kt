@@ -15,7 +15,7 @@ import com.sallyjayz.ranchid.viewmodel.register.LivestockKeeperViewModel
 class AddLivestockKeeperSuccessfulFragment : Fragment() {
 
     private lateinit var binding: FragmentAddLivestockKeeperSuccessfulBinding
-    private val sharedViewModel: LivestockKeeperViewModel by activityViewModels()
+//    private val sharedViewModel: LivestockKeeperViewModel by activityViewModels()
     private val keeperViewModel: LivestockKeeperViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class AddLivestockKeeperSuccessfulFragment : Fragment() {
 
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                sharedViewModel.resetLivestockKeeper()
+                keeperViewModel.resetLivestockKeeper()
                 val action = AddLivestockKeeperSuccessfulFragmentDirections
                     .actionAddLivestockKeeperSuccessfulFragmentToHomeFragment()
                 findNavController().navigate(action)
@@ -54,7 +54,7 @@ class AddLivestockKeeperSuccessfulFragment : Fragment() {
     }
 
     fun goToDashboard() {
-        sharedViewModel.resetLivestockKeeper()
+        keeperViewModel.resetLivestockKeeper()
         val action = AddLivestockKeeperSuccessfulFragmentDirections
             .actionAddLivestockKeeperSuccessfulFragmentToHomeFragment()
         findNavController().navigate(action)
@@ -62,7 +62,7 @@ class AddLivestockKeeperSuccessfulFragment : Fragment() {
     }
 
     fun addNewKeeper() {
-        sharedViewModel.resetLivestockKeeper()
+        keeperViewModel.resetLivestockKeeper()
 
         if (keeperViewModel.hasNoGenderSet()) {
             keeperViewModel.setGender(getString(R.string.male))

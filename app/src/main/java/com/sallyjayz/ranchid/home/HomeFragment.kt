@@ -19,6 +19,7 @@ import com.sallyjayz.ranchid.LoginActivity
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentHomeBinding
 import com.sallyjayz.ranchid.home.activities.ViewPagerAdapter
+import com.sallyjayz.ranchid.model.unusedenumeratortag.all.AllUnusedEnumeratorTag
 import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.*
@@ -62,6 +63,8 @@ class HomeFragment : Fragment() {
     private val animalBreedViewModel: AnimalBreedViewModel by viewModels()
     private val animalTypeResponseViewModel: AnimalTypeResponseViewModel by viewModels()
     private val animalBreedTypeResponseViewModel: AnimalBreedResponseViewModel by viewModels()
+    private val unusedEnumeratorTagResponseViewModel: UnusedEnumeratorTagResponseViewModel by viewModels()
+    private val unusedEnumeratorTagViewModel: UnusedEnumeratorTagViewModel by viewModels()
 
     private var token: String? = null
 
@@ -143,6 +146,7 @@ class HomeFragment : Fragment() {
                     insertDashboardActivity()
                     insertUnusedPassport()
                     insertAnimalTypeAndBreed()
+                    insertUnusedEnumeratorTag()
                 }
                 MyState.Error -> {
                     binding.offlineTv.isVisible = true
@@ -560,6 +564,86 @@ class HomeFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun insertUnusedEnumeratorTag() {
+        unusedEnumeratorTagResponseViewModel.allUnusedEnumeratorTag.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+//                    binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
+                    binding.errorTv.text = "Failed to download UnusedEnumeratorTag from server"
+                }
+                ApiResponse.Loading -> {
+//                    binding.errorTv.text = "Loading"
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                    binding.menuBtn.isClickable = false
+                }
+                is ApiResponse.Success -> {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        unusedEnumeratorTagViewModel.deleteAllUnusedEnumeratorTag()
+                        var allUnusedEnumeratorTag: AllUnusedEnumeratorTag
+                        for (unusedEnumeratorTag in it.data.allUnusedEnumeratorTag) {
+                            allUnusedEnumeratorTag = AllUnusedEnumeratorTag(
+                                unusedEnumeratorTag.id,
+                                unusedEnumeratorTag.batch_id,
+                                unusedEnumeratorTag.date_tagged,
+                                unusedEnumeratorTag.enumerator,
+                                unusedEnumeratorTag.first_four,
+                                unusedEnumeratorTag.print_status,
+                                unusedEnumeratorTag.qr_code,
+                                unusedEnumeratorTag.rand_code,
+                                unusedEnumeratorTag.second_four,
+                                unusedEnumeratorTag.serial_number,
+                                unusedEnumeratorTag.tag_id,
+                                unusedEnumeratorTag.tag_type,
+                                unusedEnumeratorTag.tagging_contractor,
+                                "Available"
+                            )
+                            unusedEnumeratorTagViewModel.insertUnusedEnumeratorTag(allUnusedEnumeratorTag)
+                        }
+
+                        /*unusedPassportViewModel.deleteAllUnusedPassport()
+
+                        var unusedPassport: UnusedPassport
+                        for (passportid in it.data.data) {
+                            unusedPassport = UnusedPassport(0, passportid)
+                            unusedPassportViewModel.insertUnusedPassport(unusedPassport)
+//                            Log.d("Fragment UnusedPassport", "Id: ${unusedPassport.id}, " +
+//                                    "PassportId: ${unusedPassport.passportId}")
+                        }*/
+
+                        Log.d("Unused Enumerator Tags", "${it.data.allUnusedEnumeratorTag}")
+
+
+                    }
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    binding.menuBtn.isClickable = true
+                }
+            }
+        }
+
+        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+            if (username != null) {
+                unusedEnumeratorTagResponseViewModel.getAllUnusedEnumeratorTag(username.lowercase(),
+                    object: CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+//                            binding.errorTv.text = "Error! $message"
+                            binding.offlineTv.isVisible = true
+                            binding.homeFragmentProgress.isVisible = false
+                            binding.homeFragmentConstraintLayout.alpha = 1.0F
+                            binding.menuBtn.isClickable = true
+                            /*if (binding.menu.isVisible) {
+                                binding.homeFragmentConstraintLayout.alpha = 0.1F
+                                binding.menuConstraintLayout.alpha = 1.0F
+                            } else {
+                                binding.homeFragmentConstraintLayout.alpha = 1.0F
+                            }*/
+                        }
+                    })
+            }
+        }
     }
 
     fun showMenu() {

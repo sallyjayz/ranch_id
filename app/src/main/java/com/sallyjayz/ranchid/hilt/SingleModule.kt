@@ -209,4 +209,8 @@ class SingleModule {
     @Provides
     fun provideAnimalBreedDao(db: RanchDatabase) = db.animalBreedDao()
 
+    @Singleton
+    @Provides
+    fun provideUnusedEnumeratorTag(db: RanchDatabase) = db.unusedEnumeratorTagDao()
+
 }

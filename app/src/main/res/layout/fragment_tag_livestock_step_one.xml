@@ -124,7 +124,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
-                android:onClick="@{() -> stepOneFragment.nextButtonClicked()}"/>
+                android:onClick="@{() -> stepOneFragment.nextButtonClicked()}"
+                android:enabled="false"
+                android:alpha="0.5"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

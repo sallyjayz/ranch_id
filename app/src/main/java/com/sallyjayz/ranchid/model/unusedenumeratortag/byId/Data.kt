@@ -1,4 +1,4 @@
-package com.sallyjayz.ranchid.model.unusedenumeratortag
+package com.sallyjayz.ranchid.model.unusedenumeratortag.byId
 
 data class Data(
     val batch_id: Any,

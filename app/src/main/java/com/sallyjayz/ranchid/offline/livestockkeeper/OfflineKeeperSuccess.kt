@@ -14,7 +14,7 @@ import com.sallyjayz.ranchid.viewmodel.register.LivestockKeeperViewModel
 class OfflineKeeperSuccess : Fragment() {
 
     private lateinit var binding: FragmentOfflineKeeperSuccessBinding
-    private val sharedViewModel: LivestockKeeperViewModel by activityViewModels()
+//    private val sharedViewModel: LivestockKeeperViewModel by activityViewModels()
     private val keeperViewModel: LivestockKeeperViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -35,14 +35,14 @@ class OfflineKeeperSuccess : Fragment() {
     }
 
     fun goToDashboard() {
-        sharedViewModel.resetLivestockKeeper()
+        keeperViewModel.resetLivestockKeeper()
         val action = OfflineKeeperSuccessDirections.actionOfflineKeeperSuccessToHomeFragment()
         findNavController().navigate(action)
 
     }
 
     fun addNewKeeper() {
-        sharedViewModel.resetLivestockKeeper()
+        keeperViewModel.resetLivestockKeeper()
 
         if (keeperViewModel.hasNoGenderSet()) {
             keeperViewModel.setGender(getString(R.string.male))

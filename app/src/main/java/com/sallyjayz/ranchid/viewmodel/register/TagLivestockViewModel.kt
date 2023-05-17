@@ -84,6 +84,9 @@ class TagLivestockViewModel : ViewModel() {
     private val _muzzlePhotoSize = MutableLiveData<String>()
     val muzzlePhotoSize : LiveData<String> = _muzzlePhotoSize
 
+    var databaseId: Int = 0
+
+
     init {
         resetTagLivestock()
     }
