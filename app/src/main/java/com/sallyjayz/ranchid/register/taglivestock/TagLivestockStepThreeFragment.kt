@@ -35,8 +35,8 @@ import java.io.FileOutputStream
 class TagLivestockStepThreeFragment : Fragment() {
 
     private lateinit var binding: FragmentTagLivestockStepThreeBinding
-//    private var selectedProductionType: String? = null
-    private lateinit var selectedProductionType: String
+    private var selectedProductionType: String? = null
+//    private lateinit var selectedProductionType: String
     private val sharedViewModel: TagLivestockViewModel by activityViewModels()
 //    private lateinit var photoFile: File
     private var verificationPhotoFile: File? = null
@@ -139,7 +139,7 @@ class TagLivestockStepThreeFragment : Fragment() {
         val byteArrayOutputStream = ByteArrayOutputStream()
         if (isSuccessful) {
             val imageBitmap = BitmapFactory.decodeFile(verificationPhotoFile?.absolutePath)
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream)
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream)
             val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
             base64VerificationString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
             verificationImageSize =  imageBytes.size/1024.0
@@ -181,7 +181,7 @@ class TagLivestockStepThreeFragment : Fragment() {
         if (uri != null) {
             verificationPhotoFile = uriToFile(uri)
             val imageBitmap = BitmapFactory.decodeFile(verificationPhotoFile?.absolutePath)
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream)
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream)
             val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
             base64VerificationString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
             muzzleImageSize =  imageBytes.size/1024.0
@@ -249,7 +249,7 @@ class TagLivestockStepThreeFragment : Fragment() {
         val byteArrayOutputStream = ByteArrayOutputStream()
         if (isSuccessful) {
             val imageBitmap = BitmapFactory.decodeFile(muzzlePhotoFile?.absolutePath)
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream)
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream)
             val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
             base64MuzzleString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
             val imageSize =  imageBytes.size/1024.0
@@ -294,7 +294,7 @@ class TagLivestockStepThreeFragment : Fragment() {
 
             muzzlePhotoFile = uriToFile(uri)
             val imageBitmap = BitmapFactory.decodeFile(muzzlePhotoFile?.absolutePath)
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream)
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream)
             val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
             base64MuzzleString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
             val imageSize =  imageBytes.size/1024.0
@@ -356,15 +356,15 @@ class TagLivestockStepThreeFragment : Fragment() {
 
         if (verificationPhotoFile == null || muzzlePhotoFile == null) {
             Toast.makeText(requireContext(), "photo required", Toast.LENGTH_LONG).show()
-        } else if(verificationImageSize > 700.0 || muzzleImageSize > 700.0) {
+        } /*else if(verificationImageSize > 700.0 || muzzleImageSize > 700.0) {
             Toast.makeText(requireContext(), "Photo size is too large, It should be less than 700.00 Kb", Toast.LENGTH_LONG).show()
-        }else if (isStepTwoEntryValid()) {
+        }*/else if (isStepTwoEntryValid()) {
             sharedViewModel.setStepTwo(
                 binding.description.text.toString(),
                 binding.tagLocation.text.toString(),
                 farmLocationId.toString(),
                 binding.comment.text.toString(),
-                selectedProductionType,
+                selectedProductionType.toString(),
                 verificationPhotoFile?.absolutePath.toString(),
                 "data:image/jpeg;base64,$base64VerificationString",
                 verificationPhotoFile?.name.toString(),
@@ -378,14 +378,15 @@ class TagLivestockStepThreeFragment : Fragment() {
                 .actionTagLivestockStepThreeFragmentToTagLivestockStepFourFragment()
             findNavController().navigate(action)
         } else {
-            binding.errorTv.text = getString(R.string.all_fields_required)
+//            binding.errorTv.text = getString(R.string.all_fields_required)
+            binding.errorTv.text = "All fields are required except COMMENTS FOR OTHER LOCATION"
         }
     }
 
     fun cancelButtonClicked() {
         sharedViewModel.resetStepThreeTagLivestock()
         val action = TagLivestockStepThreeFragmentDirections
-            .actionTagLivestockStepThreeFragmentToTagLivestockStepTwoFragment("")
+            .actionTagLivestockStepThreeFragmentToTagLivestockStepTwoFragment("", "")
         findNavController().navigate(action)
     }
 
@@ -411,8 +412,8 @@ class TagLivestockStepThreeFragment : Fragment() {
         return sharedViewModel.isStepTwoEntryValid(
             binding.description.text.toString(),
             binding.tagLocation.text.toString(),
-            binding.comment.text.toString(),
-            selectedProductionType,
+            /*binding.comment.text.toString(),*/
+            selectedProductionType.toString(),
             verificationPhotoFile?.absolutePath.toString(),
             verificationPhotoFile?.name.toString(),
             verificationPhotoSize.toString(),

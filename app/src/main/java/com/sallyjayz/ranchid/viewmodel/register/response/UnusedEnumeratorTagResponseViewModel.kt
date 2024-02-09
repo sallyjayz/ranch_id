@@ -15,21 +15,21 @@ class UnusedEnumeratorTagResponseViewModel @Inject constructor(
     private val unusedEnumeratorTagRepository: UnusedEnumeratorTagRepository
 ): BaseViewModel() {
 
-    private val unusedEnumeratorTagResponseById = MutableLiveData<ApiResponse<UnusedEnumeratorTagResponseById>>()
-    val unusedEnumeratorTagResponse = unusedEnumeratorTagResponseById
+    private val _unusedEnumeratorTagResponseById = MutableLiveData<ApiResponse<UnusedEnumeratorTagResponseById>>()
+    val unusedEnumeratorTagResponse = _unusedEnumeratorTagResponseById
 
-    private val allUnusedEnumeratorTagResponse = MutableLiveData<ApiResponse<AllUnusedEnumeratorTagResponse>>()
-    val allUnusedEnumeratorTag = allUnusedEnumeratorTagResponse
+    private val _allUnusedEnumeratorTagResponse = MutableLiveData<ApiResponse<AllUnusedEnumeratorTagResponse>>()
+    val allUnusedEnumeratorTag = _allUnusedEnumeratorTagResponse
 
     fun getUnusedEnumeratorTagById(username: String, tagId: String, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
-        unusedEnumeratorTagResponseById,
+        _unusedEnumeratorTagResponseById,
         coroutinesErrorHandler
     ) {
         unusedEnumeratorTagRepository.getUnusedEnumeratorTagById(username, tagId)
     }
 
     fun getAllUnusedEnumeratorTag(username: String, coroutinesErrorHandler: CoroutinesErrorHandler) = baseRequest(
-        allUnusedEnumeratorTagResponse,
+        _allUnusedEnumeratorTagResponse,
         coroutinesErrorHandler
     ) {
         unusedEnumeratorTagRepository.getAllUnusedEnumeratorTag(username)

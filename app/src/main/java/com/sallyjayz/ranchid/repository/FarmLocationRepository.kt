@@ -29,6 +29,8 @@ class FarmLocationRepository @Inject constructor(
     fun getLocationName(selectedStateName: String) =
         farmLocationDao.getSelectedLocationName(selectedStateName)
 
+    fun getLocationId(id: Int) = farmLocationDao.getSelectedLocationId(id)
+
     fun deleteAllFarmLocation() = farmLocationDao.deleteAllFarmLocation()
 
 }

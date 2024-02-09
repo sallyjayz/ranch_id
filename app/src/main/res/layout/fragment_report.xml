@@ -1,124 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".report.ReportFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="reportFragment"
+            type="com.sallyjayz.ranchid.report.ReportFragment" />
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/sixteen_dp">
+        tools:context=".report.ReportFragment">
 
-        <LinearLayout
-            android:id="@+id/list_livestock_owner"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/sixteen_dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/list_livestock_owner"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/list_ls_owner"
-                android:padding="@dimen/twenty_dp"
-                android:contentDescription="@string/list_livestock_owner_icon" />
+                android:orientation="horizontal"
+                android:onClick="@{() -> reportFragment.listLivestockOwner()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="0dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_ls_owner"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/list_livestock_owner_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_livestock_owner"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/list_livestock_keeper"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/list_livestock_owner"
-                android:fontFamily="@font/inter_regular"
-                android:textSize="@dimen/sixteen_sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:onClick="@{() -> reportFragment.listLivestockKeeper()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_livestock_owner"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-            android:id="@+id/list_livestock_keeper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_livestock_owner"
-            app:layout_constraintEnd_toEndOf="parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_ls_keeper"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/list_livestock_keeper_icon" />
 
-            <ImageView
-                android:layout_width="wrap_content"
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/list_livestock_keeper"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/list_registration_location"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/list_ls_keeper"
-                android:padding="@dimen/twenty_dp"
-                android:contentDescription="@string/list_livestock_keeper_icon" />
+                android:orientation="horizontal"
+                android:onClick="@{() -> reportFragment.listLivestockLocation()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_livestock_keeper"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="0dp"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_reg_location"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/list_registration_location_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="List Registration Location"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/list_tagged_livestock"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/list_livestock_keeper"
-                android:fontFamily="@font/inter_regular"
-                android:textSize="@dimen/sixteen_sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:onClick="@{() -> reportFragment.listTaggedLivestock()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_registration_location"
+                app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-            android:id="@+id/list_registration_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_livestock_keeper"
-            app:layout_constraintEnd_toEndOf="parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/list_tagged_livestock"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/list_tagged_livestock_icon" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/list_reg_location"
-                android:padding="@dimen/twenty_dp"
-                android:contentDescription="@string/list_registration_location_icon" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="List Tagged Livestock"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="List Registration Location"
-                android:fontFamily="@font/inter_regular"
-                android:textSize="@dimen/sixteen_sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"/>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/list_tagged_livestock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/list_registration_location"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/list_tagged_livestock"
-                android:padding="@dimen/twenty_dp"
-                android:contentDescription="@string/list_tagged_livestock_icon" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="List Tagged Livestock"
-                android:fontFamily="@font/inter_regular"
-                android:textSize="@dimen/sixteen_sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"/>
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

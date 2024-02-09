@@ -22,6 +22,8 @@ class FarmLocationViewModel @Inject constructor(
 
     fun getLocationName(name: String) = farmLocationRepository.getLocationName(name)
 
+    fun getLocationId(id: Int) = farmLocationRepository.getLocationId(id)
+
     suspend fun insertLocations(location: List<FarmLocation>) = farmLocationRepository.saveLocation(location)
 
     /*suspend fun insertLocations(location: FarmLocation) = farmLocationRepository.saveLocation(location)*/

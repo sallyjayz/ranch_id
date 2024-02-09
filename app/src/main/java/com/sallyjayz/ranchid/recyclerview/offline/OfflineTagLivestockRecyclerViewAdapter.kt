@@ -1,4 +1,4 @@
-package com.sallyjayz.ranchid.recyclerview
+package com.sallyjayz.ranchid.recyclerview.offline
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 import com.sallyjayz.ranchid.R
-import com.sallyjayz.ranchid.model.offline.keeper.OfflineKeeper
+import com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock
 
-class OfflineKeeperRecyclerViewAdapter(private val context: Context): PagingDataAdapter<OfflineKeeper,
-        OfflineKeeperRecyclerViewAdapter.KeeperViewHolder>(DiffUtilCallback()) {
+class OfflineTagLivestockRecyclerViewAdapter(private val context: Context) : PagingDataAdapter<OfflineTagLivestock,
+        OfflineTagLivestockRecyclerViewAdapter.TagLivestockViewHolder>(DiffUtilCallback()) {
 
     private var onClickListener: OnClickListener? = null
 
-    override fun onBindViewHolder(holder: KeeperViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TagLivestockViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
 
@@ -46,40 +46,45 @@ class OfflineKeeperRecyclerViewAdapter(private val context: Context): PagingData
             if (it.status == "FAILED") {
                 holder.itemView.setOnClickListener {
                     if (onClickListener != null) {
-                        getItem(position)?.let { offlineKeeper ->
-                            onClickListener!!.onClickOfflineKeeper(position,
-                                offlineKeeper
+                        getItem(position)?.let { offlineTagLivestock ->
+                            onClickListener!!.onClickOfflineTagLivestock(position,
+                                offlineTagLivestock
                             )
                         }
                     }
                 }
             }
+
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeeperViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-            .inflate(R.layout.offline_list_item, parent, false)
-        return KeeperViewHolder(inflater)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagLivestockViewHolder {
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.offline_list_item, parent, false)
+        return TagLivestockViewHolder(inflater)
     }
 
-
-    class KeeperViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class TagLivestockViewHolder (view: View): RecyclerView.ViewHolder(view) {
         private val fullName: MaterialTextView = view.findViewById(R.id.name)
         val image: ImageView = view.findViewById(R.id.status_image)
 
-        fun bind(offlineKeeper: OfflineKeeper) {
-            fullName.text = "${offlineKeeper.surname} ${offlineKeeper.otherNames}"
+        fun bind(offlineTagLivestock: OfflineTagLivestock) {
+            fullName.text = offlineTagLivestock.tagId
         }
+
     }
 
-
-    class DiffUtilCallback : DiffUtil.ItemCallback<OfflineKeeper>() {
-        override fun areItemsTheSame(oldItem: OfflineKeeper, newItem: OfflineKeeper): Boolean {
+    class DiffUtilCallback : DiffUtil.ItemCallback<OfflineTagLivestock>() {
+        override fun areItemsTheSame(
+            oldItem: OfflineTagLivestock,
+            newItem: OfflineTagLivestock
+        ): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: OfflineKeeper, newItem: OfflineKeeper): Boolean {
+        override fun areContentsTheSame(
+            oldItem: OfflineTagLivestock,
+            newItem: OfflineTagLivestock
+        ): Boolean {
             return oldItem == newItem
         }
 
@@ -90,6 +95,6 @@ class OfflineKeeperRecyclerViewAdapter(private val context: Context): PagingData
     }
 
     interface OnClickListener {
-        fun onClickOfflineKeeper(position: Int, offlineKeeper: OfflineKeeper)
+        fun onClickOfflineTagLivestock(position: Int, offlineTagLivestock: OfflineTagLivestock)
     }
 }

@@ -19,7 +19,7 @@ import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentOfflineTagLivestockBinding
 import com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock
 import com.sallyjayz.ranchid.model.register.taglivestock.TagLivestock
-import com.sallyjayz.ranchid.recyclerview.OfflineTagLivestockRecyclerViewAdapter
+import com.sallyjayz.ranchid.recyclerview.offline.OfflineTagLivestockRecyclerViewAdapter
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.CoroutinesErrorHandler
 import com.sallyjayz.ranchid.viewmodel.EmptyData

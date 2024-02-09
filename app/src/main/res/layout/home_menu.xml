@@ -247,6 +247,114 @@
                     app:layout_constraintTop_toBottomOf="@id/menu_reports"
                     android:background="@color/divider" />
 
+                <LinearLayout
+                    android:id="@+id/menu_general_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reports_divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:onClick="@{() -> homeMenuBottomSheet.showGeneralInfoFragment()}">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_general_info"
+                        android:padding="@dimen/twenty_dp"
+                        android:contentDescription="@string/general_info" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/general_info"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/general_info_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/menu_general_info"
+                    app:layout_constraintEnd_toEndOf="@id/menu_general_info"
+                    app:layout_constraintTop_toBottomOf="@id/menu_general_info"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:id="@+id/menu_support"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/general_info_divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:onClick="@{() -> homeMenuBottomSheet.showSupportFragment()}">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_online_support"
+                        android:padding="@dimen/twenty_dp"
+                        android:contentDescription="@string/online_support" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/online_support"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/support_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/menu_support"
+                    app:layout_constraintEnd_toEndOf="@id/menu_support"
+                    app:layout_constraintTop_toBottomOf="@id/menu_support"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:id="@+id/menu_ranchid_how"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/support_divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:onClick="@{() -> homeMenuBottomSheet.showRanchIdHowFragment()}">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_online_support"
+                        android:padding="@dimen/twenty_dp"
+                        android:contentDescription="@string/help" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="How to use RanchID"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/help_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/menu_ranchid_how"
+                    app:layout_constraintEnd_toEndOf="@id/menu_ranchid_how"
+                    app:layout_constraintTop_toBottomOf="@id/menu_ranchid_how"
+                    android:background="@color/divider" />
+
 
                 <LinearLayout
                     android:id="@+id/menu_logout"
@@ -254,7 +362,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/reports_divider"
+                    app:layout_constraintTop_toBottomOf="@id/menu_ranchid_how"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:onClick="@{() -> homeMenuBottomSheet.showLogoutFragment()}">
 

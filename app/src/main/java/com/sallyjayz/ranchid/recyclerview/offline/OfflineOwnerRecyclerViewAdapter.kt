@@ -1,4 +1,4 @@
-package com.sallyjayz.ranchid.recyclerview
+package com.sallyjayz.ranchid.recyclerview.offline
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 import com.sallyjayz.ranchid.R
-import com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock
+import com.sallyjayz.ranchid.model.offline.owner.OfflineOwner
 
-class OfflineTagLivestockRecyclerViewAdapter(private val context: Context) : PagingDataAdapter<OfflineTagLivestock,
-        OfflineTagLivestockRecyclerViewAdapter.TagLivestockViewHolder>(DiffUtilCallback()) {
+class OfflineOwnerRecyclerViewAdapter(private val context: Context) : PagingDataAdapter<OfflineOwner,
+        OfflineOwnerRecyclerViewAdapter.OwnerViewHolder>(DiffUtilCallback()) {
 
     private var onClickListener: OnClickListener? = null
 
-    override fun onBindViewHolder(holder: TagLivestockViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: OwnerViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
 
@@ -46,9 +46,9 @@ class OfflineTagLivestockRecyclerViewAdapter(private val context: Context) : Pag
             if (it.status == "FAILED") {
                 holder.itemView.setOnClickListener {
                     if (onClickListener != null) {
-                        getItem(position)?.let { offlineTagLivestock ->
-                            onClickListener!!.onClickOfflineTagLivestock(position,
-                                offlineTagLivestock
+                        getItem(position)?.let { offlineOwner ->
+                            onClickListener!!.onClickOfflineOwner(position,
+                                offlineOwner
                             )
                         }
                     }
@@ -56,35 +56,32 @@ class OfflineTagLivestockRecyclerViewAdapter(private val context: Context) : Pag
             }
 
         }
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagLivestockViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OwnerViewHolder {
         val inflater = LayoutInflater.from(parent.context).inflate(R.layout.offline_list_item, parent, false)
-        return TagLivestockViewHolder(inflater)
+        return OwnerViewHolder(inflater)
     }
 
-    class TagLivestockViewHolder (view: View): RecyclerView.ViewHolder(view) {
+
+    class OwnerViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
         private val fullName: MaterialTextView = view.findViewById(R.id.name)
         val image: ImageView = view.findViewById(R.id.status_image)
 
-        fun bind(offlineTagLivestock: OfflineTagLivestock) {
-            fullName.text = offlineTagLivestock.tagId
+        fun bind(offlineOwner: OfflineOwner) {
+            fullName.text = "${offlineOwner.surname} ${offlineOwner.otherNames}"
         }
-
     }
 
-    class DiffUtilCallback : DiffUtil.ItemCallback<OfflineTagLivestock>() {
-        override fun areItemsTheSame(
-            oldItem: OfflineTagLivestock,
-            newItem: OfflineTagLivestock
-        ): Boolean {
+    class DiffUtilCallback : DiffUtil.ItemCallback<OfflineOwner>() {
+        override fun areItemsTheSame(oldItem: OfflineOwner, newItem: OfflineOwner): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(
-            oldItem: OfflineTagLivestock,
-            newItem: OfflineTagLivestock
-        ): Boolean {
+        override fun areContentsTheSame(oldItem: OfflineOwner, newItem: OfflineOwner): Boolean {
             return oldItem == newItem
         }
 
@@ -95,6 +92,7 @@ class OfflineTagLivestockRecyclerViewAdapter(private val context: Context) : Pag
     }
 
     interface OnClickListener {
-        fun onClickOfflineTagLivestock(position: Int, offlineTagLivestock: OfflineTagLivestock)
+        fun onClickOfflineOwner(position: Int, offlineOwner: OfflineOwner)
     }
 }
+

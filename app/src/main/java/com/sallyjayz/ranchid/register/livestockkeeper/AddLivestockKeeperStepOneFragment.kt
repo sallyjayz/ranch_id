@@ -94,7 +94,6 @@ class AddLivestockKeeperStepOneFragment : Fragment() {
 
                 stateViewModel.getStateName(selectedState).observe(viewLifecycleOwner){
                     stateId = it.id
-                    Log.d("Owner", "Id: ${it.id}, name: ${it.name}")
 
                     if(selectedState.contains(it.name)) {
                         lgaViewModel.getLgaStateId(stateId).observe(viewLifecycleOwner){ lgaList ->
@@ -175,7 +174,8 @@ class AddLivestockKeeperStepOneFragment : Fragment() {
                 .actionAddLivestockKeeperStepOneFragmentToAddLivestockKeeperStepTwoFragment()
             findNavController().navigate(action)
         } else {
-            binding.errorTv.text = getString(R.string.all_fields_required)
+//            binding.errorTv.text = getString(R.string.all_fields_required)
+            binding.errorTv.text = "All fields are required except EMAIL"
         }
     }
 

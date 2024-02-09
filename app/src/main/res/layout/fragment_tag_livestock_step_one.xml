@@ -75,10 +75,11 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_livestock_tag"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/tag_livestock_tag_label"
                 app:layout_constraintTop_toBottomOf="@id/tag_livestock_scanimage"
+                app:layout_constraintEnd_toEndOf="@id/tag_livestock_scanimage"
                 android:layout_marginTop="@dimen/sixteen_dp"
                 android:layout_marginStart="@dimen/sixteen_dp"
                 tools:text="NGF0009038"
@@ -86,13 +87,40 @@
                 android:fontFamily="@font/inter_bold" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tag_type_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/animal_tag_type"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:fontFamily="@font/inter_bold"
+                android:textSize="@dimen/sixteen_sp"
+                app:layout_constraintStart_toStartOf="@id/tag_livestock_tag_label"
+                app:layout_constraintTop_toBottomOf="@id/tag_livestock_tag_label"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tag_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:layout_marginStart="@dimen/sixteen_dp"
+                android:fontFamily="@font/inter_bold"
+                android:textSize="@dimen/sixteen_sp"
+                tools:text="BIG_RUMINANT"
+                app:layout_constraintStart_toEndOf="@id/tag_type_label"
+                app:layout_constraintTop_toBottomOf="@id/tag_livestock_tag"
+                app:layout_constraintEnd_toEndOf="@id/tag_livestock_tag"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_availability"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ten_dp"
-                app:layout_constraintStart_toStartOf="@id/tag_livestock_tag_label"
+                android:fontFamily="@font/inter_regular"
+                tools:text="Available Tag"
+                app:layout_constraintStart_toStartOf="@id/tag_type_label"
                 app:layout_constraintEnd_toEndOf="@id/tag_livestock_scanimage"
-                app:layout_constraintTop_toBottomOf="@id/tag_livestock_tag_label"
+                app:layout_constraintTop_toBottomOf="@id/tag_type"
                 />
 
             <com.google.android.material.divider.MaterialDivider

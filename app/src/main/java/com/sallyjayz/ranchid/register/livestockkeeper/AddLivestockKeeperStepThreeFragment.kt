@@ -1,10 +1,12 @@
 package com.sallyjayz.ranchid.register.livestockkeeper
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -24,6 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 @AndroidEntryPoint
 class AddLivestockKeeperStepThreeFragment : Fragment() {
@@ -133,6 +138,44 @@ class AddLivestockKeeperStepThreeFragment : Fragment() {
                             dialog.dismiss()
                         }
                         .show()*/
+
+                    /*val keeperString = "SURNAME: ${sharedViewModel.surname.value.toString()}," +
+                            "OTHERNAME: ${sharedViewModel.othername.value.toString()}," +
+                            "GENDER: ${sharedViewModel.keeperGender.value.toString()}, " +
+                            "DOB: ${sharedViewModel.keeperDateOfBirth.value.toString()}," +
+                            "PHONE: ${sharedViewModel.phoneNumber.value.toString()}," +
+                            "MARITAL STATUS: ${sharedViewModel.keeperMaritalStatus.value.toString()}, " +
+                            "NEXT OF KIN: ${sharedViewModel.keeperNextOfKin.value.toString()} " +
+                            "NEXT OF KIN PHONE: ${sharedViewModel.nextOfKinPhoneNumber.value.toString()}, " +
+                            "EMAIL: ${sharedViewModel.email.value.toString()}, " +
+                            "NIN: ${sharedViewModel.nin.value.toString()}, " +
+                            "STATEID: ${sharedViewModel.keeperStateId.value.toString()}, " +
+                            "LGAID: ${sharedViewModel.keeperLgaId.value.toString()}, " +
+                            "WARD: ${""}," +
+                            "DOCUMENT TYPE: ${sharedViewModel.documentType.value.toString()}, " +
+                            "DOCUMENT NUMBER: ${sharedViewModel.documentNumber.value.toString()}, " +
+                            "LOCATION: ${sharedViewModel.farmLocationId.value.toString()}, " +
+                            "ADDRESS: ${sharedViewModel.address.value.toString()}, " +
+                            "OTHER LOCATION: ${"N/A"}, " +
+                            "PHOTO: ${sharedViewModel.photo.value.toString()}," +
+                            "TIMESTAMP: ${ ""}, " +
+                            "CAPTURED BY: ${tokenViewModel.username.value.toString()}"
+
+                    val fileOutputStream: FileOutputStream
+
+                    try {
+                        fileOutputStream = activity?.openFileOutput("Keeper.txt",MODE_PRIVATE)!!
+                        fileOutputStream.write(keeperString.toByteArray())
+                    } catch (e: FileNotFoundException){
+                        e.printStackTrace()
+                    }catch (e: NumberFormatException){
+                        e.printStackTrace()
+                    }catch (e: IOException){
+                        e.printStackTrace()
+                    }catch (e: Exception){
+                        e.printStackTrace()
+                    }
+                    Toast.makeText(requireContext(),"data save", Toast.LENGTH_LONG).show()*/
 
                     binding.stepThreeProgress.isVisible = false
                     val action = AddLivestockKeeperStepThreeFragmentDirections

@@ -15,9 +15,12 @@ import com.sallyjayz.ranchid.model.lga.LGA
 import com.sallyjayz.ranchid.model.offline.keeper.OfflineKeeper
 import com.sallyjayz.ranchid.model.offline.owner.OfflineOwner
 import com.sallyjayz.ranchid.model.offline.taglivestock.OfflineTagLivestock
+import com.sallyjayz.ranchid.model.register.packinglist.packinglist.AllPackingList
+import com.sallyjayz.ranchid.model.register.packinglist.scannedlivestock.ScanLivestock
 import com.sallyjayz.ranchid.model.state.States
 import com.sallyjayz.ranchid.model.unusedenumeratortag.all.AllUnusedEnumeratorTag
 import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
+import com.sallyjayz.ranchid.model.usedenumeratortag.UsedEnumeratorTag
 
 @Database(entities = [
     States::class,
@@ -35,7 +38,10 @@ import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
     OfflineTagLivestock::class,
     AnimalType::class,
     AnimalBreed::class,
-    AllUnusedEnumeratorTag::class],
+    AllUnusedEnumeratorTag::class,
+    UsedEnumeratorTag::class,
+    ScanLivestock::class,
+    AllPackingList::class],
     version = 3,
     exportSchema = false
 )
@@ -55,6 +61,10 @@ abstract class RanchDatabase : RoomDatabase() {
     abstract fun animalTypeDao(): AnimalTypeDao
     abstract fun animalBreedDao(): AnimalBreedDao
     abstract fun unusedEnumeratorTagDao(): UnusedEnumeratorTagDao
+    abstract fun usedEnumeratorTagDao(): UsedEnumeratorTagDao
+    abstract fun livestockDataDao(): LivestockDataDao
+    abstract fun packingListDao(): PackingListDao
+
 
     companion object {
         @Volatile private var instance: RanchDatabase? = null

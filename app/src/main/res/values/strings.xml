@@ -59,7 +59,7 @@
     <string name="surname">Surname</string>
     <string name="other_names">Other Names</string>
     <string name="are_you_a_livestock_keeper">Are you a Livestock Keeper?</string>
-    <string name="gender">Gender</string>
+    <string name="gender">Sex</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="email">Email</string>
@@ -134,7 +134,7 @@
     <string name="sheep">Sheep</string>
     <string name="goat">Goat</string>
     <string name="select_status">Select Status</string>
-    <string name="select_gender">Select Gender</string>
+    <string name="select_gender">Select Sex</string>
     <string name="select_passport_id">Select Passport ID</string>
     <string name="select_livestock_type">Select Livestock Type</string>
     <string name="select_livestock_breed">Select Livestock Breed</string>
@@ -191,9 +191,41 @@
     <string name="unused_passport_download_failed">Failed to download Unused Passport data from server</string>
 
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_fields_required">All fields are required</string>
     <string name="location_lat_lon_warning">Check Internet Connection and Turn on Location in Phone Settings</string>
     <string name="incorrect_username_password">Incorrect Username or Password</string>
+    <string name="online_support">Online Support</string>
+    <string name="animal_tag_type">Animal Tag Type:</string>
+    <string name="add_packing_list_icon">Add Packing List Icon</string>
+    <string name="packing_list">Packing List</string>
+    <string name="driver_name">Driver\'s Name</string>
+    <string name="registration_number">Registration Number</string>
+    <string name="vehicle_name">Vehicle Name</string>
+    <string name="livestock_quantity">Livestock Quantity</string>
+    <string name="destination">Destination</string>
+    <string name="scan_livestock_tag">Scan Livestock Tag</string>
+    <string name="listing_livestock_information">Listing Livestock Information</string>
+    <string name="livestock">Livestock</string>
+    <string name="tag">Tag</string>
+    <string name="livestock_list">Livestock List</string>
+    <string name="packing_list_added_successfully">Packing List Added Successfully</string>
+    <string name="add_new_packing_list">Add New Packing List</string>
+    <string name="general_info">General Information</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="contact_address">Contact Address</string>
+    <string name="national_identification_number">National Identification Number (NIN)</string>
+    <string name="ward">Ward</string>
+    <string name="other_location">Other Location</string>
+    <string name="passport_photo">Passport Photo</string>
+    <string name="generate_form">Generate Form</string>
+    <string name="generate_information">Generate Information</string>
+    <string name="getting_started">Getting Started</string>
+    <string name="how_to_use_ranch_id_icon">how_to_use_ranch_id_icon</string>
+    <string name="the_ranchid_dashboard">The RanchID Dashboard</string>
+    <string name="the_enumerator_menu">The Enumerator Menu</string>
+    <string name="the_register_menu">The Register Menu</string>
+    <string name="scan_for_exit">Scan for Exit</string>
+    <string name="how_to_use_ranch_id">How to use RanchID</string>
 </resources>

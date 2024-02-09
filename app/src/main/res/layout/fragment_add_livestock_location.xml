@@ -44,8 +44,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
                     android:textAlignment="center"
+                    tools:text="@string/location_lat_lon_warning"
                     android:textColor="@android:color/holo_red_light"
-                    app:layout_constraintBottom_toTopOf="@id/location_ownername_label"
+                    app:layout_constraintTop_toBottomOf="@id/step_one_instruction"
                     app:layout_constraintStart_toStartOf="@id/location_ownername_label"
                     app:layout_constraintEnd_toEndOf="@id/location_ownername"/>
 
@@ -56,7 +57,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="@id/step_one_instruction"
                     app:layout_constraintEnd_toEndOf="@id/step_one_instruction"
-                    app:layout_constraintTop_toBottomOf="@id/step_one_instruction"
+                    app:layout_constraintTop_toBottomOf="@id/error_tv"
                     android:text="@string/owner_name"
                     android:fontFamily="@font/inter_bold"
                     android:layout_marginTop="@dimen/sixteen_dp"

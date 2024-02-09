@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="generalInfoFragment"
+            type="com.sallyjayz.ranchid.generalinformation.GeneralInformationSearchFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".generalinformation.GeneralInformationSearchFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/sixteen_dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/error_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:textAlignment="center"
+                android:textColor="@android:color/holo_red_light"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/search_cardview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                app:strokeColor="@color/search_dark"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@color/background"
+                app:layout_constraintStart_toStartOf="@id/error_tv"
+                app:layout_constraintEnd_toEndOf="@id/error_tv"
+                app:layout_constraintTop_toBottomOf="@id/error_tv"
+                >
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+                    app:queryHint="Search for livestock keeper or owner"
+                    android:theme="@style/ThemeOverlay.RanchID.SearchView"
+                    app:searchIcon="@null"
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_cardview"
+                app:layout_constraintBottom_toTopOf="@id/generate_info_btn"
+                tools:listitem="@layout/search_dropdown_list_item"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/generate_info_btn"
+                style="@style/Widget.RanchID.Button.Colored.OutlinedButton"
+                android:layout_width="match_parent"
+                android:drawableEnd="@drawable/ic_next"
+                android:text="@string/generate_information"
+                android:onClick="@{() -> generalInfoFragment.generateInfoClicked()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

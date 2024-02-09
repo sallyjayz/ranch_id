@@ -170,6 +170,44 @@
                 android:background="@color/divider"
                 />
 
+            <LinearLayout
+                android:id="@+id/packing_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tag_livestock"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> registerFragment.addPackingList()}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_tag"
+                    android:padding="@dimen/twenty_dp"
+                    android:contentDescription="@string/add_packing_list_icon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/packing_list"
+                    android:fontFamily="@font/inter_regular"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/packinglist_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/packing_list"
+                app:layout_constraintEnd_toEndOf="@id/packing_list"
+                app:layout_constraintTop_toBottomOf="@id/packing_list"
+                android:background="@color/divider"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

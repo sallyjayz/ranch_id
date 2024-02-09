@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="packingListDetail"
+            type="com.sallyjayz.ranchid.register.packinglist.AddPackListScanDetailFragment" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".register.packinglist.AddPackListScanDetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/scan_tag_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="NFC123456 Details"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="@dimen/twenty_four_sp"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_scannedid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/scan_tag_detail"
+                    app:layout_constraintEnd_toEndOf="@id/scan_tag_detail"
+                    app:layout_constraintTop_toBottomOf="@id/scan_tag_detail"
+                    android:text="@string/scanned_tag"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_scan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_scannedid"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_scannedid"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_scannedid"
+                    tools:text="NFC12345678"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/scan_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_scan"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_livestock_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/scan_divider"
+                    app:layout_constraintEnd_toEndOf="@id/scan_divider"
+                    app:layout_constraintTop_toBottomOf="@id/scan_divider"
+                    android:text="@string/livestock_type"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_livestock_type"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_livestock_type"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_livestock_type"
+                    tools:text="Cattle"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/livestock_type_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_type"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_livestock_breed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/livestock_type_divider"
+                    app:layout_constraintEnd_toEndOf="@id/livestock_type_divider"
+                    app:layout_constraintTop_toBottomOf="@id/livestock_type_divider"
+                    android:text="@string/livestock_breed"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_breed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_livestock_breed"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_livestock_breed"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_livestock_breed"
+                    tools:text="Red Bororo"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/livestock_breed_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_breed"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_livestock_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/livestock_breed_divider"
+                    app:layout_constraintEnd_toEndOf="@id/livestock_breed_divider"
+                    app:layout_constraintTop_toBottomOf="@id/livestock_breed_divider"
+                    android:text="@string/gender"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_livestock_gender"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_livestock_gender"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_livestock_gender"
+                    tools:text="Male"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/livestock_gender_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_gender"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <!--<com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_livestock_health"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/livestock_gender_divider"
+                    app:layout_constraintEnd_toEndOf="@id/livestock_gender_divider"
+                    app:layout_constraintTop_toBottomOf="@id/livestock_gender_divider"
+                    android:text="@string/health_status"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_health"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_livestock_health"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_livestock_health"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_livestock_health"
+                    tools:text="Okay"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/livestock_health_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_health"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>-->
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_livestock_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/livestock_gender_divider"
+                    app:layout_constraintEnd_toEndOf="@id/livestock_gender_divider"
+                    app:layout_constraintTop_toBottomOf="@id/livestock_gender_divider"
+                    android:text="@string/date_of_birth"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_livestock_dob"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_livestock_dob"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_livestock_dob"
+                    tools:text="12 December, 2022"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/livestock_dob_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_dob"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <!--<com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_livestock_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/livestock_dob_divider"
+                    app:layout_constraintEnd_toEndOf="@id/livestock_dob_divider"
+                    app:layout_constraintTop_toBottomOf="@id/livestock_dob_divider"
+                    android:text="@string/description"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/packing_detail_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/packing_detail_livestock_description"
+                    app:layout_constraintEnd_toEndOf="@id/packing_detail_livestock_description"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_livestock_description"
+                    tools:text="Brown and white in color"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/livestock_description_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_detail_description"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>

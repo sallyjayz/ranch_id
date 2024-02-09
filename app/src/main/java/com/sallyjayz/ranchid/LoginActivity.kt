@@ -2,6 +2,7 @@ package com.sallyjayz.ranchid
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -11,6 +12,10 @@ import com.sallyjayz.ranchid.model.auth.Auth
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.*
 import dagger.hilt.android.AndroidEntryPoint
+import io.intercom.android.sdk.Intercom
+import io.intercom.android.sdk.IntercomError
+import io.intercom.android.sdk.IntercomStatusCallback
+import io.intercom.android.sdk.identity.Registration
 
 
 @AndroidEntryPoint
@@ -32,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
 //            call logout api and test again
             if (token != null) {
+                successfulLogin()
                 startActivity(Intent(this, DashboardActivity::class.java))
                 finish()
                 /*val intent = Intent(this, DashboardActivity::class.java)
@@ -155,6 +161,30 @@ class LoginActivity : AppCompatActivity() {
             binding.email.text.toString(),
             binding.password.text.toString()
         )
+    }
+
+    private fun successfulLogin() {
+        /* For best results, use a unique user_id if you have one. */
+        tokenViewModel.username.observe(this) { username ->
+            val registration = Registration.create().withUserId(username.toString())
+            Intercom.client().loginIdentifiedUser(
+                userRegistration = registration,
+                intercomStatusCallback = object : IntercomStatusCallback {
+                    override fun onSuccess() {
+                        // Handle success
+
+                    }
+
+                    override fun onFailure(intercomError: IntercomError) {
+                        // Handle failure
+//                        Toast.makeText(this@LoginActivity, "Unable to start chat $intercomError", Toast.LENGTH_LONG).show()
+                        Intercom.client().hideIntercom()
+                    }
+
+                }
+            )
+
+        }
     }
 
 }

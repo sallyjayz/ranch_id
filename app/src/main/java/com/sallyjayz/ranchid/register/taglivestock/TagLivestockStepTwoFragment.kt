@@ -38,8 +38,8 @@ class TagLivestockStepTwoFragment : Fragment() {
     private var selectedOwner: String? = null
     private var keeperSurname: String? = null
     private var keeperOthername: String? = null
-    private var selectedKeeper: String? = null
-    private var selectedPassportId: String? = null*/
+    private var selectedKeeper: String? = null*/
+    private var selectedPassportId: String = ""
     private lateinit var selectedType: String
     private lateinit var selectedBreed: String
     private lateinit var selectedGender: String
@@ -50,7 +50,7 @@ class TagLivestockStepTwoFragment : Fragment() {
     private lateinit var keeperSurname: String
     private lateinit var keeperOthername: String
     private lateinit var selectedKeeper: String
-    private lateinit var selectedPassportId: String
+    /*private lateinit var selectedPassportId: String*/
     private var ownerId: Int = 0
     private var keeperId: Int = 0
     private lateinit var livestockTypeAdapter: ArrayAdapter<String>
@@ -196,12 +196,25 @@ class TagLivestockStepTwoFragment : Fragment() {
 
     private fun livestockTypeAndBreedDropdown() {
 
-        animalTypeViewModel.readAllAnimalType.observe(viewLifecycleOwner) {
+        /*animalTypeViewModel.readAllAnimalType.observe(viewLifecycleOwner) {
             val animalTypes = ArrayList<String>()
             for (type in it) {
                 animalTypes.add(type.name)
                 livestockTypeAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_list_item, animalTypes)
                 (binding.livestockType.setAdapter(livestockTypeAdapter))
+            }
+        }*/
+
+        animalTypeViewModel.readAllAnimalType.observe(viewLifecycleOwner) {
+            val animalTypes = ArrayList<String>()
+            for (animal_type in it) {
+                animalTypeViewModel.getAnimalTagType(args.tagType.toString()).observe(viewLifecycleOwner) {
+                    if (animal_type.type.contains(args.tagType.toString())){
+                        animalTypes.add(animal_type.name)
+                        livestockTypeAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_list_item, animalTypes)
+                        (binding.livestockType.setAdapter(livestockTypeAdapter))
+                    }
+                }
             }
         }
 
@@ -334,7 +347,8 @@ class TagLivestockStepTwoFragment : Fragment() {
                 .actionTagLivestockStepTwoFragmentToTagLivestockStepThreeFragment()
             findNavController().navigate(action)
         } else {
-            binding.errorTv.text = getString(R.string.all_fields_required)
+//            binding.errorTv.text = getString(R.string.all_fields_required)
+            binding.errorTv.text = "All fields are required except PASSPORT ID"
         }
 
 
@@ -343,7 +357,7 @@ class TagLivestockStepTwoFragment : Fragment() {
     private fun isStepOneEntryValid(): Boolean {
         return sharedViewModel.isStepOneEntryValid(
             binding.scanId.text.toString(),
-            binding.passportId.text.toString(),
+            /*binding.passportId.text.toString(),*/
             binding.livestockKeeper.text.toString(),
             binding.livestockOwner.text.toString(),
             binding.livestockType.text.toString(),

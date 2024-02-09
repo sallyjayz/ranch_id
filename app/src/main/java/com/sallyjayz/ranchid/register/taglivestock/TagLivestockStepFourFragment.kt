@@ -69,13 +69,13 @@ class TagLivestockStepFourFragment : Fragment() {
         }
 
         Glide.with(requireContext())
-            .load(sharedViewModel.verificationPhoto.value.toString())
+            .load(sharedViewModel.verificationPhotoBase64String.value.toString())
             .override(150, 150)
             .centerCrop()
             .into(binding.verificationImage)
 
         Glide.with(requireContext())
-            .load(sharedViewModel.muzzlePhoto.value.toString())
+            .load(sharedViewModel.muzzlePhotoBase64String.value.toString())
             .override(150, 150)
             .centerCrop()
             .into(binding.muzzleCameraImage)
@@ -153,6 +153,11 @@ class TagLivestockStepFourFragment : Fragment() {
                 "TAGGING",
                 sharedViewModel.verificationPhotoBase64String.value.toString(),
                 sharedViewModel.muzzlePhotoBase64String.value.toString()
+//                sharedViewModel.verificationPhoto.value.toString(),
+//                sharedViewModel.muzzlePhoto.value.toString()
+//                sharedViewModel.verificationPhotoName.value.toString(),
+//                sharedViewModel.muzzlePhotoName.value.toString()
+
             ),
             object: CoroutinesErrorHandler {
                 override fun onError(message: String) {
@@ -182,6 +187,8 @@ class TagLivestockStepFourFragment : Fragment() {
                             "TAGGING",
                             sharedViewModel.verificationPhotoBase64String.value.toString(),
                             sharedViewModel.muzzlePhotoBase64String.value.toString(),
+//                            sharedViewModel.verificationPhoto.value.toString(),
+//                            sharedViewModel.muzzlePhoto.value.toString(),
                             "PENDING"
                         )
                         offlineTagLivestockView.insertOfflineTagLivestock(offlineTagLivestock)

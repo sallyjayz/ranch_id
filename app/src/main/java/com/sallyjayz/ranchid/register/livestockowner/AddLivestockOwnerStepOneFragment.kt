@@ -193,7 +193,8 @@ class AddLivestockOwnerStepOneFragment : Fragment() {
                 )
             }
         } else {
-            binding.errorTv.text = getString(R.string.all_fields_required)
+//            binding.errorTv.text = getString(R.string.all_fields_required)
+            binding.errorTv.text = "All fields are required except EMAIL"
         }
 
         if (isStepOneEntryValid() && validEmail && validPhone && validNin) {
@@ -216,7 +217,8 @@ class AddLivestockOwnerStepOneFragment : Fragment() {
                 .actionAddLivestockOwnerStepOneFragmentToAddLivestockOwnerStepTwoFragment()
             findNavController().navigate(action)
         } else {
-            binding.errorTv.text = getString(R.string.all_fields_required)
+//            binding.errorTv.text = getString(R.string.all_fields_required)
+            binding.errorTv.text = "All fields are required except EMAIL"
 
             /*var message = ""
             if (binding.ownerEmail.helperText != null)

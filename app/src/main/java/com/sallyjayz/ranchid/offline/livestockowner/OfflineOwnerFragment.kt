@@ -19,7 +19,7 @@ import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentOfflineOwnerBinding
 import com.sallyjayz.ranchid.model.offline.owner.OfflineOwner
 import com.sallyjayz.ranchid.model.register.owner.Owner
-import com.sallyjayz.ranchid.recyclerview.OfflineOwnerRecyclerViewAdapter
+import com.sallyjayz.ranchid.recyclerview.offline.OfflineOwnerRecyclerViewAdapter
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.CoroutinesErrorHandler
 import com.sallyjayz.ranchid.viewmodel.EmptyData
@@ -153,6 +153,7 @@ class OfflineOwnerFragment : Fragment() {
                         when(it) {
                             is ApiResponse.Failure -> {
 //                                binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
+//                                binding.errorTv.isVisible = true
 
                                 CoroutineScope(Dispatchers.IO).launch {
                                     offlineOwnerViewModel.updateOfflineOwner(owner.id, "FAILED")
@@ -170,11 +171,11 @@ class OfflineOwnerFragment : Fragment() {
 
                                 CoroutineScope(Dispatchers.IO).launch {
                                     offlineOwnerViewModel.updateOfflineOwner(owner.id, "COMPLETED")
-                                    Log.d("status", "${offlineOwnerViewModel
+                                    /*Log.d("status", "${offlineOwnerViewModel
                                         .updateOfflineOwner(owner.id, "COMPLETED")}")
                                     Log.d("id", "${owner.id}")
 
-                                    Log.d("Response", "${it.data.success}")
+                                    Log.d("Response", "${it.data.success}")*/
 
                                 }
                                 binding.offlineOwnerProgress.isVisible = false

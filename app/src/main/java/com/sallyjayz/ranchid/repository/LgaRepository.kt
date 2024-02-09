@@ -25,5 +25,7 @@ class LgaRepository @Inject constructor(
 
     fun getLgaName(name: String) = lgaDao.readSelectedLgaName(name)
 
+    fun getLgaAndStateId(id: Int, state_id: Int) = lgaDao.readSelectedLgaAndStateId(id, state_id)
+
     fun deleteAllLgas() = lgaDao.deleteAllLGA()
 }

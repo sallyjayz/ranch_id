@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -11,6 +12,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sallyjayz.ranchid.databinding.HomeMenuBinding
 import com.sallyjayz.ranchid.viewmodel.TokenViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import io.intercom.android.sdk.Intercom
+import io.intercom.android.sdk.IntercomError
+import io.intercom.android.sdk.IntercomStatusCallback
+import io.intercom.android.sdk.identity.Registration
 
 @AndroidEntryPoint
 class HomeMenuBottomSheet: BottomSheetDialogFragment() {
@@ -18,11 +23,6 @@ class HomeMenuBottomSheet: BottomSheetDialogFragment() {
     private lateinit var binding: HomeMenuBinding
     private val tokenViewModel: TokenViewModel by activityViewModels()
 
-    /*override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.home_menu, container, false)*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,8 +61,6 @@ class HomeMenuBottomSheet: BottomSheetDialogFragment() {
     }
 
     fun closeMenu() {
-        /*binding.menu.isVisible = false
-        binding.homeFragmentConstraintLayout.alpha = 1.0F*/
         dismiss()
     }
 
@@ -87,13 +85,25 @@ class HomeMenuBottomSheet: BottomSheetDialogFragment() {
         findNavController().navigate(action)
     }
 
+    fun showGeneralInfoFragment() {
+        /*val action = HomeMenuBottomSheetDirections
+            .actionHomeMenuBottomSheetToGeneralInformationSearchFragment()
+        findNavController().navigate(action)*/
+    }
+
+    fun showSupportFragment() {
+        Intercom.client().present()
+    }
+
+    fun showRanchIdHowFragment() {
+        val action = HomeMenuBottomSheetDirections
+            .actionHomeMenuBottomSheetToHowToUseRanchIdFragment()
+        findNavController().navigate(action)
+    }
+
     fun showLogoutFragment() {
         tokenViewModel.deleteToken()
+        Intercom.client().logout()
         activity?.finish()
     }
-
-    companion object {
-        const val TAG = "HomeMenuBottomSheet"
-    }
-
 }

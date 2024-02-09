@@ -1,4 +1,4 @@
-package com.sallyjayz.ranchid.recyclerview
+package com.sallyjayz.ranchid.recyclerview.offline
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.textview.MaterialTextView
 import com.sallyjayz.ranchid.R
-import com.sallyjayz.ranchid.model.offline.owner.OfflineOwner
+import com.sallyjayz.ranchid.model.offline.keeper.OfflineKeeper
 
-class OfflineOwnerRecyclerViewAdapter(private val context: Context) : PagingDataAdapter<OfflineOwner,
-        OfflineOwnerRecyclerViewAdapter.OwnerViewHolder>(DiffUtilCallback()) {
+class OfflineKeeperRecyclerViewAdapter(private val context: Context): PagingDataAdapter<OfflineKeeper,
+        OfflineKeeperRecyclerViewAdapter.KeeperViewHolder>(DiffUtilCallback()) {
 
     private var onClickListener: OnClickListener? = null
 
-    override fun onBindViewHolder(holder: OwnerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: KeeperViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
 
@@ -46,42 +46,40 @@ class OfflineOwnerRecyclerViewAdapter(private val context: Context) : PagingData
             if (it.status == "FAILED") {
                 holder.itemView.setOnClickListener {
                     if (onClickListener != null) {
-                        getItem(position)?.let { offlineOwner ->
-                            onClickListener!!.onClickOfflineOwner(position,
-                                offlineOwner
+                        getItem(position)?.let { offlineKeeper ->
+                            onClickListener!!.onClickOfflineKeeper(position,
+                                offlineKeeper
                             )
                         }
                     }
                 }
             }
-
         }
+    }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KeeperViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+            .inflate(R.layout.offline_list_item, parent, false)
+        return KeeperViewHolder(inflater)
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OwnerViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.offline_list_item, parent, false)
-        return OwnerViewHolder(inflater)
-    }
-
-
-    class OwnerViewHolder(view: View): RecyclerView.ViewHolder(view) {
-
+    class KeeperViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val fullName: MaterialTextView = view.findViewById(R.id.name)
         val image: ImageView = view.findViewById(R.id.status_image)
 
-        fun bind(offlineOwner: OfflineOwner) {
-            fullName.text = "${offlineOwner.surname} ${offlineOwner.otherNames}"
+        fun bind(offlineKeeper: OfflineKeeper) {
+            fullName.text = "${offlineKeeper.surname} ${offlineKeeper.otherNames}"
         }
     }
 
-    class DiffUtilCallback : DiffUtil.ItemCallback<OfflineOwner>() {
-        override fun areItemsTheSame(oldItem: OfflineOwner, newItem: OfflineOwner): Boolean {
+
+    class DiffUtilCallback : DiffUtil.ItemCallback<OfflineKeeper>() {
+        override fun areItemsTheSame(oldItem: OfflineKeeper, newItem: OfflineKeeper): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: OfflineOwner, newItem: OfflineOwner): Boolean {
+        override fun areContentsTheSame(oldItem: OfflineKeeper, newItem: OfflineKeeper): Boolean {
             return oldItem == newItem
         }
 
@@ -92,7 +90,6 @@ class OfflineOwnerRecyclerViewAdapter(private val context: Context) : PagingData
     }
 
     interface OnClickListener {
-        fun onClickOfflineOwner(position: Int, offlineOwner: OfflineOwner)
+        fun onClickOfflineKeeper(position: Int, offlineKeeper: OfflineKeeper)
     }
 }
-

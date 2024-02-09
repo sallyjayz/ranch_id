@@ -21,6 +21,9 @@ class AnimalTypeViewModel @Inject constructor(
     fun getAnimalTypeName(name: String) =
         animalTypeRepository.getAnimalTypeName(name)
 
+    fun getAnimalTagType(type: String) =
+        animalTypeRepository.getAnimalTagType(type)
+
     suspend fun insertAnimalType(animalType: List<AnimalType>) =
         animalTypeRepository.saveAnimalType(animalType)
 

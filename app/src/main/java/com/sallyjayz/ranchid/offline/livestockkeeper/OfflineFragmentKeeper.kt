@@ -19,7 +19,7 @@ import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentOfflineKeeperBinding
 import com.sallyjayz.ranchid.model.offline.keeper.OfflineKeeper
 import com.sallyjayz.ranchid.model.register.keeper.Keeper
-import com.sallyjayz.ranchid.recyclerview.OfflineKeeperRecyclerViewAdapter
+import com.sallyjayz.ranchid.recyclerview.offline.OfflineKeeperRecyclerViewAdapter
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.CoroutinesErrorHandler
 import com.sallyjayz.ranchid.viewmodel.EmptyData
@@ -133,14 +133,6 @@ class OfflineFragmentKeeper : Fragment() {
                 }
             }
         }
-
-        /*viewLifecycleOwner.lifecycleScope.launch {
-            recyclerViewAdapter.loadStateFlow.collect {
-                Log.d("recyclerview3", "${recyclerViewAdapter.itemCount}")
-                val emptyDataObserver = EmptyData(binding.offlineKeeperRecyclerview, binding.emptyDataPresent)
-                recyclerViewAdapter.registerAdapterDataObserver(emptyDataObserver)
-            }
-        }*/
     }
 
     private fun initViewModel() {
@@ -154,7 +146,6 @@ class OfflineFragmentKeeper : Fragment() {
 
 
     private fun uploadKeeper() {
-
         offlineKeeperViewModel.selectAllOfflineKeepers().observe(viewLifecycleOwner) {offlineKeeperList ->
 //            Log.d("Offline Keeper", "$offlineKeeperList")
 

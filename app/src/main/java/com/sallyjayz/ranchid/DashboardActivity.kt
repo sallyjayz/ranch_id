@@ -91,7 +91,9 @@ class DashboardActivity : AppCompatActivity() {
                 destination.id == R.id.tagLivestockUnsuccessfulFragment ||
                 destination.id == R.id.offlineOwnerSuccess ||
                 destination.id == R.id.offlineKeeperSuccess ||
-                destination.id == R.id.offlineTagLivestockSuccess) {
+                destination.id == R.id.offlineTagLivestockSuccess ||
+                destination.id == R.id.addPackingListUnsuccessfulFragment ||
+                destination.id == R.id.addPackingListSuccessfulFragment) {
 
                 topBar.visibility = View.GONE
 

@@ -39,7 +39,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:textColor="@color/white"
                         tools:text="9,000"
-                        android:textSize="@dimen/twenty_four_sp"
+                        android:textSize="@dimen/thirty_two_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -51,6 +51,8 @@
                         android:fontFamily="@font/inter_regular"
                         android:textColor="@color/white"
                         android:text="@string/tagged_livestock"
+                        android:layout_marginTop="@dimen/eight_dp"
+                        android:textSize="@dimen/sixteen_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/month_tagged_livestock"/>
@@ -88,7 +90,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:textColor="@color/white"
                         tools:text="10,000"
-                        android:textSize="@dimen/twenty_four_sp"
+                        android:textSize="@dimen/thirty_two_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -100,6 +102,8 @@
                         android:fontFamily="@font/inter_regular"
                         android:textColor="@color/white"
                         android:text="@string/livestock_owner"
+                        android:layout_marginTop="@dimen/eight_dp"
+                        android:textSize="@dimen/sixteen_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/month_owner_livestock"/>
@@ -137,7 +141,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:textColor="@color/white"
                         tools:text="0"
-                        android:textSize="@dimen/twenty_four_sp"
+                        android:textSize="@dimen/thirty_two_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -149,6 +153,8 @@
                         android:fontFamily="@font/inter_regular"
                         android:textColor="@color/white"
                         android:text="@string/livestock_keeper"
+                        android:layout_marginTop="@dimen/eight_dp"
+                        android:textSize="@dimen/sixteen_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/month_keeper_livestock"/>
@@ -187,7 +193,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:textColor="@color/white"
                         tools:text="0"
-                        android:textSize="@dimen/twenty_four_sp"
+                        android:textSize="@dimen/thirty_two_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -199,6 +205,8 @@
                         android:fontFamily="@font/inter_regular"
                         android:textColor="@color/white"
                         android:text="@string/exited_livestock"
+                        android:layout_marginTop="@dimen/eight_dp"
+                        android:textSize="@dimen/sixteen_sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/month_exited_owner"/>

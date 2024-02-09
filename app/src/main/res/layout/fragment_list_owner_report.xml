@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".report.owner.ListOwnerReportFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/sixteen_dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/owner_search_cardview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                app:strokeColor="@color/search_dark"
+                app:strokeWidth="1dp"
+                android:backgroundTint="@color/background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/owner_searchview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent"
+                    app:queryHint="Search for Livestock Owner"
+                    android:theme="@style/ThemeOverlay.RanchID.SearchView"
+                    app:searchIcon="@null"
+                    />
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:id="@+id/empty_text"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/ten_dp"
+                android:visibility="gone"
+                android:src="@drawable/no_data_available"
+                android:padding="@dimen/eight_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/owner_search_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/owner_search_cardview"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/report_item_list"/>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/owner_report_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="invisible"
+                app:indicatorColor="@android:color/black"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_error"
+                android:text="Results could not be loaded"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@id/button_retry"
+                app:layout_constraintStart_toStartOf="@id/button_retry"
+                app:layout_constraintEnd_toEndOf="@id/button_retry"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_retry"
+                android:text="Retry"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

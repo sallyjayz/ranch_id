@@ -24,6 +24,9 @@ class AnimalTypeRepository @Inject constructor(
     fun getAnimalTypeName(name: String) =
         animalTypeDao.readSelectedAnimalTypeName(name)
 
+    fun getAnimalTagType(type: String) =
+        animalTypeDao.readSelectedAnimalTagType(type)
+
     fun deleteAllAnimalType() = animalTypeDao.deleteAllAnimalType()
 
 }

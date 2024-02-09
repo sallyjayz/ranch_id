@@ -111,11 +111,11 @@ class TagLivestockViewModel : ViewModel() {
 //        _birthPeriod.value = birthPeriod
     }
 
-    fun isStepOneEntryValid(scannedId: String, passportId: String, livestockKeeper: String,
+    fun isStepOneEntryValid(scannedId: String, /*passportId: String,*/ livestockKeeper: String,
                             livestockOwner: String, livestockType: String, livestockBreed: String,
                             gender: String, healthStatus: String, dateOfBirth: String
         /*, birthPeriod: String*/): Boolean {
-        if (scannedId.isBlank() || passportId.isBlank() || livestockKeeper.isBlank()
+        if (scannedId.isBlank() || /*passportId.isBlank() ||*/ livestockKeeper.isBlank()
             || livestockOwner.isBlank() || livestockType.isBlank() || livestockBreed.isBlank()
             || gender.isBlank() || healthStatus.isBlank() || dateOfBirth.isBlank()
         /*|| birthPeriod.isBlank()*/) {
@@ -145,11 +145,11 @@ class TagLivestockViewModel : ViewModel() {
         _muzzlePhotoSize.value = muzzleSize
     }
 
-    fun isStepTwoEntryValid(description: String, taggingLocation: String, comment: String,
+    fun isStepTwoEntryValid(description: String, taggingLocation: String, /*comment: String,*/
                             productionType: String, verificationPhoto: String,
                             verificationName: String, verificationSize: String, muzzlePhoto: String,
                             muzzleName: String, muzzleSize: String): Boolean {
-        if (description.isBlank() || taggingLocation.isBlank() || comment.isBlank()
+        if (description.isBlank() || taggingLocation.isBlank() /*|| comment.isBlank()*/
             || productionType.isBlank() || verificationPhoto.isBlank()
             || verificationName.isBlank() || verificationSize.isBlank() || muzzlePhoto.isBlank()
             || muzzleName.isBlank() || muzzleSize.isBlank()) {

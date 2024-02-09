@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="@dimen/eight_dp"
+    app:cardCornerRadius="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/sixteen_dp">
+
+        <ImageView
+            android:id="@+id/info_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/general_form_link"
+            app:layout_constraintBottom_toBottomOf="@id/general_form_link"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/general_form_link"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Link to copy or download form"
+            android:padding="@dimen/eight_dp"
+            android:textSize="@dimen/sixteen_dp"
+            android:fontFamily="@font/inter_regular"
+            app:layout_constraintStart_toEndOf="@+id/info_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/copy_url_button"
+            android:text="Copy URL"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/btn_color"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/sixteen_dp"
+            android:layout_marginStart="@dimen/sixteen_dp"
+            android:layout_marginBottom="@dimen/sixteen_dp"
+            android:paddingStart="@dimen/forty_dp"
+            android:paddingEnd="@dimen/forty_dp"
+            android:fontFamily="@font/inter_regular"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/general_form_link"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/download_form_button"
+            android:text="Go to Webpage"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/btn_color"
+            app:strokeColor="@color/btn_color"
+            android:textAllCaps="false"
+            android:layout_marginEnd="@dimen/sixteen_dp"
+            android:layout_marginTop="@dimen/sixteen_dp"
+            android:layout_marginBottom="@dimen/sixteen_dp"
+            android:fontFamily="@font/inter_regular"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/general_form_link"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

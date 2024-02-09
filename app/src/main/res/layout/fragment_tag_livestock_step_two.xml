@@ -235,8 +235,8 @@
                         android:id="@+id/livestock_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{stepTwoViewModel.livestockType}"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:text="@{stepTwoViewModel.livestockType}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

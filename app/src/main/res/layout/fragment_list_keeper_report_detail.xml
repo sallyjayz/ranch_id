@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="keeperReport"
+            type="com.sallyjayz.ranchid.report.keeper.ListKeeperReportDetailFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".report.keeper.ListKeeperReportDetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/form_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="Livestock Keeper Info"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/form_summary"
+                    app:layout_constraintEnd_toEndOf="@id/form_summary"
+                    app:layout_constraintTop_toBottomOf="@id/form_summary"
+                    android:text="@string/surname"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_surname"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_surname"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_surname"
+                    tools:text="Keeper Surname"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_surname_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_surname"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_othername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_surname_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_surname_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_surname_divider"
+                    android:text="@string/other_names"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_othername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_othername"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_othername"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_othername"
+                    tools:text="Keeper Othername"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_othername_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_othername"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_othername_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_othername_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_othername_divider"
+                    android:text="@string/gender"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_gender"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_gender"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_gender"
+                    tools:text="Female"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_gender_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_gender"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_marital_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_gender_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_gender_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_gender_divider"
+                    android:text="@string/marital_status"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_marital_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_marital_status"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_marital_status"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_marital_status"
+                    tools:text="Married"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_marital_status_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_marital_status"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_marital_status_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_marital_status_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_marital_status_divider"
+                    android:text="@string/date_of_birth"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_dob"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_dob"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_dob"
+                    tools:text="02-02-2023"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_dob_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_dob"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_phoneno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_dob_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_dob_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_dob_divider"
+                    android:text="@string/phone_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_phoneno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_phoneno"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_phoneno"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_phoneno"
+                    tools:text="08023654587"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_phoneno_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_phoneno"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_nin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_phoneno_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_phoneno_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_phoneno_divider"
+                    android:text="@string/nin"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_nin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_nin"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_nin"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_nin"
+                    tools:text="23654587687"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_nin_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_nin"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_nin_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_nin_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_nin_divider"
+                    android:text="@string/email"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_email"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_email"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_email"
+                    tools:text="email@email.nait"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_email_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_email"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_email_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_email_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_email_divider"
+                    android:text="@string/address"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_address"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_address"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_address"
+                    tools:text="Address"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_address_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_address"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_address_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_address_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_address_divider"
+                    android:text="@string/state"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_state"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_state"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_state"
+                    tools:text="Kaduna"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_state_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_state"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_lga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_state_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_state_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_state_divider"
+                    android:text="@string/lga"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_lga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_lga"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_lga"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_lga"
+                    tools:text="Chikun"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_lga_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_lga"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_kin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_lga_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_lga_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_lga_divider"
+                    android:text="@string/next_of_kin"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_kin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_kin"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_kin"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_kin"
+                    tools:text="Kin Name"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_kin_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_kin"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_kin_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_kin_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_kin_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_kin_divider"
+                    android:text="@string/next_of_kin_phone_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_kin_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_kin_phone"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_kin_phone"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_kin_phone"
+                    tools:text="07056532565"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_kin_phone_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_kin_phone"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_document_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_kin_phone_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_kin_phone_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_kin_phone_divider"
+                    android:text="@string/document_type"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_document_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_document_type"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_document_type"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_document_type"
+                    tools:text="VOTERS CARD"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_document_type_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_document_type"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_document_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_document_type_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_document_type_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_document_type_divider"
+                    android:text="@string/document_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_document_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_document_number"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_document_number"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_document_number"
+                    tools:text="58965324589"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_document_number_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_document_number"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_farm_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_document_number_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_document_number_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_document_number_divider"
+                    android:text="@string/farm_location"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_farm_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_farm_location"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_farm_location"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_farm_location"
+                    tools:text="Farm Location"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/step_three_farm_location_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_farm_location"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_three_keeper_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_three_farm_location_divider"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_farm_location_divider"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_farm_location_divider"
+                    android:text="@string/keeper_photo"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/step_three_keeper_photo_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/stroke_tint"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_photo"
+                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_photo"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_photo">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/sixteen_dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/keeper_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:src="@drawable/ic_launcher_background"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progress_bar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:indeterminate="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:visibility="invisible"
+                            app:indicatorColor="@android:color/black"/>
+
+                        <!--<com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/keeper_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:src="@drawable/ic_launcher_background"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/keeper_image_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sixteen_dp"
+                            tools:text="Image.jpeg"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/keeper_image"
+                            app:layout_constraintStart_toEndOf="@id/keeper_image"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/keeper_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="349.42kb"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_regular"
+                            app:layout_constraintTop_toBottomOf="@id/keeper_image_name"
+                            app:layout_constraintStart_toEndOf="@id/keeper_image"
+                            />-->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_photo_cardview"
+                    android:background="@color/divider" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>

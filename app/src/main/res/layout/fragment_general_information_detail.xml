@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="generalInfoDetailFragment"
+            type="com.sallyjayz.ranchid.generalinformation.GeneralInformationDetailFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".generalinformation.GeneralInformationDetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/livestock_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/livestock"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/owner_keeper_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:paddingTop="5dp"
+                    android:textSize="@dimen/eighteen_sp"
+                    app:layout_constraintStart_toEndOf="@id/livestock_label"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Owner" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:padding="5dp"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:text="Info"
+                    app:layout_constraintStart_toEndOf="@id/owner_keeper_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/error_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_red_light"
+                    app:layout_constraintBottom_toTopOf="@id/info_first_name_label"
+                    app:layout_constraintStart_toStartOf="@id/info_first_name_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_first_name_label"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_first_name_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/livestock_label"
+                    android:text="@string/first_name"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_first_name_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_first_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_first_name_label"
+                    tools:text="First Name"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_first_name_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_first_name"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_last_name_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_first_name_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_first_name_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_first_name_divider"
+                    android:text="@string/last_name"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_last_name_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_last_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_last_name_label"
+                    tools:text="Last Name"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_last_name_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_last_name"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_gender_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_last_name_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_last_name_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_last_name_divider"
+                    android:text="@string/gender"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_gender_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_gender_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_gender_label"
+                    tools:text="Female"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_gender_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_gender"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_dob_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_gender_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_gender_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_gender_divider"
+                    android:text="@string/date_of_birth"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_dob_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_dob_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_dob_label"
+                    tools:text="12/12/2023"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_dob_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_dob"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_phoneno_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_dob_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_dob_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_dob_divider"
+                    android:text="@string/phone_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_phoneno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_phoneno_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_phoneno_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_phoneno_label"
+                    tools:text="1234567895"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_phoneno_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_phoneno"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_address_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_phoneno_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_phoneno_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_phoneno_divider"
+                    android:text="@string/contact_address"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_address_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_address_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_address_label"
+                    tools:text="Address"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_address_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_address"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_marital_status_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_address_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_address_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_address_divider"
+                    android:text="@string/marital_status"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_marital_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_marital_status_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_marital_status_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_marital_status_label"
+                    tools:text="Married"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_marital_status_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_marital_status"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_kin_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_marital_status_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_marital_status_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_marital_status_divider"
+                    android:text="@string/next_of_kin"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_kin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_kin_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_kin_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_kin_label"
+                    tools:text="Next of Kin"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_kin_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_kin"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_kin_phoneno_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_kin_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_kin_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_kin_divider"
+                    android:text="@string/next_of_kin_phone_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_kin_phoneno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_kin_phoneno_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_kin_phoneno_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_kin_phoneno_label"
+                    tools:text="1234567899"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_kin_phoneno_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_kin_phoneno"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_email_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_kin_phoneno_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_kin_phoneno_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_kin_phoneno_divider"
+                    android:text="@string/email"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_email_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_email_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_email_label"
+                    tools:text="email@email.com"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_email_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_email"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_nin_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_email_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_email_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_email_divider"
+                    android:text="@string/national_identification_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_nin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_nin_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_nin_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_nin_label"
+                    tools:text="12345678952"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_nin_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_nin"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_state_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_nin_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_nin_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_nin_divider"
+                    android:text="@string/state"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_state_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_state_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_state_label"
+                    tools:text="Katsina"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_state_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_state"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_lga_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_state_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_state_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_state_divider"
+                    android:text="@string/local_government_area"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_lga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_lga_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_lga_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_lga_label"
+                    tools:text="Dutse"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_lga_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_lga"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_ward_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_lga_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_lga_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_lga_divider"
+                    android:text="@string/ward"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_ward"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_ward_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_ward_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_ward_label"
+                    tools:text="N/A"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_ward_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_ward"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_doctype_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_ward_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_ward_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_ward_divider"
+                    android:text="@string/document_type"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_doctype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_doctype_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_doctype_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_doctype_label"
+                    tools:text="Voters Card"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_doctype_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_doctype"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_docno_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_doctype_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_doctype_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_doctype_divider"
+                    android:text="@string/document_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_docno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_docno_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_docno_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_docno_label"
+                    tools:text="1234567895"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_docno_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_docno"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_location_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_docno_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_docno_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_docno_divider"
+                    android:text="@string/location_name"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_location_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_location_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_location_label"
+                    tools:text="location"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_location_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_location"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_other_location_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_location_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_location_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_location_divider"
+                    android:text="@string/other_location"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_other_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_other_location_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_other_location_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_other_location_label"
+                    tools:text="N/A"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/info_other_location_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_other_location"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/info_passport_photo_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/info_other_location_divider"
+                    app:layout_constraintEnd_toEndOf="@id/info_other_location_divider"
+                    app:layout_constraintTop_toBottomOf="@id/info_other_location_divider"
+                    android:text="@string/passport_photo"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/info_passport_photo_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/stroke_tint"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="@id/info_passport_photo_label"
+                    app:layout_constraintEnd_toEndOf="@id/info_passport_photo_label"
+                    app:layout_constraintTop_toBottomOf="@id/info_passport_photo_label">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/sixteen_dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/passport_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:src="@drawable/ic_launcher_background"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/passport_image_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sixteen_dp"
+                            tools:text="Image.jpeg"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/passport_image"
+                            app:layout_constraintStart_toEndOf="@id/passport_image"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/passport_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="349.42kb"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_regular"
+                            app:layout_constraintTop_toBottomOf="@id/passport_image_name"
+                            app:layout_constraintStart_toEndOf="@id/passport_image"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/info_passport_photo_cardview"
+                    android:background="@color/divider" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/info_generate_button"
+                    android:text="@string/generate_form"
+                    style="@style/Widget.RanchID.Button.Colored.OutlinedButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider"
+                    android:layout_marginTop="@dimen/forty_dp"
+                    android:onClick="@{() -> generalInfoDetailFragment.generateFormClicked()}"
+                    />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/info_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="invisible"
+                    app:indicatorColor="@color/btn_color"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>

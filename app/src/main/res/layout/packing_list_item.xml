@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/scan_livestock_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:padding="5dp"
+        android:text="@string/livestock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/scan_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:paddingTop="5dp"
+        app:layout_constraintStart_toEndOf="@id/scan_livestock_label"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="001" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/scan_tag_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:padding="5dp"
+        android:text="@string/tag"
+        app:layout_constraintStart_toEndOf="@id/scan_number"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/scan_tag"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:drawableEnd="@drawable/ic_next"
+        android:drawableTint="@color/icon_tint_color"
+        android:ellipsize="end"
+        android:fontFamily="@font/inter_bold"
+        android:lines="1"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sixteen_sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scan_livestock_label"
+        tools:text="NCF123456789" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scan_tag" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

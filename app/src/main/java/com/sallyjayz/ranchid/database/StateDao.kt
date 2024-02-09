@@ -19,6 +19,9 @@ interface StateDao {
     @Query("SELECT * FROM states WHERE name = :selectedStateName")
     fun readSelectedStateName(selectedStateName: String): LiveData<States>
 
+    @Query("SELECT * FROM states WHERE id = :id")
+    fun readSelectedStateId(id: Int): LiveData<States>
+
     @Query("DELETE FROM states")
     fun deleteAllStates()
 

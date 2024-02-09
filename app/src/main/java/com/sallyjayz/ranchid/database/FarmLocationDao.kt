@@ -22,6 +22,9 @@ interface FarmLocationDao {
     @Query("SELECT * FROM FarmLocation WHERE location_name = :selectedStateName")
     fun getSelectedLocationName(selectedStateName: String): LiveData<FarmLocation>
 
+    @Query("SELECT * FROM FarmLocation WHERE id = :id")
+    fun getSelectedLocationId(id: Int): LiveData<FarmLocation>
+
     @Query("DELETE FROM FarmLocation")
     fun deleteAllFarmLocation()
 }

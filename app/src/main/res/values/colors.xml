@@ -35,4 +35,8 @@
     <color name="offline_text">#5B626C</color>
     <color name="offline_background">#E2E1DF</color>
     <color name="capture_btn_background">#E4E8FA</color>
+    <color name="snackbar_text">#344794</color>
+    <color name="snackbar_background">#DEE2F3</color>
+    <color name="search_dark">#D67D42</color>
+    <color name="search_light">#FFF1E8</color>
 </resources>

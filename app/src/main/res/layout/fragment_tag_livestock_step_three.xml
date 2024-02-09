@@ -58,9 +58,9 @@
                     android:fontFamily="@font/inter_bold"
                     android:textAlignment="center"
                     android:textColor="@android:color/holo_red_light"
-                    app:layout_constraintBottom_toTopOf="@id/tag_description_label"
-                    app:layout_constraintStart_toStartOf="@id/tag_description_label"
-                    app:layout_constraintEnd_toEndOf="@id/tag_description"/>
+                    app:layout_constraintTop_toBottomOf="@id/step_three_instruction"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tag_description_label"

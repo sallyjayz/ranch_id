@@ -170,7 +170,7 @@ class AddLivestockKeeperStepTwoFragment : Fragment() {
         byteArrayOutputStream = ByteArrayOutputStream()
         if (isSuccessful) {
             val imageBitmap = BitmapFactory.decodeFile(photoFile?.absolutePath)
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream)
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream)
             val imageBytes: ByteArray = byteArrayOutputStream.toByteArray()
             base64KeeperString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
             imageSize =  imageBytes.size/1024.0
@@ -229,9 +229,9 @@ class AddLivestockKeeperStepTwoFragment : Fragment() {
 
         if (photoFile == null) {
             Toast.makeText(requireContext(), "Please, take a photo", Toast.LENGTH_LONG).show()
-        } else if(imageSize > 700.0) {
+        } /*else if(imageSize > 700.0) {
             Toast.makeText(requireContext(), "Photo size is too large, It should be less than 700.00 Kb", Toast.LENGTH_LONG).show()
-        } else if (isStepTwoEntryValid() && validKinPhone && validDocumentNumber) {
+        }*/ else if (isStepTwoEntryValid() && validKinPhone && validDocumentNumber) {
             sharedViewModel.setStepTwo(
                 binding.nextOfKin.text.toString(),
                 binding.nextOfKinPhone.text.toString(),

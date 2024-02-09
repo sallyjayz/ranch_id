@@ -19,6 +19,8 @@ class StateViewModel @Inject constructor(
 
     fun getStateName(name: String) = stateRepository.getStateName(name)
 
+    fun getStateId(id: Int) = stateRepository.getStateId(id)
+
     suspend fun insertStates(states: List<States>) = stateRepository.saveStates(states)
 
     fun deleteAllStates() = stateRepository.deleteAllStates()

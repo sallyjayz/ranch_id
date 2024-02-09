@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 
 data class AllKeepersResponse(
-//    val current_page: Int,
-//    val current_page_count: Int,
+    val current_page: Int,
+    val current_page_count: Int,
 //    val `data`: List<Data>,
     @SerializedName("data")
     val allKeepersList: List<AllKeepers>,
-//    val status: String,
-//    val total_count: Int,
-//    val total_pages: Int
+    val status: String,
+    val total_count: Int,
+    val total_pages: Int
 )
 
 /* old response from server

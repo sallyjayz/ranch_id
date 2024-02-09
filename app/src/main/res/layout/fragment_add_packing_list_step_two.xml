@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="stepTwoFragment"
+            type="com.sallyjayz.ranchid.register.packinglist.AddPackingListStepTwoFragment" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".register.packinglist.AddPackingListStepTwoFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/sixteen_dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/error_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:textAlignment="center"
+                tools:text="@string/offline"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/packing_livestock_scanimage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/offline_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/offline"
+                android:drawableStart="@drawable/ic_warning"
+                android:fontFamily="@font/inter_regular"
+                android:background="@color/offline_background"
+                android:textColor="@color/offline_text"
+                android:padding="@dimen/four_dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/step_two"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/step_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/step_02_03"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_four_sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/offline_tv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/step_two_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/scan_livestock_tag"
+                android:textSize="@dimen/eighteen_sp"
+                app:layout_constraintEnd_toEndOf="@id/step_two"
+                app:layout_constraintStart_toStartOf="@id/step_two"
+                app:layout_constraintTop_toBottomOf="@id/step_two" />
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/packing_livestock_scanimage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                app:layout_constraintEnd_toEndOf="@id/step_two_instruction"
+                app:layout_constraintStart_toStartOf="@id/step_two_instruction"
+                app:layout_constraintTop_toBottomOf="@id/step_two_instruction" />
+
+            <ImageView
+                android:id="@+id/barcode_boundary"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                app:layout_constraintBottom_toBottomOf="@id/packing_livestock_scanimage"
+                app:layout_constraintEnd_toEndOf="@id/packing_livestock_scanimage"
+                app:layout_constraintStart_toStartOf="@id/packing_livestock_scanimage"
+                app:layout_constraintTop_toTopOf="@id/packing_livestock_scanimage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_livestock_tag_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/scanned_tag_id"
+                android:textSize="@dimen/eighteen_sp"
+                app:layout_constraintStart_toStartOf="@id/packing_livestock_scanimage"
+                app:layout_constraintTop_toBottomOf="@id/packing_livestock_scanimage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_livestock_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sixteen_dp"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:fontFamily="@font/inter_bold"
+                android:textSize="@dimen/eighteen_sp"
+                app:layout_constraintEnd_toEndOf="@id/packing_livestock_scanimage"
+                app:layout_constraintStart_toEndOf="@id/packing_livestock_tag_label"
+                app:layout_constraintTop_toBottomOf="@id/packing_livestock_scanimage"
+                tools:text="NGF0009038" />
+
+            <!--<com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/packing_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                app:indicatorColor="@android:color/black"
+                app:trackThickness="@dimen/eight_dp"
+                app:trackColor="@android:color/black"
+                android:indeterminate="true"
+                android:max="100"
+                android:min="0"
+                app:layout_constraintEnd_toEndOf="@id/packing_livestock_tag"
+                app:layout_constraintStart_toStartOf="@+id/packing_livestock_tag_label"
+                app:layout_constraintTop_toBottomOf="@+id/packing_livestock_tag_label" />-->
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/packing_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/sixteen_dp"
+                app:indicatorColor="@android:color/white"
+                app:trackColor="@android:color/black"
+                android:indeterminate="false"
+                app:layout_constraintEnd_toEndOf="@id/packing_livestock_tag"
+                app:layout_constraintStart_toStartOf="@+id/packing_livestock_tag_label"
+                app:layout_constraintTop_toBottomOf="@+id/packing_livestock_tag_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_listing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/listing_livestock_information"
+                app:layout_constraintStart_toStartOf="@id/packing_progress"
+                app:layout_constraintTop_toBottomOf="@id/packing_progress"
+                 />
+            <!--<androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/packing_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/ten_dp"
+                app:layout_constraintBottom_toTopOf="@id/packing_done_btn"
+                app:layout_constraintEnd_toEndOf="@id/packing_progress"
+                app:layout_constraintStart_toStartOf="@id/packing_listing"
+                app:layout_constraintTop_toBottomOf="@id/packing_listing"
+                tools:listitem="@layout/packing_list_item"/>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/packing_recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/ten_dp"
+                app:layout_constraintBottom_toTopOf="@id/packing_newscan_btn"
+                app:layout_constraintEnd_toEndOf="@id/packing_progress"
+                app:layout_constraintStart_toStartOf="@id/packing_listing"
+                app:layout_constraintTop_toBottomOf="@id/packing_listing"
+                tools:listitem="@layout/packing_list_item"/>
+
+            <include
+                android:id="@+id/empty_data_present"
+                layout="@layout/item_empty_dataset"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/ten_dp"
+                app:layout_constraintStart_toStartOf="@id/packing_listing"
+                app:layout_constraintEnd_toEndOf="@id/packing_progress"
+                app:layout_constraintBottom_toTopOf="@id/packing_newscan_btn"
+                app:layout_constraintTop_toBottomOf="@id/packing_listing"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/packing_newscan_btn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_next"
+                android:drawableTint="@color/btn_color"
+                android:text="Add New Livestock"
+                android:textColor="@color/btn_color"
+                app:strokeColor="@color/btn_color"
+                android:textAllCaps="false"
+                android:paddingStart="@dimen/forty_dp"
+                android:paddingEnd="@dimen/thirty_two_dp"
+                android:paddingTop="@dimen/ten_dp"
+                android:paddingBottom="@dimen/ten_dp"
+                android:onClick="@{() -> stepTwoFragment.addNewLivestockClicked()}"
+                android:enabled="false"
+                android:alpha="0.5"
+                app:layout_constraintBottom_toTopOf="@id/packing_done_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/packing_done_btn"
+                style="@style/Widget.RanchID.Button.Colored.OutlinedButton"
+                android:layout_width="match_parent"
+                android:drawableEnd="@drawable/ic_next"
+                android:text="Done"
+                android:onClick="@{() -> stepTwoFragment.doneButtonClicked()}"
+                android:enabled="false"
+                android:alpha="0.5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

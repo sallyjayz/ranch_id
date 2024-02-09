@@ -39,11 +39,7 @@ class TagLivestockStepOneFragment : Fragment() {
     private lateinit var binding: FragmentTagLivestockStepOneBinding
     private lateinit var sharedViewModel: PermissionViewModel
     private val tagSharedViewModel: TagLivestockViewModel by activityViewModels()
-//    private lateinit var captureSound: MediaPlayer
-    private val tokenViewModel: TokenViewModel by activityViewModels()
-    private val unusedEnumeratorTagResponseViewModel: UnusedEnumeratorTagResponseViewModel by viewModels()
     private val unusedEnumeratorTagViewModel: UnusedEnumeratorTagViewModel by viewModels()
-//    private var taggingId: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,8 +126,9 @@ class TagLivestockStepOneFragment : Fragment() {
 
     fun nextButtonClicked() {
         val scannedTagId = binding.tagLivestockTag.text.toString()
+        val tagType = binding.tagType.text.toString()
         val action = TagLivestockStepOneFragmentDirections
-            .actionTagLivestockStepOneFragmentToTagLivestockStepTwoFragment(scannedTagId)
+            .actionTagLivestockStepOneFragmentToTagLivestockStepTwoFragment(scannedTagId, tagType)
         findNavController().navigate(action)
 
     }
@@ -188,12 +185,13 @@ class TagLivestockStepOneFragment : Fragment() {
                 if (it.tag_id == tagId && it.status == "Available") {
                     tagSharedViewModel.databaseId = it.id
                     binding.tagAvailability.text = "Available Tag, click next to continue"
+                    binding.tagType.text = "${it.tag_type}"
                     binding.tagLivestockNextButton.isEnabled = true
                     binding.tagLivestockNextButton.alpha = 1.0F
                     Log.d("Available Tag", "${tagSharedViewModel.databaseId}")
                 }
             } else {
-                binding.tagAvailability.text = "Tag Unavailable, Scan another Tag"
+                binding.tagAvailability.text = "Tag already USED/UNASSIGNED/INVALID, Scan another Tag"
                 binding.tagLivestockNextButton.isEnabled = false
                 binding.tagLivestockNextButton.alpha = 0.5F
             }

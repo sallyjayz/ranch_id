@@ -3,13 +3,14 @@ package com.sallyjayz.ranchid.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -19,10 +20,14 @@ import com.sallyjayz.ranchid.LoginActivity
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentHomeBinding
 import com.sallyjayz.ranchid.home.activities.ViewPagerAdapter
+import com.sallyjayz.ranchid.model.register.packinglist.packinglist.AllPackingList
+import com.sallyjayz.ranchid.model.register.packinglist.scannedlivestock.ScanLivestock
 import com.sallyjayz.ranchid.model.unusedenumeratortag.all.AllUnusedEnumeratorTag
 import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
 import com.sallyjayz.ranchid.utils.ApiResponse
 import com.sallyjayz.ranchid.viewmodel.*
+import com.sallyjayz.ranchid.viewmodel.packinglist.LivestockDataViewModel
+import com.sallyjayz.ranchid.viewmodel.packinglist.response.ScanPackingListResponseViewModel
 import com.sallyjayz.ranchid.viewmodel.register.*
 import com.sallyjayz.ranchid.viewmodel.register.response.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,6 +70,10 @@ class HomeFragment : Fragment() {
     private val animalBreedTypeResponseViewModel: AnimalBreedResponseViewModel by viewModels()
     private val unusedEnumeratorTagResponseViewModel: UnusedEnumeratorTagResponseViewModel by viewModels()
     private val unusedEnumeratorTagViewModel: UnusedEnumeratorTagViewModel by viewModels()
+    private val usedEnumeratorTagResponse: UsedEnumeratorTagResponseViewModel by viewModels()
+    private val usedEnumeratorTagViewModel: UsedEnumeratorTagViewModel by viewModels()
+    private val scanPackingListResponseViewModel: ScanPackingListResponseViewModel by viewModels()
+    private val livestockDataViewModel: LivestockDataViewModel by viewModels()
 
     private var token: String? = null
 
@@ -80,6 +89,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.homeFragment = this
+
+        mainMenuSetup()
 
         viewPagerAdapter = ViewPagerAdapter(this)
         viewPager = binding.homePager
@@ -147,12 +158,14 @@ class HomeFragment : Fragment() {
                     insertUnusedPassport()
                     insertAnimalTypeAndBreed()
                     insertUnusedEnumeratorTag()
+                    insertUsedEnumeratorTag()
+                    insertPackingList()
                 }
                 MyState.Error -> {
                     binding.offlineTv.isVisible = true
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -170,6 +183,27 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun mainMenuSetup() {
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.main_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_main_menu -> {
+                        val action = HomeFragmentDirections.actionHomeFragmentToHomeMenuBottomSheet()
+                        findNavController().navigate(action)
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
     private fun insertFarmLocation() {
         farmLocationResponseViewModel.farmLocationResponse.observe(viewLifecycleOwner) {
             when(it) {
@@ -181,7 +215,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -198,7 +232,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
 
             }
@@ -210,7 +244,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
         })
     }
@@ -226,7 +260,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -236,7 +270,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -247,7 +281,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
         })
 
@@ -264,7 +298,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -277,7 +311,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -288,7 +322,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
         })
     }
@@ -304,7 +338,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -319,7 +353,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -330,7 +364,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
         })
 
@@ -345,7 +379,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -358,7 +392,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -369,7 +403,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
         })
     }
@@ -385,7 +419,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -409,7 +443,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -423,7 +457,7 @@ class HomeFragment : Fragment() {
                             binding.offlineTv.isVisible = true
                             binding.homeFragmentProgress.isVisible = false
                             binding.homeFragmentConstraintLayout.alpha = 1.0F
-                            binding.menuBtn.isClickable = true
+//                            binding.menuBtn.isClickable = true
                         }
                     })
             }
@@ -441,7 +475,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -450,7 +484,7 @@ class HomeFragment : Fragment() {
 
                         var unusedPassport: UnusedPassport
                         for (passportid in it.data.data) {
-                            unusedPassport = UnusedPassport(0, passportid)
+                            unusedPassport = UnusedPassport(passportid)
                             unusedPassportViewModel.insertUnusedPassport(unusedPassport)
 //                            Log.d("Fragment UnusedPassport", "Id: ${unusedPassport.id}, " +
 //                                    "PassportId: ${unusedPassport.passportId}")
@@ -465,7 +499,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -479,7 +513,7 @@ class HomeFragment : Fragment() {
                             binding.offlineTv.isVisible = true
                             binding.homeFragmentProgress.isVisible = false
                             binding.homeFragmentConstraintLayout.alpha = 1.0F
-                            binding.menuBtn.isClickable = true
+//                            binding.menuBtn.isClickable = true
                             /*if (binding.menu.isVisible) {
                                 binding.homeFragmentConstraintLayout.alpha = 0.1F
                                 binding.menuConstraintLayout.alpha = 1.0F
@@ -502,7 +536,7 @@ class HomeFragment : Fragment() {
                 ApiResponse.Loading -> {
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -511,7 +545,7 @@ class HomeFragment : Fragment() {
                     }
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -521,7 +555,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
 
         })
@@ -539,7 +573,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -549,7 +583,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -560,7 +594,7 @@ class HomeFragment : Fragment() {
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                binding.menuBtn.isClickable = true
+//                binding.menuBtn.isClickable = true
             }
         })
 
@@ -577,7 +611,7 @@ class HomeFragment : Fragment() {
 //                    binding.errorTv.text = "Loading"
                     binding.homeFragmentProgress.isVisible = true
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
-                    binding.menuBtn.isClickable = false
+//                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
                     CoroutineScope(Dispatchers.IO).launch {
@@ -619,7 +653,7 @@ class HomeFragment : Fragment() {
                     }
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    binding.menuBtn.isClickable = true
+//                    binding.menuBtn.isClickable = true
                 }
             }
         }
@@ -633,7 +667,7 @@ class HomeFragment : Fragment() {
                             binding.offlineTv.isVisible = true
                             binding.homeFragmentProgress.isVisible = false
                             binding.homeFragmentConstraintLayout.alpha = 1.0F
-                            binding.menuBtn.isClickable = true
+//                            binding.menuBtn.isClickable = true
                             /*if (binding.menu.isVisible) {
                                 binding.homeFragmentConstraintLayout.alpha = 0.1F
                                 binding.menuConstraintLayout.alpha = 1.0F
@@ -646,17 +680,114 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun insertUsedEnumeratorTag() {
+        usedEnumeratorTagResponse.allUsedEnumeratorTagResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = "Failed to download UsedEnumeratorTag from server"
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+                    for (data in it.data.usedEnumeratorTag){
+                        CoroutineScope(Dispatchers.IO).launch {
+                            usedEnumeratorTagViewModel.deleteUsedEnumeratorTag()
+                            usedEnumeratorTagViewModel.insertUsedEnumeratorTag(data)
+                        }
+//                        Log.d("Fragment UsedTags", "UsedTag: ${data.tag_id}")
+                        /*if (data.tag_id.contains(scannedTag.toString())) {
+                            availableUsedTag = scannedTag.toString()
+                        } else {
+                            Log.d("Fragment getusedtag", "Tag not found ${data.tag_id}, ${scannedTag}")
+                        }*/
+                        binding.homeFragmentProgress.isVisible = false
+                        binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    }
+                }
+            }
+        }
+
+        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+            if (username != null) {
+                usedEnumeratorTagResponse.getAllUsedEnumeratorTag(username, object:
+                    CoroutinesErrorHandler {
+                    override fun onError(message: String) {
+                        binding.offlineTv.isVisible = true
+                        binding.homeFragmentProgress.isVisible = false
+                        binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    }
+
+                })
+            }
+        }
+    }
+
+    private fun insertPackingList() {
+        scanPackingListResponseViewModel.packingListResponse.observe(viewLifecycleOwner){ parkingItem ->
+            when(parkingItem) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = "Failed to download Packing List"
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        livestockDataViewModel.deletePackingList()
+                        var packingList: AllPackingList
+                        for (data in parkingItem.data.data) {
+                            for(tag in data.tags){
+                                packingList = AllPackingList(
+//                                    0,
+                                    data.status,
+                                    tag
+                                )
+                                livestockDataViewModel.insertPackingList(packingList)
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+            if (username != null) {
+                scanPackingListResponseViewModel.getParkingList(username, object:
+                    CoroutinesErrorHandler {
+                    override fun onError(message: String) {
+                        binding.offlineTv.isVisible = true
+                        binding.homeFragmentProgress.isVisible = false
+                        binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    }
+
+                })
+            }
+        }
+    }
+
+    fun showMenu() {
+        /*val action = HomeFragmentDirections.actionHomeFragmentToHomeMenuBottomSheet()
+        findNavController().navigate(action)*/
+    }
+
+    /*
+
     fun showMenu() {
         /*binding.menu.isVisible = true
         binding.homeFragmentConstraintLayout.alpha = 0.1F
         binding.menuConstraintLayout.alpha = 1.0F*/
         /*val modalBottomSheet = HomeMenuBottomSheet()
         modalBottomSheet.show(requireActivity().supportFragmentManager, HomeMenuBottomSheet.TAG)*/
-        val action = HomeFragmentDirections.actionHomeFragmentToHomeMenuBottomSheet()
-        findNavController().navigate(action)
+
     }
 
-    /*fun closeMenu() {
+
+    fun closeMenu() {
         binding.menu.isVisible = false
         binding.homeFragmentConstraintLayout.alpha = 1.0F
     }

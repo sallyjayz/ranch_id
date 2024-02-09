@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".report.taggedlivestock.ListTaggedLivestockReportDetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/form_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="Tagged Livestock Info"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_scannedid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/form_summary"
+                    app:layout_constraintEnd_toEndOf="@id/form_summary"
+                    app:layout_constraintTop_toBottomOf="@id/form_summary"
+                    android:text="@string/scanned_tag"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_scan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_scannedid"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_scannedid"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_scannedid"
+                    tools:text="NFC12345678"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/scan_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_scan"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_passportid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/scan_divider"
+                    app:layout_constraintEnd_toEndOf="@id/scan_divider"
+                    app:layout_constraintTop_toBottomOf="@id/scan_divider"
+                    android:text="@string/passport_id"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_passport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_passportid"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_passportid"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_passportid"
+                    tools:text="NFC123456768"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/passport_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_passport"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_livestockkeeper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/passport_divider"
+                    app:layout_constraintEnd_toEndOf="@id/passport_divider"
+                    app:layout_constraintTop_toBottomOf="@id/passport_divider"
+                    android:text="@string/livestock_keeper"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_keeper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_livestockkeeper"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_livestockkeeper"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_livestockkeeper"
+                    tools:text="Adaba Fareed"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/keeper_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_keeper"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_livestockowner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/keeper_divider"
+                    app:layout_constraintEnd_toEndOf="@id/keeper_divider"
+                    app:layout_constraintTop_toBottomOf="@id/keeper_divider"
+                    android:text="@string/livestock_owner"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_livestockowner"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_livestockowner"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_livestockowner"
+                    tools:text="Greg Dangote"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/owner_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_owner"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_livestocktype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/owner_divider"
+                    app:layout_constraintEnd_toEndOf="@id/owner_divider"
+                    app:layout_constraintTop_toBottomOf="@id/owner_divider"
+                    android:text="@string/livestock_type"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_livestocktype"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_livestocktype"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_livestocktype"
+                    tools:text="Cattle"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/type_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_type"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_livestockbreed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/type_divider"
+                    app:layout_constraintEnd_toEndOf="@id/type_divider"
+                    app:layout_constraintTop_toBottomOf="@id/type_divider"
+                    android:text="@string/livestock_breed"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_breed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_livestockbreed"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_livestockbreed"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_livestockbreed"
+                    tools:text="Red Bororo"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/breed_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_breed"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_gendertxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/breed_divider"
+                    app:layout_constraintEnd_toEndOf="@id/breed_divider"
+                    app:layout_constraintTop_toBottomOf="@id/breed_divider"
+                    android:text="@string/gender"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_gendertxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_gendertxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_gendertxt"
+                    tools:text="Male"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/gender_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_gender"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_healthstatustxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/gender_divider"
+                    app:layout_constraintEnd_toEndOf="@id/gender_divider"
+                    app:layout_constraintTop_toBottomOf="@id/gender_divider"
+                    android:text="@string/health_status"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_healthstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_healthstatustxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_healthstatustxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_healthstatustxt"
+                    tools:text="Okay"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/healthstatus_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_healthstatus"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_dobtxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/healthstatus_divider"
+                    app:layout_constraintEnd_toEndOf="@id/healthstatus_divider"
+                    app:layout_constraintTop_toBottomOf="@id/healthstatus_divider"
+                    android:text="Birth Date"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_dobtxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_dobtxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_dobtxt"
+                    tools:text="12 January, 2022"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/dob_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_dob"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_descriptiontxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/dob_divider"
+                    app:layout_constraintEnd_toEndOf="@id/dob_divider"
+                    app:layout_constraintTop_toBottomOf="@id/dob_divider"
+                    android:text="@string/description"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_descriptiontxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_descriptiontxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_descriptiontxt"
+                    tools:text="Brown and White in color"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/description_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_description"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_taglocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/description_divider"
+                    app:layout_constraintEnd_toEndOf="@id/description_divider"
+                    app:layout_constraintTop_toBottomOf="@id/description_divider"
+                    android:text="@string/tagging_location"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_tagginglocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_taglocation"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_taglocation"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_taglocation"
+                    tools:text="Ekiti"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/tagginglocation_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_tagginglocation"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_commenttxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tagginglocation_divider"
+                    app:layout_constraintEnd_toEndOf="@id/tagginglocation_divider"
+                    app:layout_constraintTop_toBottomOf="@id/tagginglocation_divider"
+                    android:text="@string/comments"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_commenttxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_commenttxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_commenttxt"
+                    tools:text="None"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/comment_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_comments"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_productiontypetxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/comment_divider"
+                    app:layout_constraintEnd_toEndOf="@id/comment_divider"
+                    app:layout_constraintTop_toBottomOf="@id/comment_divider"
+                    android:text="@string/production_type"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_productiontype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_productiontypetxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_productiontypetxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_productiontypetxt"
+                    tools:text="BN1234567"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/productiontype_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_productiontype"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_verificationphototxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/productiontype_divider"
+                    app:layout_constraintEnd_toEndOf="@id/productiontype_divider"
+                    app:layout_constraintTop_toBottomOf="@id/productiontype_divider"
+                    android:text="@string/verification_photo"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tag_four_verificationphoto_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/stroke_tint"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_verificationphototxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_verificationphototxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_verificationphototxt">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/sixteen_dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/verification_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:src="@drawable/ic_launcher_background"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/verification_image_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sixteen_dp"
+                            tools:text="Image.jpeg"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/verification_image"
+                            app:layout_constraintStart_toEndOf="@id/verification_image"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/verification_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="349.42kb"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_regular"
+                            app:layout_constraintTop_toBottomOf="@id/verification_image_name"
+                            app:layout_constraintStart_toEndOf="@id/verification_image"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_four_muzzlephototxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_verificationphoto_cardview"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_verificationphoto_cardview"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_verificationphoto_cardview"
+                    android:text="@string/muzzle_photo"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tag_four_muzzlephoto_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/stroke_tint"
+                    app:cardElevation="0dp"
+                    app:layout_constraintStart_toStartOf="@id/tag_four_muzzlephototxt"
+                    app:layout_constraintEnd_toEndOf="@id/tag_four_muzzlephototxt"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_muzzlephototxt">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/sixteen_dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/muzzle_camera_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:src="@drawable/ic_launcher_background"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/muzzle_image_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Image.jpeg"
+                            android:layout_marginTop="@dimen/sixteen_dp"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/muzzle_camera_image"
+                            app:layout_constraintStart_toEndOf="@id/muzzle_camera_image"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/muzzle_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="349.42kb"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_regular"
+                            app:layout_constraintTop_toBottomOf="@id/muzzle_image_name"
+                            app:layout_constraintStart_toEndOf="@id/muzzle_camera_image"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_four_muzzlephoto_cardview"
+                    android:background="@color/divider" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>

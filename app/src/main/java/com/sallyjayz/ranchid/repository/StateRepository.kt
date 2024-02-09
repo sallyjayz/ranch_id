@@ -23,6 +23,8 @@ class StateRepository @Inject constructor(
 
     fun getStateName(name: String) = stateDao.readSelectedStateName(name)
 
+    fun getStateId(id: Int) = stateDao.readSelectedStateId(id)
+
     fun deleteAllStates() = stateDao.deleteAllStates()
 
 }

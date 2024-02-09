@@ -46,6 +46,13 @@ object Util {
         )
     )*/
 
+    val PACKING_LIST_LIVESTOCK_TYPE = listOf(
+        "BIG_RUMINANT",
+        "SMALL_RUMINANT"
+    )
+
+
+
     val LOCATION_TYPE = listOf(
         "ABATTOIR/SLAUGHTERHOUSE",
         "BARN",
@@ -62,16 +69,18 @@ object Util {
     val OWNERSHIP_TYPE = listOf(
         "INDIVIDUAL",
         "CO_OPERATIVE",
-        "CORPORATE BODY",
+        "CORPORATE_BODY",
         "FAMILY",
         "FARM",
-        "RANCH"
+        "RANCH",
+        "OTHER"
     )
 
     val ID_DOCUMENT_TYPE = listOf(
         "DRIVERS LICENCE",
         "INTERNATIONAL PASSPORT",
-        "VOTERS CARD"
+        "VOTERS CARD",
+        "NATIONAL ID"
     )
 
     val HEALTH_STATUS = listOf(

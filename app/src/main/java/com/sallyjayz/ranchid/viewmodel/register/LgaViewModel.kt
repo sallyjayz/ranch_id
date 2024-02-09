@@ -20,6 +20,8 @@ class LgaViewModel @Inject constructor(
 
     fun getLgaName(name: String) = lgaRepository.getLgaName(name)
 
+    fun getLgaAndStateId(id: Int, state_id: Int) = lgaRepository.getLgaAndStateId(id, state_id)
+
     fun getLgaStateId(id: Int) = lgaRepository.getLGAStateId(id)
 
     suspend fun insertLgas(lgas: List<LGA>) = lgaRepository.saveLgas(lgas)

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <!--<style name="Theme.RanchID" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
-    <style name="Theme.RanchID" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.RanchID" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
@@ -166,6 +166,7 @@
         <item name="colorError">@android:color/holo_red_dark</item>-->
     </style>
 
+
     <style name="ShapeAppearanceOverlay.RanchID.Card.Media" parent="">
         <item name="cornerSizeTopLeft">12dp</item>
         <item name="cornerSizeTopRight">12dp</item>
@@ -244,6 +245,14 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">16dp</item>
         <item name="cornerSizeTopLeft">16dp</item>
+    </style>
+
+    <style name="ThemeOverlay.RanchID.SearchView" parent="">
+        <!-- Text color -->
+        <item name="android:editTextColor">@color/search_dark</item>
+        <!-- Hint text color -->
+        <item name="android:textColorHint">@color/search_dark</item>
+        <item name="colorControlNormal">@color/search_dark</item>
     </style>
 
 </resources>

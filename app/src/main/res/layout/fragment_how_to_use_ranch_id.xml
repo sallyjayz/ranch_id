@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="howToMenuFragment"
+            type="com.sallyjayz.ranchid.howtouseranchid.HowToUseRanchIdFragment" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".howtouseranchid.HowToUseRanchIdFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <ImageView
+                    android:id="@+id/how_to_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/how_to_use_ranch_id_icon"
+                    android:padding="@dimen/twenty_dp"
+                    android:src="@drawable/how_to_use_ranchid"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/getting_started_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/how_to_label"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.gettingStarted()}">
+
+                    <LinearLayout
+                        android:id="@+id/getting_started"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/getting_started"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dashboard_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/getting_started_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.dashboard()}">
+
+                    <LinearLayout
+                        android:id="@+id/dashboard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/the_ranchid_dashboard"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/enumerator_menu_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dashboard_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.enumeratorMenu()}">
+
+                    <LinearLayout
+                        android:id="@+id/enumerator_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/the_enumerator_menu"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/register_menu_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/enumerator_menu_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.registerMenu()}">
+
+                    <LinearLayout
+                        android:id="@+id/register_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/the_register_menu"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/add_owner_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/register_menu_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.addLivestockOwner()}">
+
+                    <LinearLayout
+                        android:id="@+id/add_owner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/add_livestock_owner"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/add_keeper_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/add_owner_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.addLivestockKeeper()}">
+
+                    <LinearLayout
+                        android:id="@+id/add_keeper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/add_livestock_keeper"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/add_location_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/add_keeper_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.addLivestockLocation()}">
+
+                    <LinearLayout
+                        android:id="@+id/add_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/add_livestock_location"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tag_livestock_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/add_location_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.tagLivestock()}">
+
+                    <LinearLayout
+                        android:id="@+id/tag_livestock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/tagged_livestock"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/scan_for_exit_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_livestock_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.scanForExit()}">
+
+                    <LinearLayout
+                        android:id="@+id/scan_for_exit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/scan_for_exit"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/packing_list_cardview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:backgroundTint="@color/background"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/scan_for_exit_cardview"
+                    app:strokeColor="@color/search_dark"
+                    app:strokeWidth="1dp"
+                    android:onClick="@{() -> howToMenuFragment.packingList()}">
+
+                    <LinearLayout
+                        android:id="@+id/packing_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/how_to_use_ranch_id_icon"
+                            android:padding="@dimen/twenty_dp"
+                            android:src="@drawable/how_to_use_ranchid_logo" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/packing_list"
+                            android:textColor="@color/search_dark"
+                            android:textSize="@dimen/twenty_two_sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>

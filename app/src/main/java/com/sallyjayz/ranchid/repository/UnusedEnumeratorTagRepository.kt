@@ -1,6 +1,5 @@
 package com.sallyjayz.ranchid.repository
 
-import androidx.lifecycle.LiveData
 import com.sallyjayz.ranchid.database.UnusedEnumeratorTagDao
 import com.sallyjayz.ranchid.model.unusedenumeratortag.all.AllUnusedEnumeratorTag
 import com.sallyjayz.ranchid.service.register.unusedenumeratortag.UnusedEnumeratorTagApiService

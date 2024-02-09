@@ -8,7 +8,9 @@ import com.sallyjayz.ranchid.database.RanchDatabase
 import com.sallyjayz.ranchid.service.auth.AuthApiService
 import com.sallyjayz.ranchid.service.dashboard.DashboardActivitiesApiService
 import com.sallyjayz.ranchid.service.farmlocation.FarmLocationApiService
+import com.sallyjayz.ranchid.service.generalinformation.GeneralInformationApiService
 import com.sallyjayz.ranchid.service.lga.StateLgaApiService
+import com.sallyjayz.ranchid.service.register.packinglist.PackingListApiService
 import com.sallyjayz.ranchid.service.register.animaltypebreed.AnimalTypeBreedApiService
 import com.sallyjayz.ranchid.service.register.keeper.KeeperApiService
 import com.sallyjayz.ranchid.service.register.owner.OwnerApiService
@@ -16,6 +18,8 @@ import com.sallyjayz.ranchid.service.register.registrationlocation.RegistrationL
 import com.sallyjayz.ranchid.service.register.taglivestock.TagLivestockApiService
 import com.sallyjayz.ranchid.service.register.unusedenumeratortag.UnusedEnumeratorTagApiService
 import com.sallyjayz.ranchid.service.register.unusedpassport.UnusedPassportApiService
+import com.sallyjayz.ranchid.service.register.usedenumeratortag.UsedEnumeratorTagApiService
+import com.sallyjayz.ranchid.service.report.ReportListApiService
 import com.sallyjayz.ranchid.utils.*
 import dagger.Module
 import dagger.Provides
@@ -153,6 +157,34 @@ class SingleModule {
             .build()
             .create(UnusedEnumeratorTagApiService::class.java)
 
+    @Provides
+    fun providePackingListApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): PackingListApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(PackingListApiService::class.java)
+
+    @Provides
+    fun provideUsedEnumeratorTagApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): UsedEnumeratorTagApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(UsedEnumeratorTagApiService::class.java)
+
+    @Provides
+    fun provideGeneralInformationApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): GeneralInformationApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(GeneralInformationApiService::class.java)
+
+    @Provides
+    fun provideReportListApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): ReportListApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(ReportListApiService::class.java)
+
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) = RanchDatabase.getDatabase(appContext)
@@ -212,5 +244,17 @@ class SingleModule {
     @Singleton
     @Provides
     fun provideUnusedEnumeratorTag(db: RanchDatabase) = db.unusedEnumeratorTagDao()
+
+    @Singleton
+    @Provides
+    fun provideUsedEnumeratorTag(db: RanchDatabase) = db.usedEnumeratorTagDao()
+
+    @Singleton
+    @Provides
+    fun provideLivestockData(db: RanchDatabase) = db.livestockDataDao()
+
+    @Singleton
+    @Provides
+    fun providePackingList(db: RanchDatabase) = db.packingListDao()
 
 }

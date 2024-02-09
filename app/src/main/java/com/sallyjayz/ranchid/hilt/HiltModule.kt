@@ -6,13 +6,17 @@ import com.sallyjayz.ranchid.service.auth.AuthApiService
 import com.sallyjayz.ranchid.service.dashboard.DashboardActivitiesApiService
 import com.sallyjayz.ranchid.service.register.keeper.KeeperApiService
 import com.sallyjayz.ranchid.service.farmlocation.FarmLocationApiService
+import com.sallyjayz.ranchid.service.generalinformation.GeneralInformationApiService
 import com.sallyjayz.ranchid.service.lga.StateLgaApiService
+import com.sallyjayz.ranchid.service.register.packinglist.PackingListApiService
 import com.sallyjayz.ranchid.service.register.animaltypebreed.AnimalTypeBreedApiService
 import com.sallyjayz.ranchid.service.register.owner.OwnerApiService
 import com.sallyjayz.ranchid.service.register.registrationlocation.RegistrationLocationApiService
 import com.sallyjayz.ranchid.service.register.taglivestock.TagLivestockApiService
 import com.sallyjayz.ranchid.service.register.unusedenumeratortag.UnusedEnumeratorTagApiService
 import com.sallyjayz.ranchid.service.register.unusedpassport.UnusedPassportApiService
+import com.sallyjayz.ranchid.service.register.usedenumeratortag.UsedEnumeratorTagApiService
+import com.sallyjayz.ranchid.service.report.ReportListApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -89,11 +93,30 @@ class HiltModule {
         UnusedEnumeratorTagRepository(unusedEnumeratorTagApiService, unusedEnumeratorTagDao)
 
     @Provides
+    fun provideUsedEnumeratorTagRepository(usedEnumeratorTagApiService: UsedEnumeratorTagApiService,
+                                           usedEnumeratorTagDao: UsedEnumeratorTagDao) =
+        UsedEnumeratorTagRepository(usedEnumeratorTagApiService, usedEnumeratorTagDao)
+
+    @Provides
     fun provideAnimalTypeRepository(animalTypeBreedApiService: AnimalTypeBreedApiService, animalTypeDao: AnimalTypeDao) =
         AnimalTypeRepository(animalTypeBreedApiService, animalTypeDao)
 
     @Provides
     fun provideAnimalBreedRepository(animalTypeBreedApiService: AnimalTypeBreedApiService, animalBreedDao: AnimalBreedDao) =
         AnimalBreedRepository(animalTypeBreedApiService, animalBreedDao)
+
+    @Provides
+    fun providePackingListRepository(packingListApiService: PackingListApiService,
+                                     livestockDataDao: LivestockDataDao,
+                                     packingListDao: PackingListDao) =
+        PackingListRepository(packingListApiService, livestockDataDao, packingListDao)
+
+    @Provides
+    fun provideGeneralInformationRepository(generalInformationApiService: GeneralInformationApiService) =
+        GeneralInformationRepository(generalInformationApiService)
+
+    @Provides
+    fun provideReportListRepository(reportListApiService: ReportListApiService) =
+        ReportListRepository(reportListApiService)
 
 }

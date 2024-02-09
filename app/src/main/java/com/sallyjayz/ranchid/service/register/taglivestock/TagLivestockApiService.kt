@@ -4,6 +4,7 @@ import com.sallyjayz.ranchid.model.allkeepers.AllKeepersResponse
 import com.sallyjayz.ranchid.model.allowners.AllOwnersResponse
 import com.sallyjayz.ranchid.model.register.taglivestock.TagLivestock
 import com.sallyjayz.ranchid.model.register.taglivestock.TagLivestockResponse
+import com.sallyjayz.ranchid.model.report.keeper.KeeperListResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -19,7 +20,7 @@ interface TagLivestockApiService{
         @Body tagLivestock: TagLivestock
     ): Response<TagLivestockResponse>
 
-    @GET("/api/enumerator/get_livestock_owners")
+    @GET("/api/enumerator/get_livestock_owners?limit=300&page=1")
     suspend fun getAllOwnersList(): Response<AllOwnersResponse>
 
     @GET("/api/enumerator/get_livestock_keepers")

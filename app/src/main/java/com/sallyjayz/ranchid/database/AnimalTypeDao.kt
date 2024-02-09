@@ -19,6 +19,9 @@ interface AnimalTypeDao {
     @Query("SELECT * FROM animal_type WHERE name = :selectedAnimalTypeName")
     fun readSelectedAnimalTypeName(selectedAnimalTypeName: String): LiveData<AnimalType>
 
+    @Query("SELECT * FROM animal_type WHERE type = :selectedAnimalTagType")
+    fun readSelectedAnimalTagType(selectedAnimalTagType: String): LiveData<AnimalType>
+
     @Query("DELETE FROM animal_type")
     fun deleteAllAnimalType()
 

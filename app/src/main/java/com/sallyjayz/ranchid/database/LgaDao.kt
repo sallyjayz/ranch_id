@@ -22,6 +22,9 @@ interface LgaDao {
     @Query("SELECT * FROM lga WHERE name = :selectedLgaName")
     fun readSelectedLgaName(selectedLgaName: String): LiveData<LGA>
 
+    @Query("SELECT * FROM lga WHERE id = :id AND state_id = :state_id")
+    fun readSelectedLgaAndStateId(id: Int, state_id: Int): LiveData<LGA>
+
     @Query("DELETE FROM lga")
     fun deleteAllLGA()
 }
