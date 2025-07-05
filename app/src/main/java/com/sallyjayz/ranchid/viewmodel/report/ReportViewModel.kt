@@ -17,6 +17,7 @@ import javax.inject.Inject
  * Created by Salama Jatau on 05-Aug-23.
  */
 
+/*
 @HiltViewModel
 class ReportViewModel @Inject constructor(
     private val reportListRepository: ReportListRepository
@@ -30,4 +31,4 @@ class ReportViewModel @Inject constructor(
 
     fun locationReport(username: String): LiveData<PagingData<Location>> =
         reportListRepository.getAllLocationStream(username).cachedIn(viewModelScope)
-}
+}*/

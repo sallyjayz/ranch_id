@@ -28,10 +28,15 @@ import com.sallyjayz.ranchid.viewmodel.NetworkStatusViewModel
 import com.sallyjayz.ranchid.viewmodel.offline.OfflineOwnerViewModel
 import com.sallyjayz.ranchid.viewmodel.register.response.OwnerResponseViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
+val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+    throwable.printStackTrace()
+}
 
 @AndroidEntryPoint
 class OfflineOwnerFragment : Fragment() {
@@ -88,21 +93,21 @@ class OfflineOwnerFragment : Fragment() {
                         true
                     }
                     R.id.action_delete_completed_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineOwnerViewModel
                                 .deleteOfflineOwnerStatusCondition("COMPLETED")
                         }
                         true
                     }
                     R.id.action_delete_pending_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineOwnerViewModel
                                 .deleteOfflineOwnerStatusCondition("PENDING")
                         }
                         true
                     }
                     R.id.action_delete_failed_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineOwnerViewModel
                                 .deleteOfflineOwnerStatusCondition("FAILED")
                         }
@@ -136,7 +141,7 @@ class OfflineOwnerFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
             offlineOwnerViewModel.readOfflineOwners().collectLatest {
                 recyclerViewAdapter.submitData(it)
             }
@@ -152,10 +157,10 @@ class OfflineOwnerFragment : Fragment() {
                     ownerResponseViewModel.addOwnerResponse.observe(viewLifecycleOwner) {
                         when(it) {
                             is ApiResponse.Failure -> {
-//                                binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
-//                                binding.errorTv.isVisible = true
+                                binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
+                                binding.errorTv.isVisible = true
 
-                                CoroutineScope(Dispatchers.IO).launch {
+                                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                                     offlineOwnerViewModel.updateOfflineOwner(owner.id, "FAILED")
                                 }
                                 binding.offlineOwnerProgress.isVisible = false
@@ -169,13 +174,13 @@ class OfflineOwnerFragment : Fragment() {
                             is ApiResponse.Success -> {
 //                        binding.errorTv.text = "${it.data.success}"
 
-                                CoroutineScope(Dispatchers.IO).launch {
+                                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                                     offlineOwnerViewModel.updateOfflineOwner(owner.id, "COMPLETED")
-                                    /*Log.d("status", "${offlineOwnerViewModel
+                                    Log.d("status", "${offlineOwnerViewModel
                                         .updateOfflineOwner(owner.id, "COMPLETED")}")
                                     Log.d("id", "${owner.id}")
 
-                                    Log.d("Response", "${it.data.success}")*/
+                                    Log.d("Response", "${it.data.success}")
 
                                 }
                                 binding.offlineOwnerProgress.isVisible = false
@@ -213,7 +218,7 @@ class OfflineOwnerFragment : Fragment() {
                         ),
                         object: CoroutinesErrorHandler {
                             override fun onError(message: String) {
-//                    binding.errorTv.text = "Error! $message"
+                                binding.errorTv.text = "Error! $message"
                                 binding.errorTv.isVisible = true
                                 binding.offlineOwnerProgress.isVisible = false
                                 binding.offlineOwnerRecyclerview.alpha = 1.0F

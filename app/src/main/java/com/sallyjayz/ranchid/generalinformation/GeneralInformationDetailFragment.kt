@@ -18,7 +18,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentGeneralInformationDetailBinding
 import com.sallyjayz.ranchid.glide.GlideApp
-import com.sallyjayz.ranchid.viewmodel.register.FarmLocationViewModel
+import com.sallyjayz.ranchid.viewmodel.register.FarmLocationWithStateViewModel
 import com.sallyjayz.ranchid.viewmodel.register.LgaViewModel
 import com.sallyjayz.ranchid.viewmodel.register.StateViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +29,7 @@ class GeneralInformationDetailFragment : Fragment() {
     private lateinit var binding: FragmentGeneralInformationDetailBinding
     private val stateViewModel: StateViewModel by viewModels()
     private val lgaViewModel: LgaViewModel by viewModels()
-    private val farmLocationViewModel: FarmLocationViewModel by viewModels()
+    private val farmLocationViewModel: FarmLocationWithStateViewModel by viewModels()
     private val args: GeneralInformationDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -97,9 +97,11 @@ class GeneralInformationDetailFragment : Fragment() {
         val copyUrlBtn: MaterialButton = customAlertDialogView.findViewById(R.id.copy_url_button)
         val downloadBtn: MaterialButton = customAlertDialogView.findViewById(R.id.download_form_button)
 
-        val urlLink = "https://ranch-admin.netlify.app/admin/download/${args.refID.lowercase()} has been generated"
+        val urlLink = "https://ranch-admin.netlify.app/admin/download/${args.refID.lowercase()}"
 
-        linkText.text = urlLink
+        val urlText = "https://ranch-admin.netlify.app/admin/download/${args.refID.lowercase()} has been generated"
+
+        linkText.text = urlText
 
         copyUrlBtn.setOnClickListener {
             val clipboard = requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager

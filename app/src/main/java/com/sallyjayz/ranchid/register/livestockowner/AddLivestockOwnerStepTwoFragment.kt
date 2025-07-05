@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentAddLivestockOwnerStepTwoBinding
 import com.sallyjayz.ranchid.utils.Util
-import com.sallyjayz.ranchid.viewmodel.register.FarmLocationViewModel
+import com.sallyjayz.ranchid.viewmodel.register.FarmLocationWithStateViewModel
 import com.sallyjayz.ranchid.viewmodel.register.LivestockOwnerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
@@ -36,7 +36,7 @@ class AddLivestockOwnerStepTwoFragment : Fragment() {
     private var photoFile: File? = null
     private var photoURI: Uri? = null
     private lateinit var mCurrentPhotoPath: String
-    private val farmLocationViewModel: FarmLocationViewModel by viewModels()
+    private val farmLocationViewModel: FarmLocationWithStateViewModel by viewModels()
     private lateinit var farmLocationAdapter: ArrayAdapter<String>
     private lateinit var selectedFarm: String
     private var farmLocationId: Int = 0
@@ -127,7 +127,7 @@ class AddLivestockOwnerStepTwoFragment : Fragment() {
 
 
 
-        farmLocationViewModel.readAllLocation.observe(viewLifecycleOwner) {
+        farmLocationViewModel.readAllLocationWithState.observe(viewLifecycleOwner) {
             val farms = ArrayList<String>()
             for (farm in it) {
                 farms.add(farm.location_name)

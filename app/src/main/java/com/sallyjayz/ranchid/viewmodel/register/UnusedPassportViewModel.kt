@@ -14,8 +14,8 @@ class UnusedPassportViewModel @Inject constructor(
     context: Application
 ): AndroidViewModel(context) {
 
-    private var _readAllUnusedPassport : LiveData<List<UnusedPassport>> = unusedPassportRepository.readUnusedPassport
-    val readAllUnusedPassport: LiveData<List<UnusedPassport>>
+    private var _readAllUnusedPassport : LiveData<List<UnusedPassport?>> = unusedPassportRepository.readUnusedPassport
+    val readAllUnusedPassport: LiveData<List<UnusedPassport?>>
         get() = _readAllUnusedPassport
 
     fun getSelectedUnusedPassport(selectedPassport: String) = unusedPassportRepository.getSelectedUnusedPassport(selectedPassport)

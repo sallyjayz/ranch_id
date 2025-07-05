@@ -3,12 +3,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".howtouseranchid.howto.PackingListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/sixteen_dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/packing_list"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_sp"
+                android:padding="@dimen/twenty_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_list_text_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/packing_list_text_one"
+                android:textColor="@color/black"
+                android:paddingStart="@dimen/twenty_dp"
+                android:paddingEnd="@dimen/twenty_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packing_list_label"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_list_text_two"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/packing_list_text_two"
+                android:textColor="@color/black"
+                android:paddingStart="@dimen/twenty_dp"
+                android:paddingEnd="@dimen/twenty_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packing_list_text_one"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/packing_list_text_three"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:lineSpacingExtra="5dp"
+                android:text="@string/packing_list_text_three"
+                android:textColor="@color/black"
+                android:paddingStart="@dimen/twenty_dp"
+                android:paddingEnd="@dimen/twenty_dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packing_list_text_two"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/packing_list_text_three">
+
+                <ImageView
+                    android:id="@+id/packing_list_image_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/packing_list_help"
+                    android:paddingStart="@dimen/twenty_dp"
+                    android:paddingTop="@dimen/twenty_dp"
+                    android:src="@drawable/packing_list_image_one"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/packing_list_image_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/packing_list_help"
+                    android:paddingEnd="@dimen/twenty_dp"
+                    android:paddingTop="@dimen/twenty_dp"
+                    android:src="@drawable/packing_list_image_two"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/packing_list_image_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/packing_list_help"
+                    android:paddingStart="@dimen/twenty_dp"
+                    android:paddingTop="@dimen/twenty_dp"
+                    android:src="@drawable/packing_list_image_three"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_list_image_two"/>
+
+                <ImageView
+                    android:id="@+id/packing_list_image_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/packing_list_help"
+                    android:paddingTop="@dimen/twenty_dp"
+                    android:paddingEnd="@dimen/twenty_dp"
+                    android:src="@drawable/packing_list_image_four"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/packing_list_image_two"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

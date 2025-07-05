@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.owner
 
 import android.os.Bundle
@@ -77,4 +78,4 @@ class ListOwnerReportDetailFragment : Fragment() {
             .into(binding.ownerImage)
 
     }
-}
+}*/

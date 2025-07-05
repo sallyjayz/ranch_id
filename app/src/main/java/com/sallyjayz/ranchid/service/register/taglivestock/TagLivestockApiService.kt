@@ -20,7 +20,7 @@ interface TagLivestockApiService{
         @Body tagLivestock: TagLivestock
     ): Response<TagLivestockResponse>
 
-    @GET("/api/enumerator/get_livestock_owners?limit=300&page=1")
+    @GET("/api/enumerator/get_livestock_owners?limit=1000000")
     suspend fun getAllOwnersList(): Response<AllOwnersResponse>
 
     @GET("/api/enumerator/get_livestock_keepers")

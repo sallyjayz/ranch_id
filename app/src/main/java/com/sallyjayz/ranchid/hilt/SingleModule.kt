@@ -8,6 +8,7 @@ import com.sallyjayz.ranchid.database.RanchDatabase
 import com.sallyjayz.ranchid.service.auth.AuthApiService
 import com.sallyjayz.ranchid.service.dashboard.DashboardActivitiesApiService
 import com.sallyjayz.ranchid.service.farmlocation.FarmLocationApiService
+import com.sallyjayz.ranchid.service.farmlocation.FarmLocationWithStateApiService
 import com.sallyjayz.ranchid.service.generalinformation.GeneralInformationApiService
 import com.sallyjayz.ranchid.service.lga.StateLgaApiService
 import com.sallyjayz.ranchid.service.register.packinglist.PackingListApiService
@@ -20,6 +21,13 @@ import com.sallyjayz.ranchid.service.register.unusedenumeratortag.UnusedEnumerat
 import com.sallyjayz.ranchid.service.register.unusedpassport.UnusedPassportApiService
 import com.sallyjayz.ranchid.service.register.usedenumeratortag.UsedEnumeratorTagApiService
 import com.sallyjayz.ranchid.service.report.ReportListApiService
+import com.sallyjayz.ranchid.service.vet.AnimalTypeWithVaccineApiService
+import com.sallyjayz.ranchid.service.vet.LivestockWithTreatmentHistoryApiService
+import com.sallyjayz.ranchid.service.vet.LivestockWithVaccinationHistoryApiService
+import com.sallyjayz.ranchid.service.vet.TreatmentApiService
+import com.sallyjayz.ranchid.service.vet.TreatmentTypeApiService
+import com.sallyjayz.ranchid.service.vet.VaccinationApiService
+import com.sallyjayz.ranchid.service.vet.VetDashboardActivitiesApiService
 import com.sallyjayz.ranchid.utils.*
 import dagger.Module
 import dagger.Provides
@@ -75,7 +83,8 @@ class SingleModule {
     @Provides
     fun provideRetrofitBuilder(): Retrofit.Builder =
         Retrofit.Builder()
-            .baseUrl(" https://www.test-api.naitsng.com")
+            .baseUrl(" https://api.ranchid.app")
+//            .baseUrl(" https://www.test-api.naitsng.com")
 //            .baseUrl("http://164.90.233.167")
             .addConverterFactory(GsonConverterFactory.create())
 
@@ -121,6 +130,13 @@ class SingleModule {
             .client(okHttpClient)
             .build()
             .create(FarmLocationApiService::class.java)
+
+    @Provides
+    fun provideFarmLocationWithStateApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): FarmLocationWithStateApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(FarmLocationWithStateApiService::class.java)
 
     @Provides
     fun provideStateLgaApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): StateLgaApiService =
@@ -185,6 +201,55 @@ class SingleModule {
             .build()
             .create(ReportListApiService::class.java)
 
+    @Provides
+    fun provideVetDashboardActivitiesApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): VetDashboardActivitiesApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(VetDashboardActivitiesApiService::class.java)
+
+    @Provides
+    fun provideLivestockWithVaccinationHistoryApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): LivestockWithVaccinationHistoryApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(LivestockWithVaccinationHistoryApiService::class.java)
+
+    @Provides
+    fun provideLivestockWithTreatmentHistoryApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): LivestockWithTreatmentHistoryApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(LivestockWithTreatmentHistoryApiService::class.java)
+
+    @Provides
+    fun provideVaccinationApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): VaccinationApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(VaccinationApiService::class.java)
+
+    @Provides
+    fun provideTreatmentApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): TreatmentApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(TreatmentApiService::class.java)
+
+    @Provides
+    fun provideAnimalTypeWithVaccineApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): AnimalTypeWithVaccineApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(AnimalTypeWithVaccineApiService::class.java)
+
+    @Provides
+    fun provideTreatmentTypeApiService(okHttpClient: OkHttpClient, retrofit: Retrofit.Builder): TreatmentTypeApiService =
+        retrofit
+            .client(okHttpClient)
+            .build()
+            .create(TreatmentTypeApiService::class.java)
+
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) = RanchDatabase.getDatabase(appContext)
@@ -204,6 +269,10 @@ class SingleModule {
     @Singleton
     @Provides
     fun provideFarmLocationDao(db: RanchDatabase) = db.farmLocationDao()
+
+    @Singleton
+    @Provides
+    fun provideFarmLocationWithStateDao(db: RanchDatabase) = db.farmLocationWithStateDao()
 
     @Singleton
     @Provides
@@ -256,5 +325,17 @@ class SingleModule {
     @Singleton
     @Provides
     fun providePackingList(db: RanchDatabase) = db.packingListDao()
+
+    @Singleton
+    @Provides
+    fun provideVetDashboardActivitiesDao(db: RanchDatabase) = db.vetDashboardActivitiesDao()
+
+    @Singleton
+    @Provides
+    fun provideVetAnimalTypeWithVaccineDao(db: RanchDatabase) = db.vetAnimalTypeWithVaccineDao()
+
+    @Singleton
+    @Provides
+    fun provideVetTreatmentTypeDao(db: RanchDatabase) = db.vetTreatmentTypeDao()
 
 }

@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.taggedlivestock
 
 import android.os.Bundle
@@ -20,4 +21,4 @@ class ListTaggedLivestockReportDetailFragment : Fragment() {
             false
         )
     }
-}
+}*/

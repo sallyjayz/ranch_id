@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.paging
 
 import androidx.paging.PagingSource
@@ -7,9 +8,11 @@ import com.sallyjayz.ranchid.service.report.ReportListApiService
 import retrofit2.HttpException
 import java.io.IOException
 
+*/
 /**
  * Created by Salama Jatau on 09-Aug-23.
- */
+ *//*
+
 
 const val LOCATION_STARTING_INDEX = 1
 
@@ -39,4 +42,4 @@ class LocationListRecordPagingSource(
     override fun getRefreshKey(state: PagingState<Int, Location>): Int? {
         TODO("Not yet implemented")
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.location
 
 import android.os.Bundle
@@ -126,4 +127,4 @@ class ListLocationReportFragment : Fragment(), LocationReportAdapter.OnClickList
         findNavController().navigate(action)
     }
 
-}
+}*/

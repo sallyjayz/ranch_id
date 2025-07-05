@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.paging
 
 import android.view.LayoutInflater
@@ -8,9 +9,11 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sallyjayz.ranchid.databinding.LoadStateFooterBinding
 
+*/
 /**
  * Created by Salama Jatau on 02-Aug-23.
- */
+ *//*
+
 class PagingLoadStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<PagingLoadStateAdapter.LoadStateViewHolder>(){
 
@@ -44,4 +47,4 @@ class PagingLoadStateAdapter(private val retry: () -> Unit) :
         }
 
     }
-}
+}*/

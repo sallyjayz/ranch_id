@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.keeper
 
 import android.os.Bundle
@@ -62,10 +63,13 @@ class ListKeeperReportFragment : Fragment(), KeeperReportAdapter.OnClickListener
         }
 
 
-        /*val emptyDataObserver = EmptyData(binding.keeperSearchRecyclerview, empty_data_parent)
-        keeperReportAdapter.registerAdapterDataObserver(emptyDataObserver)*/
+        */
+/*val emptyDataObserver = EmptyData(binding.keeperSearchRecyclerview, empty_data_parent)
+        keeperReportAdapter.registerAdapterDataObserver(emptyDataObserver)*//*
 
-        /*keeperReportAdapter.addLoadStateListener { state ->
+
+        */
+/*keeperReportAdapter.addLoadStateListener { state ->
             when(state.refresh){
                 is LoadState.NotLoading -> {
                     binding.keeperReportProgress.isVisible = false
@@ -83,7 +87,8 @@ class ListKeeperReportFragment : Fragment(), KeeperReportAdapter.OnClickListener
                     binding.buttonRetry.isVisible = true
                 }
             }
-        }*/
+        }*//*
+
 
         keeperReportAdapter.addLoadStateListener { loadStates ->
             binding.apply {
@@ -130,14 +135,18 @@ class ListKeeperReportFragment : Fragment(), KeeperReportAdapter.OnClickListener
         binding.keeperSearchview.setOnQueryTextListener(
             object: SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    /*keeperReportAdapter.filter.filter(query)
-                    return false*/
-                    /*if (query != null) {
+                    */
+/*keeperReportAdapter.filter.filter(query)
+                    return false*//*
+
+                    */
+/*if (query != null) {
                         binding.keeperSearchRecyclerview.scrollToPosition(0)
                         keeperReportAdapter.filter.filter(query)
 //                        binding.keeperSearchview.clearFocus()
                     }
-                    return true*/
+                    return true*//*
+
                     return false
                 }
 
@@ -145,18 +154,21 @@ class ListKeeperReportFragment : Fragment(), KeeperReportAdapter.OnClickListener
                     keeperReportAdapter.filter.filter(newText)
                     return false
 
-                    /*if (newText != null) {
+                    */
+/*if (newText != null) {
                         binding.keeperSearchRecyclerview.scrollToPosition(0)
                         keeperReportAdapter.filter.filter(newText)
                     }
-                    return false*/
+                    return false*//*
+
                 }
 
             }
         )
     }
 
-    /*private fun keeperDetail() {
+    */
+/*private fun keeperDetail() {
         keeperReportAdapter.setOnClickListener(object: KeeperReportAdapter.OnClickListener{
             override fun onClickKeeper(position: Int, Keeper: Keepers) {
                 val keeperDetail = Keepers(
@@ -185,10 +197,12 @@ class ListKeeperReportFragment : Fragment(), KeeperReportAdapter.OnClickListener
             }
 
         })
-    }*/
+    }*//*
+
 
     override fun onItemClick(keeper: Keeper) {
-        /*val keeperDetail = Keepers(
+        */
+/*val keeperDetail = Keepers(
             keeper.id,
             keeper.surname,
             keeper.other_names,
@@ -207,9 +221,10 @@ class ListKeeperReportFragment : Fragment(), KeeperReportAdapter.OnClickListener
             keeper.prof_id_doc,
             keeper.location,
             keeper.address
-        )*/
+        )*//*
+
         val action = ListKeeperReportFragmentDirections
             .actionListKeeperReportFragmentToListKeeperReportDetailFragment(keeper)
         findNavController().navigate(action)
     }
-}
+}*/

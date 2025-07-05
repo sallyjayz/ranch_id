@@ -1,10 +1,13 @@
 package com.sallyjayz.ranchid.service.report
 
+import com.sallyjayz.ranchid.model.allkeepers.AllKeepersResponse
+import com.sallyjayz.ranchid.model.allowners.AllOwnersResponse
 import com.sallyjayz.ranchid.model.report.keeper.KeeperListResponse
 import com.sallyjayz.ranchid.model.report.location.LocationListResponse
 import com.sallyjayz.ranchid.model.report.owner.OwnerListResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -13,7 +16,7 @@ import retrofit2.http.Query
  */
 interface ReportListApiService {
 
-    @GET("/api/enumerator/get_livestock_owners")
+    /*@GET("/api/enumerator/get_livestock_owners")
     suspend fun getOwnersList(
         @Query("page") page: Int,
         @Query("limit") perPage: Int
@@ -30,6 +33,20 @@ interface ReportListApiService {
         @Path("username") username: String,
         @Query("page") page: Int,
         @Query("limit") perPage: Int
-    ): LocationListResponse
+    ): LocationListResponse*/
+
+    @Headers(
+        "Accept: application/json",
+        "Content-type: application/pdf"
+    )
+    @GET("/api/enumerator/get_livestock_keepers?export=1&format=pdf")
+    suspend fun getAllKeepersList(): Response<AllKeepersResponse>
+
+    @Headers(
+        "Accept: application/json",
+        "Content-type: application/pdf"
+    )
+    @GET("/api/enumerator/get_livestock_owners?export=1&format=pdf")
+    suspend fun getAllOwnersList(): Response<AllOwnersResponse>
 
 }

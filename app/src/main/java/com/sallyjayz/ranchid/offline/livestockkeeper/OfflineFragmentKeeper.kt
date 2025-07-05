@@ -28,10 +28,15 @@ import com.sallyjayz.ranchid.viewmodel.NetworkStatusViewModel
 import com.sallyjayz.ranchid.viewmodel.offline.OfflineKeeperViewModel
 import com.sallyjayz.ranchid.viewmodel.register.response.KeeperResponseViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
+val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+    throwable.printStackTrace()
+}
 
 @AndroidEntryPoint
 class OfflineFragmentKeeper : Fragment() {
@@ -88,21 +93,21 @@ class OfflineFragmentKeeper : Fragment() {
                         true
                     }
                     R.id.action_delete_completed_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineKeeperViewModel
                                 .deleteOfflineKeeperStatusCondition("COMPLETED")
                         }
                         true
                     }
                     R.id.action_delete_pending_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineKeeperViewModel
                                 .deleteOfflineKeeperStatusCondition("PENDING")
                         }
                         true
                     }
                     R.id.action_delete_failed_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineKeeperViewModel
                                 .deleteOfflineKeeperStatusCondition("FAILED")
                         }
@@ -136,7 +141,7 @@ class OfflineFragmentKeeper : Fragment() {
     }
 
     private fun initViewModel() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
             offlineKeeperViewModel.readOfflineKeepers().collectLatest {
                 recyclerViewAdapter.submitData(it)
             }
@@ -160,7 +165,7 @@ class OfflineFragmentKeeper : Fragment() {
                             is ApiResponse.Failure -> {
 //                                binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
 
-                                CoroutineScope(Dispatchers.IO).launch {
+                                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                                     offlineKeeperViewModel.updateOfflineKeeper("FAILED", keeper.id)
                                 }
                                 binding.offlineKeeperProgress.isVisible = false
@@ -174,7 +179,7 @@ class OfflineFragmentKeeper : Fragment() {
                             is ApiResponse.Success -> {
 //                        binding.errorTv.text = "${it.data.success}"
 
-                                CoroutineScope(Dispatchers.IO).launch {
+                                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                                     offlineKeeperViewModel.updateOfflineKeeper("COMPLETED", keeper.id)
                                    /* Log.d("status", "${offlineKeeperViewModel
                                         .updateOfflineKeeper("COMPLETED", keeper.id)}")

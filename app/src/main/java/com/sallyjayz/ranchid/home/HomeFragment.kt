@@ -13,15 +13,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
-import com.sallyjayz.ranchid.HomeMenuBottomSheet
 import com.sallyjayz.ranchid.LoginActivity
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentHomeBinding
 import com.sallyjayz.ranchid.home.activities.ViewPagerAdapter
 import com.sallyjayz.ranchid.model.register.packinglist.packinglist.AllPackingList
-import com.sallyjayz.ranchid.model.register.packinglist.scannedlivestock.ScanLivestock
 import com.sallyjayz.ranchid.model.unusedenumeratortag.all.AllUnusedEnumeratorTag
 import com.sallyjayz.ranchid.model.unusedpassport.UnusedPassport
 import com.sallyjayz.ranchid.utils.ApiResponse
@@ -30,7 +27,14 @@ import com.sallyjayz.ranchid.viewmodel.packinglist.LivestockDataViewModel
 import com.sallyjayz.ranchid.viewmodel.packinglist.response.ScanPackingListResponseViewModel
 import com.sallyjayz.ranchid.viewmodel.register.*
 import com.sallyjayz.ranchid.viewmodel.register.response.*
+import com.sallyjayz.ranchid.viewmodel.vet.AnimalTypeWithVaccineViewModel
+import com.sallyjayz.ranchid.viewmodel.vet.TreatmentTypeViewModel
+import com.sallyjayz.ranchid.viewmodel.vet.VetDashboardActivitiesViewModel
+import com.sallyjayz.ranchid.viewmodel.vet.response.AnimalTypeWithVaccineResponseViewModel
+import com.sallyjayz.ranchid.viewmodel.vet.response.TreatmentTypeResponseViewModel
+import com.sallyjayz.ranchid.viewmodel.vet.response.VetDashboardActivitiesResponseViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,8 +53,10 @@ class HomeFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private val tokenViewModel: TokenViewModel by activityViewModels()
 //    private val authViewModel: AuthViewModel by activityViewModels()
-    private val farmLocationViewModel: FarmLocationViewModel by viewModels()
-    private val farmLocationResponseViewModel: FarmLocationResponseViewModel by viewModels()
+//    private val farmLocationViewModel: FarmLocationViewModel by viewModels()
+//    private val farmLocationResponseViewModel: FarmLocationResponseViewModel by viewModels()
+    private val farmLocationWithStateViewModel: FarmLocationWithStateViewModel by viewModels()
+    private val farmLocationWithStateResponseViewModel: FarmLocationWithStateResponseViewModel by viewModels()
     private val stateViewModel: StateViewModel by viewModels()
     private val lgaViewModel: LgaViewModel by viewModels()
     private val stateResponseViewModel: StateResponseViewModel by viewModels()
@@ -74,8 +80,15 @@ class HomeFragment : Fragment() {
     private val usedEnumeratorTagViewModel: UsedEnumeratorTagViewModel by viewModels()
     private val scanPackingListResponseViewModel: ScanPackingListResponseViewModel by viewModels()
     private val livestockDataViewModel: LivestockDataViewModel by viewModels()
+    private val vetDashboardActivitiesViewModel: VetDashboardActivitiesViewModel by viewModels()
+    private val vetDashboardActivitiesResponseViewModel: VetDashboardActivitiesResponseViewModel by viewModels()
+    private val animalTypeWithVaccineViewModel: AnimalTypeWithVaccineViewModel by viewModels()
+    private val animalTypeWithVaccineResponseViewModel: AnimalTypeWithVaccineResponseViewModel by viewModels()
+    private val treatmentTypeViewModel: TreatmentTypeViewModel by viewModels()
+    private val treatmentTypeResponseViewModel: TreatmentTypeResponseViewModel by viewModels()
 
     private var token: String? = null
+    private var username: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,11 +101,14 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.homeFragment = this
+//        binding.homeFragment = this
 
         mainMenuSetup()
 
         viewPagerAdapter = ViewPagerAdapter(this)
+
+//        viewPagerAdapter = ViewPagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
+
         viewPager = binding.homePager
         viewPager.adapter = viewPagerAdapter
 
@@ -123,6 +139,7 @@ class HomeFragment : Fragment() {
         }
 
         tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+            this.username = username
             binding.userName.text = username
 
         }
@@ -151,7 +168,8 @@ class HomeFragment : Fragment() {
             when(it) {
                 MyState.Fetched -> {
                     binding.offlineTv.isVisible = false
-                    insertFarmLocation()
+//                    insertFarmLocation()
+                    insertFarmLocationWithState()
                     insertStateAndLGA()
                     insertAllOwnersAndKeepersFarmLocation()
                     insertDashboardActivity()
@@ -160,6 +178,9 @@ class HomeFragment : Fragment() {
                     insertUnusedEnumeratorTag()
                     insertUsedEnumeratorTag()
                     insertPackingList()
+                    insertVetDashboardActivity()
+                    insertVetAnimalTypeWithVaccine()
+                    insertVetTreatmentType()
                 }
                 MyState.Error -> {
                     binding.offlineTv.isVisible = true
@@ -181,6 +202,18 @@ class HomeFragment : Fragment() {
             activity?.finish()
         }*/
 
+        /*if (tokenViewModel.loginRole.value.equals("ENUMERATOR")) {
+            binding.fab.isVisible = false
+        } else if (tokenViewModel.loginRole.value.equals("vet_doctor")){
+            binding.fab.isVisible = true
+        }*/
+
+    }
+
+    fun vaccinateLivestock() {
+        val action = HomeFragmentDirections
+            .actionHomeFragmentToVaccinateLivestockOneFragment()
+        findNavController().navigate(action)
     }
 
     private fun mainMenuSetup() {
@@ -204,7 +237,8 @@ class HomeFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
-    private fun insertFarmLocation() {
+
+    /*private fun insertFarmLocation() {
         farmLocationResponseViewModel.farmLocationResponse.observe(viewLifecycleOwner) {
             when(it) {
                 is ApiResponse.Failure -> {
@@ -222,12 +256,12 @@ class HomeFragment : Fragment() {
 //                        Log.d("Home Fragment", "${it.data.farmLocation}")
                         farmLocationViewModel.deleteAllFarmLocation()
                         farmLocationViewModel.insertLocations(it.data.farmLocation)
-                        /*it.data.farmLocation.forEach{
+                        *//*it.data.farmLocation.forEach{
                             farmLocationViewModel.insertLocations(it)
                         }
                         for(location in it.data.farmLocation) {
                             farmLocationViewModel.insertLocations(location)
-                        }*/
+                        }*//*
                     }
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
@@ -241,6 +275,46 @@ class HomeFragment : Fragment() {
         farmLocationResponseViewModel.getLocation(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
 //                binding.errorTv.text = "Error! $message"
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+//                binding.menuBtn.isClickable = true
+            }
+        })
+    }*/
+
+    private fun insertFarmLocationWithState() {
+        farmLocationWithStateResponseViewModel.farmLocationWithStateResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = getString(R.string.farm_location_download_failed)
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
+//                        Log.d("Home Fragment", "${it.data.farmLocationWithState}")
+                        farmLocationWithStateViewModel.deleteAllFarmLocationWithState()
+                        farmLocationWithStateViewModel.insertLocationsWithStates(it.data.farmLocationWithState)
+
+                    }
+//                    binding.errorTv.text = "Inserted"
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                }
+
+            }
+        }
+
+        farmLocationWithStateResponseViewModel.getLocationWithState(object: CoroutinesErrorHandler {
+            override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                Log.d("Home Farm Location", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -263,7 +337,10 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         stateViewModel.deleteAllStates()
                         stateViewModel.insertStates(it.data.state)
                     }
@@ -278,6 +355,7 @@ class HomeFragment : Fragment() {
         stateResponseViewModel.getState(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
 //                binding.errorTv.text = "Error! $message"
+                Log.d("Home State", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -301,7 +379,10 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         lgaViewModel.deleteAllLgas()
                         for (data in it.data.data){
                             lgaViewModel.insertLgas(data.locals)
@@ -319,6 +400,7 @@ class HomeFragment : Fragment() {
         lgaResponseViewModel.getLGA(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
 //                binding.errorTv.text = "Error! $message"
+                Log.d("Home LGA", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -341,10 +423,13 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         allOwnerViewModel.deleteAllOwners()
-                        allOwnerViewModel.insertAllOwners(it.data.allOwnersList)
-                        Log.d("Home Fragment1", "${it.data.allOwnersList}")
+                        allOwnerViewModel.insertAllOwners(it.data.data.allOwnersList)
+                        Log.d("Home Fragment1", "${it.data.data.allOwnersList}")
                         /* old response from server
                         allOwnerViewModel.insertAllOwners(it.data.record.allOwnersList)
                         Log.d("Home Fragment1", "${it.data.record.allOwnersList}")
@@ -361,6 +446,7 @@ class HomeFragment : Fragment() {
         allOwnerResponseViewModel.getAllOwner(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
 //                binding.errorTv.text = "Error! $message"
+                Log.d("Home All Owner", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -382,7 +468,10 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         allKeeperViewModel.deleteAllKeepers()
                         allKeeperViewModel.insertAllKeepers(it.data.allKeepersList)
                         /*old response from server
@@ -400,6 +489,7 @@ class HomeFragment : Fragment() {
         allKeeperResponseViewModel.getAllKeeper(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
 //                binding.errorTv.text = "Error! $message"
+                Log.d("Home All Keeper", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -422,7 +512,10 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         dashboardActivitiesViewModel.deleteExit()
                         dashboardActivitiesViewModel.deleteKeeper()
                         dashboardActivitiesViewModel.deleteOwner()
@@ -448,7 +541,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+        /*tokenViewModel.username.observe(viewLifecycleOwner) { username ->
             if (username != null) {
                 dashboardActivitiesResponseViewModel.getActivities(username,
                     object: CoroutinesErrorHandler {
@@ -461,7 +554,19 @@ class HomeFragment : Fragment() {
                         }
                     })
             }
-        }
+        }*/
+
+        dashboardActivitiesResponseViewModel.getActivities(username.toString().lowercase(),
+            object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+//                    binding.errorTv.text = "Error! $message"
+                    Log.d("Home Dashboard", message)
+                    binding.offlineTv.isVisible = true
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+//                            binding.menuBtn.isClickable = true
+                }
+            })
     }
 
     private fun insertUnusedPassport() {
@@ -478,9 +583,29 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
 
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         unusedPassportViewModel.deleteAllUnusedPassport()
+
+                        var unusedPassport: UnusedPassport
+                        for (passportid in it.data.data) {
+                            unusedPassport = UnusedPassport(passportid)
+                            unusedPassportViewModel.insertUnusedPassport(unusedPassport)
+                        }
+                    }
+
+
+
+                    /*CoroutineScope(Dispatchers.IO).launch {
+
+                        unusedPassportViewModel.readAllUnusedPassport.observe(viewLifecycleOwner) {unUsedPassportList ->
+                            if (unUsedPassportList != null) {
+                                unusedPassportViewModel.deleteAllUnusedPassport()
+                            }
+                        }
 
                         var unusedPassport: UnusedPassport
                         for (passportid in it.data.data) {
@@ -495,7 +620,7 @@ class HomeFragment : Fragment() {
 //                        Log.d("Fragment Count", "${it.data.total_count}")
 
 
-                    }
+                    }*/
 //                    binding.errorTv.text = "Inserted"
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -504,7 +629,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+        /*tokenViewModel.username.observe(viewLifecycleOwner) { username ->
             if (username != null) {
                 unusedPassportResponseViewModel.getUnusedPassport(username.lowercase(),
                     object: CoroutinesErrorHandler {
@@ -514,16 +639,34 @@ class HomeFragment : Fragment() {
                             binding.homeFragmentProgress.isVisible = false
                             binding.homeFragmentConstraintLayout.alpha = 1.0F
 //                            binding.menuBtn.isClickable = true
-                            /*if (binding.menu.isVisible) {
+                            *//*if (binding.menu.isVisible) {
                                 binding.homeFragmentConstraintLayout.alpha = 0.1F
                                 binding.menuConstraintLayout.alpha = 1.0F
                             } else {
                                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                            }*/
+                            }*//*
                         }
                     })
             }
-        }
+        }*/
+
+        unusedPassportResponseViewModel.getUnusedPassport(username.toString().lowercase(),
+            object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+//                    binding.errorTv.text = "Error! $message"
+                    Log.d("Home Unused Passport", message)
+                    binding.offlineTv.isVisible = true
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+//                            binding.menuBtn.isClickable = true
+                    /*if (binding.menu.isVisible) {
+                        binding.homeFragmentConstraintLayout.alpha = 0.1F
+                        binding.menuConstraintLayout.alpha = 1.0F
+                    } else {
+                        binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    }*/
+                }
+            })
     }
 
     private fun insertAnimalTypeAndBreed() {
@@ -539,10 +682,25 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         animalTypeViewModel.deleteAllAnimalType()
                         animalTypeViewModel.insertAnimalType(it.data.data)
                     }
+
+                    /*CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            animalTypeViewModel.deleteAllAnimalType()
+                            animalTypeViewModel.insertAnimalType(it.data.data)
+                        }catch(e: Exception) {
+                            Toast.makeText(requireContext(), getString(R.string.something_went_wrong) + "${e.message}",
+                                Toast.LENGTH_LONG).show()
+                        }
+                    }*/
+
                     binding.homeFragmentProgress.isVisible = false
                     binding.homeFragmentConstraintLayout.alpha = 1.0F
 //                    binding.menuBtn.isClickable = true
@@ -552,6 +710,8 @@ class HomeFragment : Fragment() {
 
         animalTypeResponseViewModel.getAnimalType(object : CoroutinesErrorHandler {
             override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                Log.d("Home Animal Type", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -576,7 +736,11 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         animalBreedViewModel.deleteAllBreed()
                         animalBreedViewModel.insertAnimalBreed(it.data.data)
                     }
@@ -591,6 +755,7 @@ class HomeFragment : Fragment() {
         animalBreedTypeResponseViewModel.getAnimalBreed(object: CoroutinesErrorHandler {
             override fun onError(message: String) {
 //                binding.errorTv.text = "Error! $message"
+                Log.d("Home Animal Breed", message)
                 binding.offlineTv.isVisible = true
                 binding.homeFragmentProgress.isVisible = false
                 binding.homeFragmentConstraintLayout.alpha = 1.0F
@@ -614,10 +779,14 @@ class HomeFragment : Fragment() {
 //                    binding.menuBtn.isClickable = false
                 }
                 is ApiResponse.Success -> {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         unusedEnumeratorTagViewModel.deleteAllUnusedEnumeratorTag()
                         var allUnusedEnumeratorTag: AllUnusedEnumeratorTag
-                        for (unusedEnumeratorTag in it.data.allUnusedEnumeratorTag) {
+                        for (unusedEnumeratorTag in it.data.data.allUnusedEnumeratorTag) {
                             allUnusedEnumeratorTag = AllUnusedEnumeratorTag(
                                 unusedEnumeratorTag.id,
                                 unusedEnumeratorTag.batch_id,
@@ -647,7 +816,7 @@ class HomeFragment : Fragment() {
 //                                    "PassportId: ${unusedPassport.passportId}")
                         }*/
 
-                        Log.d("Unused Enumerator Tags", "${it.data.allUnusedEnumeratorTag}")
+                        Log.d("Unused Enumerator Tags", "${it.data.data.allUnusedEnumeratorTag}")
 
 
                     }
@@ -658,7 +827,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+        /*tokenViewModel.username.observe(viewLifecycleOwner) { username ->
             if (username != null) {
                 unusedEnumeratorTagResponseViewModel.getAllUnusedEnumeratorTag(username.lowercase(),
                     object: CoroutinesErrorHandler {
@@ -668,16 +837,34 @@ class HomeFragment : Fragment() {
                             binding.homeFragmentProgress.isVisible = false
                             binding.homeFragmentConstraintLayout.alpha = 1.0F
 //                            binding.menuBtn.isClickable = true
-                            /*if (binding.menu.isVisible) {
+                            *//*if (binding.menu.isVisible) {
                                 binding.homeFragmentConstraintLayout.alpha = 0.1F
                                 binding.menuConstraintLayout.alpha = 1.0F
                             } else {
                                 binding.homeFragmentConstraintLayout.alpha = 1.0F
-                            }*/
+                            }*//*
                         }
                     })
             }
-        }
+        }*/
+
+        unusedEnumeratorTagResponseViewModel.getAllUnusedEnumeratorTag(username.toString().lowercase(),
+            object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+//                    binding.errorTv.text = "Error! $message"
+                    Log.d("Home UnusedEnumeratorTag", message)
+                    binding.offlineTv.isVisible = true
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+//                            binding.menuBtn.isClickable = true
+                    /*if (binding.menu.isVisible) {
+                        binding.homeFragmentConstraintLayout.alpha = 0.1F
+                        binding.menuConstraintLayout.alpha = 1.0F
+                    } else {
+                        binding.homeFragmentConstraintLayout.alpha = 1.0F
+                    }*/
+                }
+            })
     }
 
     private fun insertUsedEnumeratorTag() {
@@ -691,25 +878,39 @@ class HomeFragment : Fragment() {
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
                 }
                 is ApiResponse.Success -> {
-                    for (data in it.data.usedEnumeratorTag){
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
+                        usedEnumeratorTagViewModel.deleteUsedEnumeratorTag()
+
+                        for (data in it.data.data.usedEnumeratorTag){
+                            usedEnumeratorTagViewModel.insertUsedEnumeratorTag(data)
+                        }
+
+                    }
+
+                    /*for (data in it.data.usedEnumeratorTag){
                         CoroutineScope(Dispatchers.IO).launch {
                             usedEnumeratorTagViewModel.deleteUsedEnumeratorTag()
                             usedEnumeratorTagViewModel.insertUsedEnumeratorTag(data)
                         }
 //                        Log.d("Fragment UsedTags", "UsedTag: ${data.tag_id}")
-                        /*if (data.tag_id.contains(scannedTag.toString())) {
+                        *//*if (data.tag_id.contains(scannedTag.toString())) {
                             availableUsedTag = scannedTag.toString()
                         } else {
                             Log.d("Fragment getusedtag", "Tag not found ${data.tag_id}, ${scannedTag}")
-                        }*/
-                        binding.homeFragmentProgress.isVisible = false
-                        binding.homeFragmentConstraintLayout.alpha = 1.0F
-                    }
+                        }*//*
+
+                    }*/
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
                 }
             }
         }
 
-        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+        /*tokenViewModel.username.observe(viewLifecycleOwner) { username ->
             if (username != null) {
                 usedEnumeratorTagResponse.getAllUsedEnumeratorTag(username, object:
                     CoroutinesErrorHandler {
@@ -721,7 +922,19 @@ class HomeFragment : Fragment() {
 
                 })
             }
-        }
+        }*/
+
+        usedEnumeratorTagResponse.getAllUsedEnumeratorTag(username.toString().lowercase(), object:
+            CoroutinesErrorHandler {
+            override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                Log.d("Home Used Enumerator", message)
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+            }
+
+        })
     }
 
     private fun insertPackingList() {
@@ -735,8 +948,11 @@ class HomeFragment : Fragment() {
                     binding.homeFragmentConstraintLayout.alpha = 0.5F
                 }
                 is ApiResponse.Success -> {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
 
-                    CoroutineScope(Dispatchers.IO).launch {
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                         livestockDataViewModel.deletePackingList()
                         var packingList: AllPackingList
                         for (data in parkingItem.data.data) {
@@ -755,7 +971,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        tokenViewModel.username.observe(viewLifecycleOwner) { username ->
+        /*tokenViewModel.username.observe(viewLifecycleOwner) { username ->
             if (username != null) {
                 scanPackingListResponseViewModel.getParkingList(username, object:
                     CoroutinesErrorHandler {
@@ -767,8 +983,139 @@ class HomeFragment : Fragment() {
 
                 })
             }
-        }
+        }*/
+
+        scanPackingListResponseViewModel.getParkingList(username.toString().lowercase(), object:
+            CoroutinesErrorHandler {
+            override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                Log.d("Home packing list", message)
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+            }
+
+        })
     }
+
+    private fun insertVetDashboardActivity() {
+
+        vetDashboardActivitiesResponseViewModel.activitiesResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = getString(R.string.dashboard_activity_download_failed)
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
+                        vetDashboardActivitiesViewModel.deleteAppointment()
+                        vetDashboardActivitiesViewModel.deleteVaccination()
+
+                        vetDashboardActivitiesViewModel.insertDashboardAppointment(it.data.upcoming_appointments)
+                        vetDashboardActivitiesViewModel.insertDashboardVaccination(it.data.vaccinations)
+                    }
+
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                }
+            }
+        }
+
+        vetDashboardActivitiesResponseViewModel.getVetActivities(object: CoroutinesErrorHandler {
+                override fun onError(message: String) {
+//                    binding.errorTv.text = "Error! $message"
+                    Log.d("Home vet dashboard", message)
+                    binding.offlineTv.isVisible = true
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                }
+
+            })
+    }
+
+    private fun insertVetAnimalTypeWithVaccine() {
+        animalTypeWithVaccineResponseViewModel.animalTypeWithVaccineResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = "Failed to download Animal Type With Vaccine data from server"
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
+                        animalTypeWithVaccineViewModel.deleteAllAnimalTypeWithVaccine()
+                        animalTypeWithVaccineViewModel.insertAnimalTypeWithVaccine(it.data.data)
+                    }
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                }
+            }
+        }
+
+        animalTypeWithVaccineResponseViewModel.getAnimalTypeWithVaccine(object : CoroutinesErrorHandler{
+            override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                Log.d("Home Animal Type Vaccine", message)
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+            }
+
+        })
+    }
+
+    private fun insertVetTreatmentType() {
+        treatmentTypeResponseViewModel.treatmentTypeResponse.observe(viewLifecycleOwner) {
+            when(it) {
+                is ApiResponse.Failure -> {
+                    binding.errorTv.text = "Failed to download Treatment Type from server"
+                }
+                ApiResponse.Loading -> {
+                    binding.homeFragmentProgress.isVisible = true
+                    binding.homeFragmentConstraintLayout.alpha = 0.5F
+                }
+                is ApiResponse.Success -> {
+                    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+                        throwable.printStackTrace()
+                    }
+
+                    CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
+                        treatmentTypeViewModel.deleteAllTreatmentType()
+                        treatmentTypeViewModel.insertTreatmentType(it.data.data)
+                    }
+                    binding.homeFragmentProgress.isVisible = false
+                    binding.homeFragmentConstraintLayout.alpha = 1.0F
+                }
+            }
+        }
+
+        treatmentTypeResponseViewModel.getTreatmentType(object : CoroutinesErrorHandler{
+            override fun onError(message: String) {
+//                binding.errorTv.text = "Error! $message"
+                Log.d("Home Treatment Type", message)
+                binding.offlineTv.isVisible = true
+                binding.homeFragmentProgress.isVisible = false
+                binding.homeFragmentConstraintLayout.alpha = 1.0F
+            }
+
+        })
+    }
+
+
+
 
     fun showMenu() {
         /*val action = HomeFragmentDirections.actionHomeFragmentToHomeMenuBottomSheet()

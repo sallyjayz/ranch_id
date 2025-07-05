@@ -2,7 +2,7 @@ package com.sallyjayz.ranchid
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -19,13 +19,17 @@ import io.intercom.android.sdk.identity.Registration
 
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginOptionBottomSheet.OnInputSelectListener {
 
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: AuthViewModel by viewModels()
     private val tokenViewModel: TokenViewModel by viewModels()
     private val networkStatusViewModel: NetworkStatusViewModel by viewModels()
     private var loginButtonClicked: Boolean = false
+//    private var vetCouncilNumber: String? = null
+    private var userRole: String? = null
+
+    private val loginOptionBottomSheet = LoginOptionBottomSheet()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +42,11 @@ class LoginActivity : AppCompatActivity() {
 //            call logout api and test again
             if (token != null) {
                 successfulLogin()
-                startActivity(Intent(this, DashboardActivity::class.java))
+//                startActivity(Intent(this, DashboardActivity::class.java))
+                val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+//                intent.putExtra("vetCouncilNumber", vetCouncilNumber)
+                intent.putExtra("userRole", userRole)
+                startActivity(intent)
                 finish()
                 /*val intent = Intent(this, DashboardActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -76,6 +84,9 @@ class LoginActivity : AppCompatActivity() {
                                 val name = "${it.data.user.surname} ${it.data.user.otherName}"
                                 tokenViewModel.saveToken(it.data.token, it.data.user.username, name,
                                     it.data.user.userEmail, it.data.user.role/*, it.data.user.photo*/)
+                                tokenViewModel.saveVetCouncilNumber(it.data.user.vetCouncilNumber)
+//                                vetCouncilNumber = it.data.user.vetCouncilNumber
+//                                userRole = it.data.user.role
                             }
                         }
                     }
@@ -88,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
         binding.loginButton.setOnClickListener {
 
             loginButtonClicked = true
@@ -96,11 +108,13 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.login(
                     Auth(
                         binding.email.text.toString(),
-                        binding.password.text.toString()
+                        binding.password.text.toString(),
+                        userRole.toString()
                     ),
                     object: CoroutinesErrorHandler {
                         override fun onError(message: String) {
-//                          binding.loginError.text = "Error! $message"
+//                            binding.loginError.text = "Error! $message"
+//                            Log.d("Login Activity1", "Error! $message")
                             binding.offlineError.isVisible = true
                             binding.loginButton.isClickable = true
                             binding.loginButton.alpha = 1.0F
@@ -110,6 +124,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 binding.loginError.text = getString(R.string.all_fields_required)
             }
+        }
+
+        binding.loginButton.setOnClickListener {
+            loginButtonClicked = true
+            loginOptionBottomSheet.show(supportFragmentManager, LoginOptionBottomSheet.TAG)
         }
 
         /*viewModel.loginResponse.observe(this) {
@@ -185,6 +204,53 @@ class LoginActivity : AppCompatActivity() {
             )
 
         }
+    }
+
+    override fun sendInput(data: String) {
+
+        userRole = data
+
+        if (isEntryValid()) {
+            viewModel.login(
+                Auth(
+                    binding.email.text.toString(),
+                    binding.password.text.toString(),
+                    data
+                ),
+                object: CoroutinesErrorHandler {
+                    override fun onError(message: String) {
+//                        binding.loginError.text = "Error! $message"
+//                        Log.d("Login Activity2", "Error! $message")
+                        binding.offlineError.isVisible = true
+                        binding.loginButton.isClickable = true
+                        binding.loginButton.alpha = 1.0F
+                    }
+                }
+            )
+        } else {
+            binding.loginError.text = getString(R.string.all_fields_required)
+        }
+
+        /*if (data == "ENUMERATOR" || data == "VETERINARY") {
+            if (isEntryValid()) {
+                viewModel.login(
+                    Auth(
+                        binding.email.text.toString(),
+                        binding.password.text.toString()
+                    ),
+                    object: CoroutinesErrorHandler {
+                        override fun onError(message: String) {
+                            binding.loginError.text = "Error! $message"
+                            binding.offlineError.isVisible = true
+                            binding.loginButton.isClickable = true
+                            binding.loginButton.alpha = 1.0F
+                        }
+                    }
+                )
+            } else {
+                binding.loginError.text = getString(R.string.all_fields_required)
+            }
+        }*/
     }
 
 }

@@ -14,6 +14,9 @@
             app:destination="@id/homeMenuBottomSheet"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_home_fragment_to_vaccinateLivestockOneFragment"
+            app:destination="@id/vaccinateLivestockOneFragment" />
     </fragment>
     <fragment
         android:id="@+id/register_fragment"
@@ -528,10 +531,24 @@
             app:exitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_homeMenuBottomSheet_to_generalInformationSearchFragment"
-            app:destination="@id/generalInformationSearchFragment" />
+            app:destination="@id/generalInformationSearchFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
         <action
             android:id="@+id/action_homeMenuBottomSheet_to_howToUseRanchIdFragment"
-            app:destination="@id/howToUseRanchIdFragment" />
+            app:destination="@id/howToUseRanchIdFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeMenuBottomSheet_to_vaccinateLivestockOneFragment"
+            app:destination="@id/vaccinateLivestockOneFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeMenuBottomSheet_to_livestockTreatmentOneFragment"
+            app:destination="@id/livestockTreatmentOneFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </dialog>
     <fragment
         android:id="@+id/addPackingListStepOneFragment"
@@ -805,52 +822,326 @@
     <fragment
         android:id="@+id/gettingStartedFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.GettingStartedFragment"
-        android:label="fragment_getting_started"
-        tools:layout="@layout/fragment_getting_started" />
+        android:label="@string/getting_started"
+        tools:layout="@layout/fragment_getting_started" >
+        <action
+            android:id="@+id/action_gettingStartedFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="@string/dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/enumeratorMenuFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.EnumeratorMenuFragment"
-        android:label="fragment_enumerator_menu"
-        tools:layout="@layout/fragment_enumerator_menu" />
+        android:label="@string/enumerator_menu"
+        tools:layout="@layout/fragment_enumerator_menu" >
+        <action
+            android:id="@+id/action_enumeratorMenuFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerMenuFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.RegisterMenuFragment"
-        android:label="fragment_register_menu"
-        tools:layout="@layout/fragment_register_menu" />
+        android:label="@string/register_menu"
+        tools:layout="@layout/fragment_register_menu" >
+        <action
+            android:id="@+id/action_registerMenuFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/livestockLocationFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.LivestockLocationFragment"
-        android:label="fragment_livestock_location"
-        tools:layout="@layout/fragment_livestock_location" />
+        android:label="@string/add_livestock_location"
+        tools:layout="@layout/fragment_livestock_location" >
+        <action
+            android:id="@+id/action_livestockLocationFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/livestockOwnerFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.LivestockOwnerFragment"
-        android:label="fragment_livestock_owner"
-        tools:layout="@layout/fragment_livestock_owner" />
+        android:label="@string/add_livestock_owner"
+        tools:layout="@layout/fragment_livestock_owner" >
+        <action
+            android:id="@+id/action_livestockOwnerFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/livestockKeeperFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.LivestockKeeperFragment"
-        android:label="fragment_livestock_keeper"
-        tools:layout="@layout/fragment_livestock_keeper" />
+        android:label="@string/add_livestock_keeper"
+        tools:layout="@layout/fragment_livestock_keeper" >
+        <action
+            android:id="@+id/action_livestockKeeperFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tagLivestockFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.TagLivestockFragment"
-        android:label="fragment_tag_livestock"
-        tools:layout="@layout/fragment_tag_livestock" />
+        android:label="@string/tagged_livestock"
+        tools:layout="@layout/fragment_tag_livestock" >
+        <action
+            android:id="@+id/action_tagLivestockFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/taggedLivestockOperationFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.TaggedLivestockOperationFragment"
-        android:label="fragment_tagged_livestock_operation"
-        tools:layout="@layout/fragment_tagged_livestock_operation" />
+        android:label="@string/scan_for_exit"
+        tools:layout="@layout/fragment_tagged_livestock_operation" >
+        <action
+            android:id="@+id/action_taggedLivestockOperationFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
     <fragment
         android:id="@+id/packingListFragment"
         android:name="com.sallyjayz.ranchid.howtouseranchid.howto.PackingListFragment"
-        android:label="fragment_packing_list"
-        tools:layout="@layout/fragment_packing_list" />
+        android:label="@string/packing_list"
+        tools:layout="@layout/fragment_packing_list" >
+        <action
+            android:id="@+id/action_packingListFragment_to_howToUseRanchIdFragment"
+            app:destination="@id/howToUseRanchIdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinateLivestockOneFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockOneFragment"
+        android:label="@string/vaccinate_livestock"
+        tools:layout="@layout/fragment_vaccinate_livestock_one" >
+        <action
+            android:id="@+id/action_vaccinateLivestockOneFragment_to_vaccinateLivestockTwoFragment"
+            app:destination="@id/vaccinateLivestockTwoFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinateLivestockTwoFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockTwoFragment"
+        android:label="@string/livestock_info"
+        tools:layout="@layout/fragment_vaccinate_livestock_two" >
+        <action
+            android:id="@+id/action_vaccinateLivestockTwoFragment_to_vaccinationHistoryFragment"
+            app:destination="@id/vaccinationHistoryFragment" />
+        <action
+            android:id="@+id/action_vaccinateLivestockTwoFragment_to_vaccinateLivestockThreeFragment"
+            app:destination="@id/vaccinateLivestockThreeFragment" />
+        <action
+            android:id="@+id/action_vaccinateLivestockTwoFragment_to_vaccinateLivestockOneFragment"
+            app:destination="@id/vaccinateLivestockOneFragment"
+            app:popUpTo="@id/vaccinateLivestockOneFragment"
+            app:popUpToInclusive="true"/>
+
+        <argument
+            android:name="vaccinateLivestockWithHistory"
+            app:argType="com.sallyjayz.ranchid.model.vet.livestockwithvaccinationhistory.Livestock"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinationHistoryFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinationHistoryFragment"
+        android:label="@string/vaccination_history"
+        tools:layout="@layout/fragment_vaccination_history" >
+        <action
+            android:id="@+id/action_vaccinationHistoryFragment_to_vaccinateLivestockTwoFragment"
+            app:destination="@id/vaccinateLivestockTwoFragment"
+            app:popUpTo="@id/vaccinateLivestockTwoFragment"
+            app:popUpToInclusive="true"/>
+
+        <argument
+            android:name="scannedTagID"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinateLivestockThreeFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockThreeFragment"
+        android:label="@string/vaccinate_livestock"
+        tools:layout="@layout/fragment_vaccinate_livestock_three" >
+        <action
+            android:id="@+id/action_vaccinateLivestockThreeFragment_to_vaccinateLivestockConfirmationFragment"
+            app:destination="@id/vaccinateLivestockConfirmationFragment" />
+        <argument
+            android:name="scannedTagID"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_vaccinateLivestockThreeFragment_to_vaccinateLivestockTwoFragment"
+            app:destination="@id/vaccinateLivestockTwoFragment"
+            app:popUpTo="@id/vaccinateLivestockTwoFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinateLivestockConfirmationFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockConfirmationFragment"
+        android:label="@string/vaccinate_livestock"
+        tools:layout="@layout/fragment_vaccinate_livestock_confirmation" >
+        <action
+            android:id="@+id/action_vaccinateLivestockConfirmationFragment_to_vaccinateLivestockFailedFragment"
+            app:destination="@id/vaccinateLivestockFailedFragment" />
+        <action
+            android:id="@+id/action_vaccinateLivestockConfirmationFragment_to_vaccinateLivestockSuccessfulFragment"
+            app:destination="@id/vaccinateLivestockSuccessfulFragment" />
+        <action
+            android:id="@+id/action_vaccinateLivestockConfirmationFragment_to_vaccinateLivestockThreeFragment"
+            app:destination="@id/vaccinateLivestockThreeFragment"
+            app:popUpTo="@id/vaccinateLivestockThreeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinateLivestockSuccessfulFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockSuccessfulFragment"
+        android:label="VaccinateLivestockSuccessfulFragment"
+        tools:layout="@layout/fragment_vaccinate_livestock_successful">
+        <action
+            android:id="@+id/action_vaccinateLivestockSuccessfulFragment_to_vaccinateLivestockOneFragment"
+            app:destination="@id/vaccinateLivestockOneFragment"
+            app:popUpTo="@id/vaccinateLivestockOneFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_vaccinateLivestockSuccessfulFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinateLivestockFailedFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockFailedFragment"
+        android:label="VaccinateLivestockFailedFragment"
+        tools:layout="@layout/fragment_vaccinate_livestock_failed" >
+
+        <action
+            android:id="@+id/action_vaccinateLivestockFailedFragment_to_vaccinateLivestockConfirmationFragment"
+            app:destination="@id/vaccinateLivestockConfirmationFragment"
+            app:popUpTo="@id/vaccinateLivestockConfirmationFragment"
+            app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/action_vaccinateLivestockFailedFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentOneFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentOneFragment"
+        android:label="@string/livestock_treatment"
+        tools:layout="@layout/fragment_livestock_treatment_one">
+        <action
+            android:id="@+id/action_livestockTreatmentOneFragment_to_livestockTreatmentTwoFragment"
+            app:destination="@id/livestockTreatmentTwoFragment" />
+        <action
+            android:id="@+id/action_livestockTreatmentOneFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentTwoFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentTwoFragment"
+        android:label="@string/livestock_treatment"
+        tools:layout="@layout/fragment_livestock_treatment_two">
+        <action
+            android:id="@+id/action_livestockTreatmentTwoFragment_to_livestockTreatmentThreeFragment"
+            app:destination="@id/livestockTreatmentThreeFragment" />
+        <action
+            android:id="@+id/action_livestockTreatmentTwoFragment_to_livestockTreatmentOneFragment"
+            app:destination="@id/livestockTreatmentOneFragment"
+            app:popUpTo="@id/livestockTreatmentOneFragment"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="livestockTreatmentWithHistory"
+            app:argType="com.sallyjayz.ranchid.model.vet.livestockwithtreatmenthistory.Livestock"/>
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentThreeFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentThreeFragment"
+        android:label="@string/livestock_treatment"
+        tools:layout="@layout/fragment_livestock_treatment_three">
+
+        <action
+            android:id="@+id/action_livestockTreatmentThreeFragment_to_livestockTreatmentTwoFragment"
+            app:destination="@id/livestockTreatmentTwoFragment"
+            app:popUpTo="@id/livestockTreatmentTwoFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="scannedTagID"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_livestockTreatmentThreeFragment_to_livestockTreatmentFourFragment"
+            app:destination="@id/livestockTreatmentFourFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentConfirmationFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentConfirmationFragment"
+        android:label="@string/livestock_treatment"
+        tools:layout="@layout/fragment_livestock_treatment_confirmation"
+        >
+        <action
+            android:id="@+id/action_livestockTreatmentConfirmationFragment_to_livestockTreatmentSuccessFragment"
+            app:destination="@id/livestockTreatmentSuccessFragment" />
+        <action
+            android:id="@+id/action_livestockTreatmentConfirmationFragment_to_livestockTreatmentFailedFragment"
+            app:destination="@id/livestockTreatmentFailedFragment" />
+        <action
+            android:id="@+id/action_livestockTreatmentConfirmationFragment_to_livestockTreatmentFourFragment"
+            app:destination="@id/livestockTreatmentFourFragment"
+            app:popUpTo="@id/livestockTreatmentFourFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentSuccessFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentSuccessFragment"
+        android:label="LivestockTreatmentSuccessFragment"
+        tools:layout="@layout/fragment_livestock_treatment_success">
+        <action
+            android:id="@+id/action_livestockTreatmentSuccessFragment_to_livestockTreatmentOneFragment"
+            app:destination="@id/livestockTreatmentOneFragment"
+            app:popUpTo="@id/livestockTreatmentOneFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_livestockTreatmentSuccessFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentFailedFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentFailedFragment"
+        android:label="LivestockTreatmentFailedFragment"
+        tools:layout="@layout/fragment_livestock_treatment_failed">
+        <action
+            android:id="@+id/action_livestockTreatmentFailedFragment_to_livestockTreatmentConfirmationFragment"
+            app:destination="@id/livestockTreatmentConfirmationFragment"
+            app:popUpTo="@id/livestockTreatmentConfirmationFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_livestockTreatmentFailedFragment_to_home_fragment"
+            app:destination="@id/home_fragment"
+            app:popUpTo="@id/home_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/livestockTreatmentFourFragment"
+        android:name="com.sallyjayz.ranchid.veterinaryDoctor.livestockTreatment.LivestockTreatmentFourFragment"
+        android:label="@string/livestock_treatment"
+        tools:layout="@layout/fragment_livestock_treatment_four" >
+        <action
+            android:id="@+id/action_livestockTreatmentFourFragment_to_livestockTreatmentThreeFragment"
+            app:destination="@id/livestockTreatmentThreeFragment"
+            app:popUpTo="@id/livestockTreatmentThreeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_livestockTreatmentFourFragment_to_livestockTreatmentConfirmationFragment"
+            app:destination="@id/livestockTreatmentConfirmationFragment" />
+    </fragment>
 
 </navigation>

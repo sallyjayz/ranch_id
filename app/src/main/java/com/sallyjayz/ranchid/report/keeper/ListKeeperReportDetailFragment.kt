@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.keeper
 
 import android.graphics.drawable.Drawable
@@ -84,4 +85,4 @@ class ListKeeperReportDetailFragment : Fragment() {
             .placeholder(R.drawable.no_data_available)
             .into(binding.keeperImage)
     }
-}
+}*/

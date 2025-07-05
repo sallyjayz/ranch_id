@@ -21,32 +21,38 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/sixteen_dp">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/offline_livestock_owner"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:onClick="@{() -> offlineFragment.livestockOwner()}">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_add"
-                    android:padding="@dimen/twenty_dp"
-                    android:contentDescription="@string/add_livestock_owner_icon" />
+                    android:orientation="horizontal">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/livestock_owner"
-                    android:textSize="@dimen/sixteen_sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add"
+                        android:padding="@dimen/twenty_dp"
+                        android:contentDescription="@string/add_livestock_owner_icon" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/livestock_owner"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/owner_divider"
@@ -58,33 +64,40 @@
                 android:background="@color/divider"
                 />
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/offline_livestock_keeper"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/offline_livestock_owner"
+                app:layout_constraintTop_toBottomOf="@id/owner_divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:onClick="@{() -> offlineFragment.livestockKeeper()}">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_add"
-                    android:padding="@dimen/twenty_dp"
-                    android:contentDescription="@string/add_livestock_keeper_icon" />
+                    android:orientation="horizontal">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/livestock_keeper"
-                    android:fontFamily="@font/inter_regular"
-                    android:textSize="@dimen/sixteen_sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add"
+                        android:padding="@dimen/twenty_dp"
+                        android:contentDescription="@string/add_livestock_keeper_icon" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/livestock_keeper"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/keeper_divider"
@@ -96,33 +109,39 @@
                 android:background="@color/divider"
                 />
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/offline_tag_livestock"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/offline_livestock_keeper"
+                app:layout_constraintTop_toBottomOf="@id/keeper_divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:onClick="@{() -> offlineFragment.livestockTag()}">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_tag"
-                    android:padding="@dimen/twenty_dp"
-                    android:contentDescription="@string/add_livestock_keeper_icon" />
+                    android:orientation="horizontal">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tag_livestock"
-                    android:fontFamily="@font/inter_regular"
-                    android:textSize="@dimen/sixteen_sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tag"
+                        android:padding="@dimen/twenty_dp"
+                        android:contentDescription="@string/add_livestock_keeper_icon" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tag_livestock"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="@dimen/sixteen_sp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/tag_livestock_divider"

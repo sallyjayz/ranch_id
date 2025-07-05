@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.taggedlivestock
 
 import android.os.Bundle
@@ -17,4 +18,4 @@ class ListTaggedLivestockReportFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_list_tagged_livestock_report, container, false)
     }
 
-}
+}*/

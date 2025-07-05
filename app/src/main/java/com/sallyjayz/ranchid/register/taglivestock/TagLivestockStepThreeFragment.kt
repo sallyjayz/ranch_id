@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -24,7 +25,9 @@ import com.bumptech.glide.Glide
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.utils.Util
 import com.sallyjayz.ranchid.databinding.FragmentTagLivestockStepThreeBinding
-import com.sallyjayz.ranchid.viewmodel.register.FarmLocationViewModel
+import com.sallyjayz.ranchid.viewmodel.register.FarmLocationWithStateViewModel
+import com.sallyjayz.ranchid.viewmodel.register.LgaViewModel
+import com.sallyjayz.ranchid.viewmodel.register.StateViewModel
 import com.sallyjayz.ranchid.viewmodel.register.TagLivestockViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
@@ -36,9 +39,9 @@ class TagLivestockStepThreeFragment : Fragment() {
 
     private lateinit var binding: FragmentTagLivestockStepThreeBinding
     private var selectedProductionType: String? = null
-//    private lateinit var selectedProductionType: String
+    //    private lateinit var selectedProductionType: String
     private val sharedViewModel: TagLivestockViewModel by activityViewModels()
-//    private lateinit var photoFile: File
+    //    private lateinit var photoFile: File
     private var verificationPhotoFile: File? = null
     private var muzzlePhotoFile: File? = null
     private var verificationPhotoURI: Uri? = null
@@ -48,12 +51,34 @@ class TagLivestockStepThreeFragment : Fragment() {
     private var base64MuzzleString: String? = null
     private var verificationPhotoSize: String? = null
     private var muzzlePhotoSize: String? = null
-    private val farmLocationViewModel: FarmLocationViewModel by viewModels()
-    private lateinit var farmLocationAdapter: ArrayAdapter<String>
-    private lateinit var selectedFarm: String
-    private var farmLocationId: Int = 0
     private var verificationImageSize: Double = 0.0
     private var muzzleImageSize: Double = 0.0
+    private lateinit var selectedState: String
+    private lateinit var selectedLga: String
+    private lateinit var selectedFarm: String
+    private lateinit var stateAdapter: ArrayAdapter<String>
+    private lateinit var lgaAdapter: ArrayAdapter<String>
+    private lateinit var farmLocationAdapter: ArrayAdapter<String>
+    private val stateViewModel: StateViewModel by viewModels()
+    private val lgaViewModel: LgaViewModel by viewModels()
+    private val farmLocationViewModel: FarmLocationWithStateViewModel by viewModels()
+    private var stateId: Int = 0
+    private var lgaId: Int = 0
+    private var farmLocationId: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                sharedViewModel.resetStepThreeTagLivestock()
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+
+//        captureSound = MediaPlayer.create(requireContext(), R.raw.camera_shutter)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,7 +102,7 @@ class TagLivestockStepThreeFragment : Fragment() {
         }
 
         productionTypeDropdown()
-        tagLocationDropdown()
+        stateLgaLocationDropDown()
 
 //        binding?.stepThreeFragment = this
     }
@@ -93,30 +118,80 @@ class TagLivestockStepThreeFragment : Fragment() {
         }
     }
 
-    private fun tagLocationDropdown() {
+    private fun stateLgaLocationDropDown() {
 
-        farmLocationViewModel.readAllLocation.observe(viewLifecycleOwner) {
-            val farms = ArrayList<String>()
-            for (farm in it) {
-                farms.add(farm.location_name)
+        stateViewModel.readAllState.observe(viewLifecycleOwner) {
+            val states = ArrayList<String>()
+            for (state in it) {
+                states.add(state.name)
+                stateAdapter =
+                    ArrayAdapter(requireContext(), R.layout.dropdown_list_item, states)
+                (binding.state.setAdapter(stateAdapter))
             }
-            farmLocationAdapter =
-                ArrayAdapter(requireContext(), R.layout.dropdown_list_item, farms)
-            (binding.tagLocation.setAdapter(farmLocationAdapter))
         }
 
-        binding.tagLocation.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                selectedFarm = farmLocationAdapter.getItem(position).toString()
+        binding.state.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                selectedState = stateAdapter.getItem(position).toString()
+                binding.lga.setText("", false)
 
-                farmLocationViewModel.getLocationName(selectedFarm).observe(viewLifecycleOwner) {
-                    farmLocationId = it.id
+                stateViewModel.getStateName(selectedState).observe(viewLifecycleOwner){
+                    stateId = it.id
+
+                    if(selectedState.contains(it.name)) {
+                        lgaViewModel.getLgaStateId(stateId).observe(viewLifecycleOwner){ lgaList ->
+                            val lgas = ArrayList<String>()
+                            for(lga in lgaList) {
+                                lgas.add(lga.name)
+                                lgaAdapter = ArrayAdapter(
+                                    parent.context,
+                                    R.layout.dropdown_list_item, lgas)
+                            }
+                            (binding.lga.setAdapter(lgaAdapter))
+                        }
+                    }
+
                 }
-                /*Toast.makeText(requireContext(), "id: ${farmLocationId}, " +
-                        "farm: ${selectedFarm}",
-                    Toast.LENGTH_LONG).show()*/
-            }
+                binding.lga.onItemClickListener = AdapterView.OnItemClickListener { _, _, pos, _ ->
+                    selectedLga = lgaAdapter.getItem(pos).toString()
+                    binding.tagLocation.setText("", false)
 
+                    lgaViewModel.getLgaName(selectedLga).observe(viewLifecycleOwner) {
+                        lgaId = it.id
+
+                        if(selectedLga.contains(it.name)) {
+                            farmLocationViewModel.getStateLgaId(stateId, lgaId).observe(viewLifecycleOwner){ locationList ->
+                                val locations = ArrayList<String>()
+                                for(location in locationList) {
+                                    locations.add(location.location_name)
+                                    /*Toast.makeText(requireContext(), "id: ${location.location_name}",
+                                    Toast.LENGTH_LONG).show()*/
+                                    farmLocationAdapter = ArrayAdapter(
+                                        parent.context,
+                                        R.layout.dropdown_list_item, locations)
+                                    (binding.tagLocation.setAdapter(farmLocationAdapter))
+                                }
+
+                            }
+                        }
+
+                        binding.tagLocation.onItemClickListener =
+                            AdapterView.OnItemClickListener { _, _, positions, _ ->
+                                selectedFarm = farmLocationAdapter.getItem(positions).toString()
+
+                                farmLocationViewModel.getLocationName(selectedFarm).observe(viewLifecycleOwner) {
+                                    farmLocationId = it.id
+                                }
+                                /*Toast.makeText(requireContext(), "id: ${farmLocationId}, " +
+                                        "farm: ${selectedFarm}",
+                                    Toast.LENGTH_LONG).show()*/
+                            }
+
+                    }
+
+                }
+
+            }
     }
 
     fun verificationCapturedPhoto() {
@@ -411,9 +486,12 @@ class TagLivestockStepThreeFragment : Fragment() {
     private fun isStepTwoEntryValid(): Boolean {
         return sharedViewModel.isStepTwoEntryValid(
             binding.description.text.toString(),
+            binding.state.text.toString(),
+            binding.lga.text.toString(),
             binding.tagLocation.text.toString(),
             /*binding.comment.text.toString(),*/
-            selectedProductionType.toString(),
+//            selectedProductionType.toString(),
+            binding.productionType.text.toString(),
             verificationPhotoFile?.absolutePath.toString(),
             verificationPhotoFile?.name.toString(),
             verificationPhotoSize.toString(),

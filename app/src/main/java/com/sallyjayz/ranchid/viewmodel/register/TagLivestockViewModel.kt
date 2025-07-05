@@ -45,6 +45,18 @@ class TagLivestockViewModel : ViewModel() {
     private val _description = MutableLiveData<String>()
     val description : LiveData<String> = _description
 
+    private val _taggingState = MutableLiveData<String>()
+    val taggingState: LiveData<String> = _taggingState
+
+    private val _taggingLga = MutableLiveData<String>()
+    val taggingLga: LiveData<String> = _taggingLga
+
+    private val _taggingStateId = MutableLiveData<String>()
+    val taggingStateId: LiveData<String> = _taggingStateId
+
+    private val _taggingLgaId = MutableLiveData<String>()
+    val taggingLgaId: LiveData<String> = _taggingLgaId
+
     private val _taggingLocation = MutableLiveData<String>()
     val taggingLocation : LiveData<String> = _taggingLocation
 
@@ -124,12 +136,17 @@ class TagLivestockViewModel : ViewModel() {
         return true
     }
 
-    fun setStepTwo(description: String, taggingLocation: String, taggingLocationId: String, comment: String,
-                   productionType: String, verificationPhoto: String, verificationPhotoBase64: String,
-                   verificationName: String, verificationSize: String, muzzlePhoto: String,
-                   muzzlePhotoBase64: String, muzzleName: String, muzzleSize: String) {
+    fun setStepTwo(description: String, /*taggingState: String, taggingStateId:String, taggingLga: String,
+                   taggingLgaId: String,*/ taggingLocation: String, taggingLocationId: String,
+                   comment: String, productionType: String, verificationPhoto: String,
+                   verificationPhotoBase64: String, verificationName: String, verificationSize: String,
+                   muzzlePhoto: String, muzzlePhotoBase64: String, muzzleName: String, muzzleSize: String) {
 
         _description.value = description
+        /*_taggingState.value = taggingState
+        _taggingStateId.value = taggingStateId
+        _taggingLga.value = taggingLga
+        _taggingLgaId.value = taggingLgaId*/
         _taggingLocation.value = taggingLocation
         _taggingLocationId.value = taggingLocationId
         _locationComment.value = comment
@@ -145,11 +162,11 @@ class TagLivestockViewModel : ViewModel() {
         _muzzlePhotoSize.value = muzzleSize
     }
 
-    fun isStepTwoEntryValid(description: String, taggingLocation: String, /*comment: String,*/
-                            productionType: String, verificationPhoto: String,
-                            verificationName: String, verificationSize: String, muzzlePhoto: String,
-                            muzzleName: String, muzzleSize: String): Boolean {
-        if (description.isBlank() || taggingLocation.isBlank() /*|| comment.isBlank()*/
+    fun isStepTwoEntryValid(description: String, taggingState: String,  taggingLocation: String,
+                            taggingLga: String, /*comment: String,*/productionType: String,
+                            verificationPhoto: String, verificationName: String,
+                            verificationSize: String, muzzlePhoto: String, muzzleName: String, muzzleSize: String): Boolean {
+        if (description.isBlank() || taggingState.isBlank() || taggingLga.isBlank() || taggingLocation.isBlank() /*|| comment.isBlank()*/
             || productionType.isBlank() || verificationPhoto.isBlank()
             || verificationName.isBlank() || verificationSize.isBlank() || muzzlePhoto.isBlank()
             || muzzleName.isBlank() || muzzleSize.isBlank()) {
@@ -172,6 +189,10 @@ class TagLivestockViewModel : ViewModel() {
         _dateOfBirth.value = ""
 //        _birthPeriod.value = ""
         _description.value = ""
+        _taggingState.value = ""
+        _taggingStateId.value = ""
+        _taggingLga.value = ""
+        _taggingLgaId.value = ""
         _taggingLocation.value = ""
         _taggingLocationId.value = ""
         _locationComment.value = ""
@@ -204,6 +225,10 @@ class TagLivestockViewModel : ViewModel() {
 
     fun resetStepThreeTagLivestock() {
         _description.value = ""
+        _taggingState.value = ""
+        _taggingStateId.value = ""
+        _taggingLga.value = ""
+        _taggingLgaId.value = ""
         _taggingLocation.value = ""
         _taggingLocationId.value = ""
         _locationComment.value = ""

@@ -14,7 +14,7 @@ interface UnusedPassportDao {
     suspend fun insertUnusedPassport(unusedPassport: UnusedPassport)
 
     @Query("SELECT * FROM unused_passport")
-    fun getAllUnusedPassport(): LiveData<List<UnusedPassport>>
+    fun getAllUnusedPassport(): LiveData<List<UnusedPassport?>>
 
     @Query("SELECT * FROM unused_passport WHERE passportId = :selectedPassportId")
     fun getSelectedUnusedPassport(selectedPassportId: String): LiveData<UnusedPassport>

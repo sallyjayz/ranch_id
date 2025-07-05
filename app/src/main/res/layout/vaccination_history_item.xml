@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/background"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="@dimen/sixteen_dp"
+        app:strokeColor="@color/search_dark"
+        app:strokeWidth="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/sixteen_dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/vaccine_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                tools:text="Hemophilus influenza type B VACCINE"
+                android:textSize="@dimen/eighteen_sp"
+                android:textAllCaps="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dosage_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/dosage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dosage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                tools:text="2ml, i/m (Vial: 100 ml)"
+                android:paddingStart="@dimen/four_dp"
+                android:paddingEnd="@dimen/four_dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dosage_label"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/animal_tag_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/animal_tag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dosage_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/animal_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                tools:text="NGFC12345678"
+                android:paddingStart="@dimen/four_dp"
+                android:paddingEnd="@dimen/four_dp"
+                app:layout_constraintStart_toEndOf="@id/animal_tag_label"
+                app:layout_constraintTop_toBottomOf="@id/dosage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="Date of Vaccination: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/animal_tag_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date_vaccinated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                tools:text="2024-03-26"
+                android:paddingStart="@dimen/four_dp"
+                android:paddingEnd="@dimen/four_dp"
+                app:layout_constraintStart_toEndOf="@id/date_label"
+                app:layout_constraintTop_toBottomOf="@id/animal_tag" />
+
+
+            <ImageView
+                android:id="@+id/time_icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_time"
+                android:layout_marginStart="@dimen/sixteen_dp"
+                app:layout_constraintStart_toEndOf="@id/date_vaccinated"
+                app:layout_constraintTop_toTopOf="@id/date_vaccinated"
+                app:layout_constraintBottom_toBottomOf="@+id/date_vaccinated"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                tools:text="12:30"
+                android:paddingStart="@dimen/four_dp"
+                android:paddingEnd="@dimen/four_dp"
+                app:layout_constraintStart_toEndOf="@id/time_icon"
+                app:layout_constraintTop_toBottomOf="@id/animal_tag" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/next_appointment_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_bold"
+                android:text="Next Appointment: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/next_appointment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                tools:text="2024-03-26"
+                android:paddingStart="@dimen/four_dp"
+                android:paddingEnd="@dimen/four_dp"
+                app:layout_constraintStart_toEndOf="@id/next_appointment_label"
+                app:layout_constraintTop_toBottomOf="@id/date_vaccinated" />
+
+            <!--<com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/vet_photo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                tools:src="@mipmap/ic_launcher"
+                android:padding="5dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/stroke_tint"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/next_appointment_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/vet_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                tools:text="Markus Oloworiebi"
+                android:paddingStart="@dimen/four_dp"
+                android:paddingEnd="@dimen/four_dp"
+                app:layout_constraintStart_toEndOf="@id/vet_photo"
+                app:layout_constraintTop_toTopOf="@id/vet_photo"
+                app:layout_constraintBottom_toBottomOf="@id/vet_photo" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

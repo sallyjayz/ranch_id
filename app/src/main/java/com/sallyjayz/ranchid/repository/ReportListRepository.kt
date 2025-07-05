@@ -1,13 +1,5 @@
 package com.sallyjayz.ranchid.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
-import androidx.paging.*
-import com.sallyjayz.ranchid.model.report.keeper.Keeper
-import com.sallyjayz.ranchid.model.report.owner.Owner
-import com.sallyjayz.ranchid.paging.KeeperListRecordPagingSource
-import com.sallyjayz.ranchid.paging.LocationListRecordPagingSource
-import com.sallyjayz.ranchid.paging.OwnerListRecordPagingSource
 import com.sallyjayz.ranchid.service.report.ReportListApiService
 import com.sallyjayz.ranchid.utils.apiRequestFlow
 import javax.inject.Inject
@@ -17,7 +9,8 @@ import javax.inject.Inject
  */
 
 
-class ReportListRepository@Inject constructor(
+/*
+class ReportListRepository @Inject constructor(
     private val reportListApiService: ReportListApiService
 ) {
 
@@ -82,7 +75,8 @@ class ReportListRepository@Inject constructor(
         }
     }
 
-    /*fun getAllKeepersStream(query: String) = Pager(
+    */
+/*fun getAllKeepersStream(query: String) = Pager(
         config = PagingConfig(
             pageSize = 20,
             maxSize = 100,
@@ -91,9 +85,11 @@ class ReportListRepository@Inject constructor(
         pagingSourceFactory = {
             ListKeeperRecordPagingSource(tagLivestockApiService, query)
         }
-    ).liveData*/
+    ).liveData*//*
 
-    /*fun getAllKeepersStream() = Pager(
+
+    */
+/*fun getAllKeepersStream() = Pager(
         config = PagingConfig(
             pageSize = 20,
             maxSize = 100,
@@ -102,6 +98,23 @@ class ReportListRepository@Inject constructor(
         pagingSourceFactory = {
             ListKeeperRecordPagingSource(tagLivestockApiService)
         }
-    ).liveData*/
+    ).liveData*//*
+
+
+}*/
+
+
+
+class ReportListRepository @Inject constructor(
+    private val reportListApiService: ReportListApiService
+) {
+
+    fun getAllKeepers() = apiRequestFlow {
+        reportListApiService.getAllKeepersList()
+    }
+
+    fun getAllOwners() = apiRequestFlow {
+        reportListApiService.getAllOwnersList()
+    }
 
 }

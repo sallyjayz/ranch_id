@@ -1,5 +1,6 @@
 package com.sallyjayz.ranchid.service.register.owner
 
+import com.sallyjayz.ranchid.model.allowners.AllOwnersResponse
 import com.sallyjayz.ranchid.model.register.owner.AddOwnerResponse
 import com.sallyjayz.ranchid.model.register.owner.Owner
 import retrofit2.Response

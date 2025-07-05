@@ -6,6 +6,8 @@ object Util {
         "FEMALE"
     )
 
+
+
     /*val LIVESTOCK_TYPE = listOf(
         "CATTLE",
         "GOAT",
@@ -97,6 +99,26 @@ object Util {
         "ORNAMENTAL",
         "PET",
         "OTHERS"
+    )
+
+    val ADMINISTRATION_ROUTE = listOf(
+        "oral",
+        "topical",
+        "injection"
+    )
+
+    val INJECTION = listOf(
+        "intravenous",
+        "intramuscular",
+        "subcutaneous"
+    )
+
+    val FREQUENCY = listOf(
+        "daily",
+        "weekly",
+        "monthly",
+        "yearly",
+        "bi-weekly"
     )
 
 

@@ -16,6 +16,7 @@ class TokenManager(private val context: Context) {
         private val USER_EMAIL = stringPreferencesKey("email")
         private val USER_ROLE = stringPreferencesKey("role")
 //        private val USER_PHOTO = stringPreferencesKey("photo")
+        private val VET_COUNCIL_NUMBER = stringPreferencesKey("vet_council_number")
     }
 
     fun getToken(): Flow<String?> {
@@ -54,6 +55,13 @@ class TokenManager(private val context: Context) {
         }
     }
 */
+
+    fun getVetCouncilNumber(): Flow<String?> {
+        return context.dataStore.data.map { preferences ->
+            preferences[VET_COUNCIL_NUMBER] ?: ""
+        }
+    }
+
     suspend fun saveToken(token: String, username: String, name: String,
                           email: String, role: String/*, photo: String*/) {
         context.dataStore.edit { preferences ->
@@ -66,11 +74,23 @@ class TokenManager(private val context: Context) {
         }
     }
 
+    suspend fun saveVetCouncilNumber(vetCouncilNumber: String?){
+        context.dataStore.edit { preferences ->
+            preferences[VET_COUNCIL_NUMBER] = vetCouncilNumber ?: ""
+        }
+    }
+
 
     suspend fun deleteToken() {
         context.dataStore.edit { preferences ->
             preferences.remove(TOKEN_KEY)
             preferences.remove(USER_KEY)
+        }
+    }
+
+    suspend fun deleteVetCouncilNumber() {
+        context.dataStore.edit { preferences ->
+            preferences.remove(VET_COUNCIL_NUMBER)
         }
     }
 

@@ -1,5 +1,6 @@
 package com.sallyjayz.ranchid.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,6 +22,10 @@ class TokenViewModel @Inject constructor(
     val userEmail = MutableLiveData<String?>()
     val userRole = MutableLiveData<String?>()
 //    val userPhoto = MutableLiveData<String?>()
+    val vetCouncilNumber = MutableLiveData<String?>()
+
+    private val _loginRole = MutableLiveData<String>()
+    val loginRole : LiveData<String> = _loginRole
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -70,6 +75,15 @@ class TokenViewModel @Inject constructor(
                 }
             }
         }*/
+
+        viewModelScope.launch(Dispatchers.IO) {
+            tokenManager.getVetCouncilNumber().collect {
+                withContext(Dispatchers.Main) {
+                    vetCouncilNumber.value = it
+                }
+            }
+        }
+
     }
 
     fun saveToken(token: String, username: String, name: String, email: String, role: String/*,
@@ -79,6 +93,16 @@ class TokenViewModel @Inject constructor(
         }
     }
 
+    fun saveVetCouncilNumber(vetCouncilNumber: String?) {
+        viewModelScope.launch(Dispatchers.IO) {
+            tokenManager.saveVetCouncilNumber(vetCouncilNumber)
+        }
+    }
+
+    fun setLoginRole(loginRole: String) {
+        _loginRole.value = loginRole
+    }
+
 
     fun deleteToken() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -86,4 +110,9 @@ class TokenViewModel @Inject constructor(
         }
     }
 
+    fun deleteVetCouncilNumber() {
+        viewModelScope.launch(Dispatchers.IO) {
+            tokenManager.deleteVetCouncilNumber()
+        }
+    }
 }

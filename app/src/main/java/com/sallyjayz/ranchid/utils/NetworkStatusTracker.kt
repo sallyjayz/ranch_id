@@ -6,6 +6,7 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
@@ -42,11 +43,13 @@ class NetworkStatusTracker @Inject constructor (context: Context) {
 
         val request = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
             .build()
         connectivityManager.registerNetworkCallback(request, networkStatusCallback)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             connectivityManager.requestNetwork(request, networkStatusCallback, 1000)
-        }
+        }*/
 
 
         awaitClose {
@@ -67,6 +70,7 @@ inline fun <Result> Flow<NetworkStatus>.map(
     }
 }
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @FlowPreview
 inline fun <Result> Flow<NetworkStatus>.flatMap(
     crossinline onUnavailable: suspend () -> Flow<Result>,

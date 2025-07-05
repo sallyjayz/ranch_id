@@ -18,7 +18,7 @@ class UnusedPassportRepository @Inject constructor(
     suspend fun saveUnusedPassport(unusedPassport: UnusedPassport) =
         unusedPassportDao.insertUnusedPassport(unusedPassport)
 
-    val readUnusedPassport: LiveData<List<UnusedPassport>> =
+    val readUnusedPassport: LiveData<List<UnusedPassport?>> =
         unusedPassportDao.getAllUnusedPassport()
 
     fun getSelectedUnusedPassport(selectedUnusedPassport: String) =

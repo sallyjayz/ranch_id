@@ -99,7 +99,7 @@
     <string name="add_livestock_location">Add Livestock Location</string>
     <string name="save">Save</string>
     <string name="scan_qr_code">Scan QR Code</string>
-    <string name="scanned_tag_id">Scanned Tag ID:</string>
+    <string name="scanned_tag_id">Scanned Tag ID</string>
     <string name="step_01_04">Step 01/04</string>
     <string name="step_02_04">Step 02/04</string>
     <string name="scanned_tag">Scanned Tag ID</string>
@@ -228,4 +228,160 @@
     <string name="the_register_menu">The Register Menu</string>
     <string name="scan_for_exit">Scan for Exit</string>
     <string name="how_to_use_ranch_id">How to use RanchID</string>
+    <string name="location_menu">Location Menu</string>
+    <string name="add_livestock_owner_help">Add Livestock Owner Help</string>
+    <string name="add_livestock_keeper_help">Add Livestock Keeper Help</string>
+    <string name="tag_livestock_menu">Tag Livestock Menu</string>
+    <string name="scan_for_abbatoir_exit_help">Scan for Abbatoir Exit Help</string>
+    <string name="packing_list_help">Packing List Help</string>
+    <string name="getting_started_with_ranchid">Getting Started with RanchID</string>
+    <string name="sign_in_log_in">Sign In / Log In</string>
+    <string name="getting_started_text">To log into <b>Ranch.ID</b>, please type the following URL
+        in your device web browser: <b>https://naitsng.com</b>. This will lead you to the following page
+        shown above</string>
+    <string name="getting_started_text_two">\nPlease enter the username and password that were sent to
+        you by the administrator and click on the Login button. If you are unable to login, please
+        contact <b>09022322237</b> or send email to <b>helpdesk@naits.ng</b></string>
+    <string name="dashboard_text">After logging in successfully, all enumerators will be directed to their;\n
+        a) Dashboard shows an overview of the data collated at the farm for example: \n1. The number
+        of tagged livestock on a farm \n2. The number Livestock owners on a farm </string>
+    <string name="enumerator_menu">Enumerator Menu</string>
+    <string name="enumerator_text">After logging in successfully, all enumerators will be able to
+        click on a menu button at the bottom right corner of the screen and it shows the users the
+        available menus on the app</string>
+    <string name="register_menu">Register Menu</string>
+    <string name="register_text">From the enumerators menu, click on register and it takes you to
+        the Register page. The Menu’s on the Register page include : \n1. Add Livestock Owner
+        \n2. Add Livestock Keeper \n3. Locations \n4. Tag Livestock \n5. Packing List</string>
+    <string name="location_text_one">All livestock tagging exercises take place at pre-designated
+        <b>Registration Locations</b>. These registration locations must be created on the
+        <b>Ranch.ID</b> system before they can be utilized during enumeration. To create a registration location, click on
+        the menu <b>Register => Location</b>. The screens above should appear: </string>
+    <string name="location_text_two">\nPlease note that the Application will request you to turn
+        on <b>Device Location</b> function on your mobile phone.</string>
+    <string name="location_text_three">\nThis is normal, so that the device can
+        generate appropriate information on geolocation, as required.</string>
+    <string name="location_text_four">\nAlso note that under
+        <b>Location Type</b>, you will be required to select: Farm, Ranch, Abattoir, Market or Others After
+        filling all the fields in the form, click the <b>Save</b> button.</string>
+    <string name="owner_text_one">To create a livestock owner, click on <b>Register => Add</b> Livestock
+        Owner on the menu., and this will take you through the various fields to enter information for.
+        The various fields are captured above; </string>
+    <string name="owner_text_two">\nBe sure to collect the following information:
+        NIN, phone number, alternate means of identification both for the owned and for his/her
+        next-of-kin. In addition, be sure to select the farm (or location such as ranch, market etc)
+        where this livestock owner is located.\n\n<b>Livestock Owner: Passport Photograph</b></string>
+    <string name="owner_text_three"><b>Ranch.ID</b> requires you to take a photo of the livestock
+        owner as part of the registration process. In order to take the passport photograph, please
+        ensure that the livestock owner is standing in front</string>
+    <string name="keeper_text_one">In the <b>Ranch.ID</b> platform, every livestock is placed in the
+        custody of a Livestock Keeper. To create a livestock keeper, click on <b>Register => Add Livestock Keeper</b>
+        on the menu, and this will take you through the various fields to enter information for. The various
+        fields are captured below </string>
+    <string name="keeper_text_two">\nBe sure to collect the following information: National Identification Number (NIN),
+        phone number, alternate means of identification both for the keeper and for his/her next-of-kin.
+        In addition, be sure to select the farm (or location such as ranch, market etc) where this
+        livestock keeper is located.\n\n<b>Livestock Keeper: Passport Photograph</b></string>
+    <string name="keeper_text_three"><b>Ranch.ID</b> requires you to take a photo of the livestock keeper
+        as part of the registration process. In order to take the passport photograph, please ensure that
+        the livestock keeper is standing in front of a smooth background in a brightly lit area. When
+        you are ready, click the \'+\' sign in the camera portion found at the bottom of the page. When
+        the camera switches on, click on the <b>Capture Portrait</b> button to take a photo. Finally, click
+        the <b>SUBMIT</b> button to create a livestock keeper record.</string>
+    <string name="tag_livestock_text">In the Ranch.ID system, livestock are registered by attaching ICAR- compliant,
+        Biometric Ear tags onto the livestock’s ears using an applicator, and then taking electronic records afterwards.
+        Before tagging any livestock, please ensure that the following information already exists in the system:
+        \n\ni) The registration location (farm, ranch, abattoir etc. \n(ii) The livestock owner information
+        (individual or group ownership). \niii) The livestock keeper information. \n\nCAUTION: Before tagging very
+        large sized livestock, please be sure that you restrain them using crushes! \n\nFor safety purposes,
+        first restrain cattle using crushes before tagging Every enumerator shall be assigned a given number of
+        plastic livestock tags and also a corresponding number of cattle certificates or passports. For cattle only,
+        each Set of Ear Tags shall be assigned to 1 Passport.</string>
+    <string name="operations_with_tagged_livestock">Operations with Tagged Livestock</string>
+    <string name="scan_for_exit_text_one">Once a livestock has been tagged and recorded in the Ranch.ID system,
+        several operations can be carried out. \n\n<b>a) Scan for Abattoir Exit</b></string>
+    <string name="scan_for_exit_text_two">Animals meant to be slaughtered at abattoirs must first be
+        exited from the Ranch.ID database. Marking a tagged livestock as \'exited\' means that the livestock is dead.
+        The operation of exiting a livestock at an abattoir or other locations will help in ensuring
+        the integrity of the data in the Ranch.ID database.</string>
+    <string name="scan_for_exit_text_three">\nTo scan for abattoir exit, click on <b>Tags => Scan for Exit (Abattoir)</b>
+        Next, scan the QR code on the given tag. If the scan is successful, the livestock information will be
+        displayed on a modal pop-up box. Thereafter, enter the livestock health status, and then select the exit location.
+        Finally, press the SUBMIT button to exit the livestock.</string>
+    <string name="scan_for_exit_text_four"><b>To scan for abattoir exit</b>, click on <b>Tags => Scan for Exit (Abattoir)</b> </string>
+    <string name="scan_for_exit_text_five">Next, scan the QR code on the given tag. If the scan is successful,
+        the livestock information will be displayed on a modal pop-up box. \n\nThereafter, enter the livestock health status,
+        and then select the exit location. \n\nFinally, press the SUBMIT button to exit the livestock.</string>
+    <string name="packing_list_text_one">Once a livestock has been tagged and recorded in the Ranch.ID system,
+        several operations can be carried out. \n\n<b>a) Scan for Packing List</b></string>
+    <string name="packing_list_text_two">Animals meant to be transported from one location to another
+        must be documented in the RanchID Database. Every important information abut the livestock to
+        be transported  is documented.This operation helps ensure integrity of the Ranch ID Database.\n\n</string>
+    <string name="packing_list_text_three">To scan for Packing List, click on <b>Register => Packing list</b>.
+        Next scan the QR Code on the given tag. If the scan is successful,the livestock information is uploaded
+        automatically and the farmer can go on to scan a different livestock. This process is repeated until all
+        animals are scanned and counted. Press the SUBMIT button to proceed. </string>
+    <string name="log_in_as_an_enumerator">Log In as an Enumerator</string>
+    <string name="log_in_as_a_veterinary_doctor">Log In as a Veterinary Doctor</string>
+    <string name="how_to_use_ranchid">How to use RanchID</string>
+    <string name="livestock_information">Livestock Information</string>
+    <string name="vaccination_status">Vaccination Status</string>
+    <string name="no_of_vaccination">No. of Vaccination</string>
+    <string name="date_of_last_vaccination">Date of Last Vaccination</string>
+    <string name="vaccinate">Vaccinate</string>
+    <string name="confirm_vaccination_information">Confirm Vaccination Information</string>
+    <string name="drug_prescription">Drug Prescription</string>
+    <string name="drug_dosage">Drug Dosage</string>
+    <string name="frequency">Frequency</string>
+    <string name="time_of_vaccination">Time of Vaccination</string>
+    <string name="vaccinate_new_livestock">Vaccinate New Livestock</string>
+    <string name="vaccinate_livestock">Vaccinate Livestock</string>
+    <string name="drug_vaccine">Drug/Vaccine</string>
+    <string name="select_drug">Select Drug</string>
+    <string name="select_drug_dosage">Select Drug Dosage</string>
+    <string name="select_frequency">Select Frequency</string>
+    <string name="select_time_of_vaccination">Select Time of Vaccination</string>
+    <string name="date_of_vaccination">Date of Vaccination</string>
+    <string name="select_date_of_vaccination">Select Date of Vaccination</string>
+    <string name="additional_notes">Additional Notes</string>
+    <string name="upcoming_appointments">Upcoming Appointments</string>
+    <string name="total_vaccinated_livestock">Total Vaccinated Livestock</string>
+    <string name="recent_vaccinated_livestock">Recent Vaccinated Livestock</string>
+    <string name="dosage">Dosage </string>
+    <string name="animal_tag">Animal Tag: </string>
+    <string name="vet_offline_function">Vet Offline Function</string>
+    <string name="vet_reports">Vet Reports</string>
+    <string name="vaccinations">Vaccinations</string>
+    <string name="livestock_info">Livestock Info</string>
+    <string name="vaccination_history">Vaccination History</string>
+    <string name="next_appointment">Next Appointment</string>
+    <string name="select_date_for_next_appointment">Select Date for Next Appointment</string>
+    <string name="select_vaccination_date">Select Vaccination Date</string>
+    <string name="select_vaccination_time">Select Vaccination time</string>
+    <string name="you_are_offline">You are Offline</string>
+    <string name="vaccinated_successfully">%s Vaccinated Successfully</string>
+    <string name="treated_successfully">%s Treated Successfully</string>
+    <string name="vet_council_number">Vet Council Number</string>
+    <string name="livestock_treatment">Livestock Treatment</string>
+    <string name="administer_treatment">Administer Treatment</string>
+    <string name="treatment_time">Treatment Time</string>
+    <string name="select_treatment_time">Select Treatment Time</string>
+    <string name="treatment_date">Treatment Date</string>
+    <string name="select_treatment_date">Select Treatment Date</string>
+    <string name="treatment_type">Treatment Type</string>
+    <string name="administration_route">Administration Route</string>
+    <string name="select_administration_route">Select Administration Route</string>
+    <string name="injection">Injection</string>
+    <string name="diagnosis">Diagnosis</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="reupload">Reupload</string>
+    <string name="follow_up_date">Follow Up Date</string>
+    <string name="select_follow_up_date">Select Follow Up Date</string>
+    <string name="confirm_treatment_information">Confirm Treatment Information</string>
+    <string name="treat_new_livestock">Treat New Livestock</string>
+    <string name="select_drug_vaccine">Select Drug/Vaccine</string>
+    <string name="select_treatment_type">Select Treatment Type</string>
+    <string name="treatment_category">Treatment Category</string>
+    <string name="select_treatment_category">Select Treatment Category</string>
+    <string name="select_injection">Select Injection</string>
 </resources>

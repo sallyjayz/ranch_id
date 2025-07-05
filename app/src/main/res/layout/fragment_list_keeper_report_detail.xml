@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+    <!--<data>
         <variable
             name="keeperReport"
             type="com.sallyjayz.ranchid.report.keeper.ListKeeperReportDetailFragment" />
 
-    </data>
+    </data>-->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -630,39 +630,7 @@
                             android:visibility="invisible"
                             app:indicatorColor="@android:color/black"/>
 
-                        <!--<com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/keeper_image"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            tools:src="@drawable/ic_launcher_background"
-                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/keeper_image_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/sixteen_dp"
-                            tools:text="Image.jpeg"
-                            android:layout_marginStart="@dimen/sixteen_dp"
-                            android:fontFamily="@font/inter_bold"
-                            android:textColor="@color/black"
-                            app:layout_constraintTop_toTopOf="@id/keeper_image"
-                            app:layout_constraintStart_toEndOf="@id/keeper_image"
-                            />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/keeper_image_size"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="349.42kb"
-                            android:layout_marginStart="@dimen/sixteen_dp"
-                            android:fontFamily="@font/inter_regular"
-                            app:layout_constraintTop_toBottomOf="@id/keeper_image_name"
-                            app:layout_constraintStart_toEndOf="@id/keeper_image"
-                            />-->
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>

@@ -1,5 +1,6 @@
 package com.sallyjayz.ranchid.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.sallyjayz.ranchid.model.auth.Auth
 import com.sallyjayz.ranchid.model.auth.LoginResponse
@@ -29,4 +30,5 @@ class AuthViewModel @Inject constructor(
         }
         return true
     }
+
 }

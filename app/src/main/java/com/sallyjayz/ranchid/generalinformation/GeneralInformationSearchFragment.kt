@@ -71,7 +71,7 @@ class GeneralInformationSearchFragment : Fragment() {
                                 binding.errorTv.text = "Loading"
                             }
                             is ApiResponse.Success -> {
-                                binding.errorTv.text = "success"
+//                                binding.errorTv.text = "success"
 
                                 val searchInfo = ArrayList<SearchInformation>()
                                 for (searchName in it.data.data) {
@@ -110,12 +110,12 @@ class GeneralInformationSearchFragment : Fragment() {
                             selectedId = searchInformation.id.toString()
                             selectedType = searchInformation.custodian_type
 
-                            Log.d("search adapter2", "$searchInformation")
+//                            Log.d("search adapter2", "$searchInformation")
                         }
 
                     })
 
-                    generalInformationResponseViewModel.getSearchName(query.toString(), object:
+                    generalInformationResponseViewModel.getSearchName(query.toString().trim(), object:
                         CoroutinesErrorHandler{
                         override fun onError(message: String) {
                             binding.errorTv.text = "Error $message"

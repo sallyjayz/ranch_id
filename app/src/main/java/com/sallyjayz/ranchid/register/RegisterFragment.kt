@@ -78,9 +78,9 @@ class RegisterFragment : Fragment() {
     }
 
     fun addPackingList() {
-        val action = RegisterFragmentDirections
+        /*val action = RegisterFragmentDirections
             .actionRegisterFragmentToAddPackingListStepOneFragment()
-        findNavController().navigate(action)
+        findNavController().navigate(action)*/
     }
 
 }

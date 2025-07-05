@@ -28,10 +28,15 @@ import com.sallyjayz.ranchid.viewmodel.NetworkStatusViewModel
 import com.sallyjayz.ranchid.viewmodel.offline.OfflineTagLivestockViewModel
 import com.sallyjayz.ranchid.viewmodel.register.response.TagLivestockResponseViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+
+val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+    throwable.printStackTrace()
+}
 
 @AndroidEntryPoint
 class OfflineFragmentTagLivestock : Fragment() {
@@ -88,21 +93,21 @@ class OfflineFragmentTagLivestock : Fragment() {
                         true
                     }
                     R.id.action_delete_completed_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineTagLivestockViewModel
                                 .deleteOfflineTagLivestockStatusCondition("COMPLETED")
                         }
                         true
                     }
                     R.id.action_delete_pending_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineTagLivestockViewModel
                                 .deleteOfflineTagLivestockStatusCondition("PENDING")
                         }
                         true
                     }
                     R.id.action_delete_failed_upload -> {
-                        CoroutineScope(Dispatchers.IO).launch {
+                        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                             offlineTagLivestockViewModel
                                 .deleteOfflineTagLivestockStatusCondition("FAILED")
                         }
@@ -136,7 +141,7 @@ class OfflineFragmentTagLivestock : Fragment() {
     }
 
     private fun initViewModel() {
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
             offlineTagLivestockViewModel.readOfflineTagLivestock().collectLatest {
                 recyclerViewAdapter.submitData(it)
             }
@@ -153,7 +158,7 @@ class OfflineFragmentTagLivestock : Fragment() {
                             is ApiResponse.Failure -> {
 //                                binding.errorTv.text = "Code: ${it.code}, ${it.errorMessage}"
 
-                                CoroutineScope(Dispatchers.IO).launch {
+                                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                                     offlineTagLivestockViewModel.updateOfflineTagLivestock(tagLivestock.id,"FAILED")
                                 }
                                 binding.offlineTagLivestockProgress.isVisible = false
@@ -167,7 +172,7 @@ class OfflineFragmentTagLivestock : Fragment() {
                             is ApiResponse.Success -> {
 //                        binding.errorTv.text = "${it.data.success}"
 
-                                CoroutineScope(Dispatchers.IO).launch {
+                                CoroutineScope(Dispatchers.IO + coroutineExceptionHandler).launch {
                                     offlineTagLivestockViewModel
                                         .updateOfflineTagLivestock(tagLivestock.id,"COMPLETED")
                                     Log.d("status", "${offlineTagLivestockViewModel

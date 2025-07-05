@@ -99,13 +99,85 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tag_tagginglocation_label"
+                    android:id="@+id/tagging_state_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="@id/tag_description"
                     app:layout_constraintEnd_toEndOf="@id/tag_description"
                     app:layout_constraintTop_toBottomOf="@id/tag_description"
+                    android:text="@string/state"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tagging_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    app:layout_constraintStart_toStartOf="@id/tagging_state_label"
+                    app:layout_constraintEnd_toEndOf="@id/tagging_state_label"
+                    app:layout_constraintTop_toBottomOf="@id/tagging_state_label"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/stroke_tint"
+                    android:hint="@string/select_state"
+                    app:hintTextColor="@color/black"
+                    >
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{stepThreeViewModel.taggingState}"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tagging_lga_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tagging_state"
+                    app:layout_constraintEnd_toEndOf="@id/tagging_state"
+                    app:layout_constraintTop_toBottomOf="@id/tagging_state"
+                    android:text="@string/local_government_area"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/sixteen_dp"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tagging_lga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    app:layout_constraintStart_toStartOf="@id/tagging_lga_label"
+                    app:layout_constraintEnd_toEndOf="@id/tagging_lga_label"
+                    app:layout_constraintTop_toBottomOf="@id/tagging_lga_label"
+                    android:hint="@string/select_lga"
+                    app:hintTextColor="@color/black"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxStrokeColor="@color/stroke_tint"
+                    >
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/lga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{stepThreeViewModel.taggingLga}"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_tagginglocation_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tagging_lga"
+                    app:layout_constraintEnd_toEndOf="@id/tagging_lga"
+                    app:layout_constraintTop_toBottomOf="@id/tagging_lga"
                     android:text="@string/tagging_location"
                     android:fontFamily="@font/inter_bold"
                     android:layout_marginTop="@dimen/sixteen_dp"

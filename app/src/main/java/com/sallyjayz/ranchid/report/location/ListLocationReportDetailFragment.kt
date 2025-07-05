@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.location
 
 import android.os.Bundle
@@ -56,4 +57,4 @@ class ListLocationReportDetailFragment : Fragment() {
         }
     }
 
-}
+}*/

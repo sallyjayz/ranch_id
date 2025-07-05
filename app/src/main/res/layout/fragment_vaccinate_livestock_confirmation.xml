@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="stepFourViewModel"
+            type="com.sallyjayz.ranchid.viewmodel.vet.LivestockVaccinationViewModel" />
+
+        <variable
+            name="stepFourFragment"
+            type="com.sallyjayz.ranchid.veterinaryDoctor.vaccinateLivestock.VaccinateLivestockConfirmationFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".veterinaryDoctor.vaccinateLivestock.VaccinateLivestockConfirmationFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/sixteen_dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/step_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/step_04_04"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="@dimen/twenty_four_sp"
+                    android:textColor="@color/black" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/form_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/step_four"
+                    app:layout_constraintEnd_toEndOf="@id/step_four"
+                    app:layout_constraintTop_toBottomOf="@id/step_four"
+                    android:text="@string/confirm_vaccination_information"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/error_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_red_light"
+                    app:layout_constraintBottom_toTopOf="@id/tag_vet_council_number"
+                    app:layout_constraintStart_toStartOf="@id/tag_vet_council_number"
+                    app:layout_constraintEnd_toEndOf="@id/tag_vet_council_number"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_vet_council_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/form_summary"
+                    app:layout_constraintEnd_toEndOf="@id/form_summary"
+                    app:layout_constraintTop_toBottomOf="@id/form_summary"
+                    android:text="@string/vet_council_number"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/vet_council_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_vet_council_number"
+                    app:layout_constraintEnd_toEndOf="@id/tag_vet_council_number"
+                    app:layout_constraintTop_toBottomOf="@id/tag_vet_council_number"
+                    tools:text="12345"
+                    android:text="@{stepFourViewModel.vetCouncilNumber}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/tag_vet_council_number_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vet_council_number"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_scan_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_vet_council_number_divider"
+                    app:layout_constraintEnd_toEndOf="@id/tag_vet_council_number_divider"
+                    app:layout_constraintTop_toBottomOf="@id/tag_vet_council_number_divider"
+                    android:text="@string/scanned_tag_id"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_scan_id"
+                    app:layout_constraintEnd_toEndOf="@id/tag_scan_id"
+                    app:layout_constraintTop_toBottomOf="@id/tag_scan_id"
+                    tools:text="NFC12345678"
+                    android:text="@{stepFourViewModel.scannedId}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/tag_id_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_id"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_drug_prescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_id_divider"
+                    app:layout_constraintEnd_toEndOf="@id/tag_id_divider"
+                    app:layout_constraintTop_toBottomOf="@id/tag_id_divider"
+                    android:text="@string/drug_prescription"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/drug_prescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_drug_prescription"
+                    app:layout_constraintEnd_toEndOf="@id/tag_drug_prescription"
+                    app:layout_constraintTop_toBottomOf="@id/tag_drug_prescription"
+                    tools:text="vaccine"
+                    android:text="@{stepFourViewModel.vaccine}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/prescription_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/drug_prescription"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_drug_dosage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/prescription_divider"
+                    app:layout_constraintEnd_toEndOf="@id/prescription_divider"
+                    app:layout_constraintTop_toBottomOf="@id/prescription_divider"
+                    android:text="@string/drug_dosage"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/drug_dosage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_drug_dosage"
+                    app:layout_constraintEnd_toEndOf="@id/tag_drug_dosage"
+                    app:layout_constraintTop_toBottomOf="@id/tag_drug_dosage"
+                    tools:text="dosage"
+                    android:text="@{stepFourViewModel.dosage}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/dosage_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/drug_dosage"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_frequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/dosage_divider"
+                    app:layout_constraintEnd_toEndOf="@id/dosage_divider"
+                    app:layout_constraintTop_toBottomOf="@id/dosage_divider"
+                    android:text="@string/frequency"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/frequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_frequency"
+                    app:layout_constraintEnd_toEndOf="@id/tag_frequency"
+                    app:layout_constraintTop_toBottomOf="@id/tag_frequency"
+                    tools:text="@string/frequency"
+                    android:text="@{stepFourViewModel.frequency}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/frequency_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/frequency"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_vaccination_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/frequency_divider"
+                    app:layout_constraintEnd_toEndOf="@id/frequency_divider"
+                    app:layout_constraintTop_toBottomOf="@id/frequency_divider"
+                    android:text="@string/time_of_vaccination"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/vaccination_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_vaccination_time"
+                    app:layout_constraintEnd_toEndOf="@id/tag_vaccination_time"
+                    app:layout_constraintTop_toBottomOf="@id/tag_vaccination_time"
+                    tools:text="Time of Vaccination"
+                    android:text="@{stepFourViewModel.timeOfVaccination}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/vaccination_time_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vaccination_time"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_vaccination_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/vaccination_time_divider"
+                    app:layout_constraintEnd_toEndOf="@id/vaccination_time_divider"
+                    app:layout_constraintTop_toBottomOf="@id/vaccination_time_divider"
+                    android:text="Date of Vaccination"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/vaccination_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_vaccination_date"
+                    app:layout_constraintEnd_toEndOf="@id/tag_vaccination_date"
+                    app:layout_constraintTop_toBottomOf="@id/tag_vaccination_date"
+                    tools:text="Date of Vaccination"
+                    android:text="@{stepFourViewModel.dateOfVaccination}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/vaccination_date_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vaccination_date"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_next_appointment_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/vaccination_date_divider"
+                    app:layout_constraintEnd_toEndOf="@id/vaccination_date_divider"
+                    app:layout_constraintTop_toBottomOf="@id/vaccination_date_divider"
+                    android:text="Date of Next Vaccination"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/next_appointment_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_next_appointment_date"
+                    app:layout_constraintEnd_toEndOf="@id/tag_next_appointment_date"
+                    app:layout_constraintTop_toBottomOf="@id/tag_next_appointment_date"
+                    tools:text="Date of Next Appointment"
+                    android:text="@{stepFourViewModel.dateOfNextAppointment}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/next_appointment_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/next_appointment_date"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tag_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/next_appointment_divider"
+                    app:layout_constraintEnd_toEndOf="@id/next_appointment_divider"
+                    app:layout_constraintTop_toBottomOf="@id/next_appointment_divider"
+                    android:text="@string/additional_notes"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginTop="@dimen/thirty_two_dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/tag_notes"
+                    app:layout_constraintEnd_toEndOf="@id/tag_notes"
+                    app:layout_constraintTop_toBottomOf="@id/tag_notes"
+                    tools:text="@string/additional_notes"
+                    android:text="@{stepFourViewModel.notes}"
+                    android:textSize="@dimen/eighteen_sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:textColor="@color/black"/>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/notes_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/notes"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    android:background="@color/divider"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tag_photo_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/stroke_tint"
+                    app:cardElevation="0dp"
+                    android:layout_marginTop="@dimen/thirty_two_dp"
+                    app:layout_constraintStart_toStartOf="@id/notes_divider"
+                    app:layout_constraintEnd_toEndOf="@id/notes_divider"
+                    app:layout_constraintTop_toBottomOf="@id/notes_divider">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/sixteen_dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/tag_image"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            tools:src="@drawable/ic_launcher_background"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RanchID.CornerSize20Dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tag_image_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sixteen_dp"
+                            tools:text="Image.jpeg"
+                            android:text="@{stepFourViewModel.photoName}"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:textColor="@color/black"
+                            app:layout_constraintTop_toTopOf="@id/tag_image"
+                            app:layout_constraintStart_toEndOf="@id/tag_image"
+                            />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tag_image_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="349.42kb"
+                            android:text="@{stepFourViewModel.photoSize}"
+                            android:layout_marginStart="@dimen/sixteen_dp"
+                            android:fontFamily="@font/inter_regular"
+                            app:layout_constraintTop_toBottomOf="@id/tag_image_name"
+                            app:layout_constraintStart_toEndOf="@id/tag_image"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/tag_photo_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/eight_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_photo_cardview"
+                    android:background="@color/divider" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tag_stepfour_submit_button"
+                    android:text="@string/submit"
+                    android:drawableEnd="@drawable/ic_save"
+                    style="@style/Widget.RanchID.Button.Colored.OutlinedButton"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginEnd="@dimen/ten_dp"
+                    android:layout_marginBottom="@dimen/ten_dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tag_photo_divider"
+                    android:onClick="@{() -> stepFourFragment.submitClicked()}"/>
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/vaccination_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="invisible"
+                    app:indicatorColor="@color/btn_color"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+</layout>

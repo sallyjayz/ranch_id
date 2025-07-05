@@ -37,6 +37,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var viewModel: PermissionViewModel
     private lateinit var tokenViewModel: TokenViewModel
     private lateinit var authViewModel: AuthViewModel
+//    private lateinit var livestockWithVetHistoryViewModel: LivestockWithHistoryViewModel
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
     private lateinit var locationCallback: LocationCallback
@@ -52,10 +53,16 @@ class DashboardActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[PermissionViewModel::class.java]
         tokenViewModel = ViewModelProvider(this)[TokenViewModel::class.java]
         authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+//        livestockWithVetHistoryViewModel = ViewModelProvider(this)[LivestockWithHistoryViewModel::class.java]
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         requestingLocationUpdates = false
         createLocationCallback()
         createLocationRequest()
+
+        val vetCouncilNumber = intent.getStringExtra("vetCouncilNumber")
+        val userRole = intent.getStringExtra("userRole")
+//        livestockWithVetHistoryViewModel.setVetNumber(vetCouncilNumber.toString())
+        tokenViewModel.setLoginRole(userRole.toString())
 
         if (isPermissionGranted()) {
             requestingLocationUpdates = true
@@ -93,7 +100,13 @@ class DashboardActivity : AppCompatActivity() {
                 destination.id == R.id.offlineKeeperSuccess ||
                 destination.id == R.id.offlineTagLivestockSuccess ||
                 destination.id == R.id.addPackingListUnsuccessfulFragment ||
-                destination.id == R.id.addPackingListSuccessfulFragment) {
+                destination.id == R.id.addPackingListSuccessfulFragment ||
+                destination.id == R.id.vaccinateLivestockSuccessfulFragment ||
+                destination.id == R.id.vaccinateLivestockFailedFragment ||
+                destination.id == R.id.livestockTreatmentSuccessFragment ||
+                destination.id == R.id.livestockTreatmentFailedFragment
+
+                ) {
 
                 topBar.visibility = View.GONE
 
@@ -137,7 +150,7 @@ class DashboardActivity : AppCompatActivity() {
             Manifest.permission.CAMERA,
         ) == PackageManager.PERMISSION_GRANTED*/
 
-        if (ActivityCompat.checkSelfPermission(
+        /*if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED &&
@@ -152,7 +165,20 @@ class DashboardActivity : AppCompatActivity() {
         ) {
             return true
         }
-        return false
+        return false*/
+
+        return ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CAMERA,
+                ) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(

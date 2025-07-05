@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+    <!--<data>
         <variable
             name="ownerReport"
             type="com.sallyjayz.ranchid.report.owner.ListOwnerReportDetailFragment" />
-    </data>
+    </data>-->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -67,40 +67,6 @@
                     app:layout_constraintTop_toBottomOf="@id/step_three_type"
                     android:layout_marginTop="@dimen/eight_dp"
                     android:background="@color/divider"/>
-
-                <!--<com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/step_three_keeper_question"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/owner_type_divider"
-                    app:layout_constraintEnd_toEndOf="@id/owner_type_divider"
-                    app:layout_constraintTop_toBottomOf="@id/owner_type_divider"
-                    android:text="@string/are_you_a_livestock_keeper"
-                    android:textSize="@dimen/sixteen_sp"
-                    android:fontFamily="@font/inter_bold"
-                    android:layout_marginTop="@dimen/sixteen_dp"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/step_three_keeper_answer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/step_three_keeper_question"
-                    app:layout_constraintEnd_toEndOf="@id/step_three_keeper_question"
-                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_question"
-                    tools:text="Yes"
-                    android:textSize="@dimen/eighteen_sp"
-                    android:fontFamily="@font/inter_bold"
-                    android:textColor="@color/black"/>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/step_three_keeper_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/step_three_keeper_answer"
-                    android:layout_marginTop="@dimen/eight_dp"
-                    android:background="@color/divider"/>-->
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/step_three_owner_surname"
@@ -374,39 +340,6 @@
                     android:layout_marginTop="@dimen/eight_dp"
                     android:background="@color/divider"/>
 
-                <!--<com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/step_three_owner_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/step_three_email_divider"
-                    app:layout_constraintEnd_toEndOf="@id/step_three_email_divider"
-                    app:layout_constraintTop_toBottomOf="@id/step_three_email_divider"
-                    android:text="@string/address"
-                    android:textSize="@dimen/sixteen_sp"
-                    android:fontFamily="@font/inter_bold"
-                    android:layout_marginTop="@dimen/sixteen_dp"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/step_three_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@id/step_three_owner_address"
-                    app:layout_constraintEnd_toEndOf="@id/step_three_owner_address"
-                    app:layout_constraintTop_toBottomOf="@id/step_three_owner_address"
-                    tools:text="Address"
-                    android:textSize="@dimen/eighteen_sp"
-                    android:fontFamily="@font/inter_bold"
-                    android:textColor="@color/black"/>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/step_three_address_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/step_three_address"
-                    android:layout_marginTop="@dimen/eight_dp"
-                    android:background="@color/divider"/>-->
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/step_three_owner_state"
@@ -685,29 +618,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"/>
 
-                        <!--<com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/owner_image_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/sixteen_dp"
-                            tools:text="Image.jpeg"
-                            android:layout_marginStart="@dimen/sixteen_dp"
-                            android:fontFamily="@font/inter_bold"
-                            android:textColor="@color/black"
-                            app:layout_constraintTop_toTopOf="@id/owner_image"
-                            app:layout_constraintStart_toEndOf="@id/owner_image"
-                            />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/owner_image_size"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="349.42kb"
-                            android:layout_marginStart="@dimen/sixteen_dp"
-                            android:fontFamily="@font/inter_regular"
-                            app:layout_constraintTop_toBottomOf="@id/owner_image_name"
-                            app:layout_constraintStart_toEndOf="@id/owner_image"
-                            />-->
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>

@@ -12,5 +12,7 @@ data class User(
     /*@SerializedName("passport_photo")
     val photo: String,*/
     @SerializedName("user_profile")
-    val role: String
+    val role: String,
+    @SerializedName("vet_council_number")
+    val vetCouncilNumber: String?
 )

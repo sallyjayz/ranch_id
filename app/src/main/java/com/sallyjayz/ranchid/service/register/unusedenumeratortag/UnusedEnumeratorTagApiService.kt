@@ -16,7 +16,7 @@ interface UnusedEnumeratorTagApiService {
     ): Response<UnusedEnumeratorTagResponseById>
 
     @Headers("CONNECT_TIMEOUT:120000", "READ_TIMEOUT:120000", "WRITE_TIMEOUT:120000")
-    @GET("/api/enumerator/{username}/unused_tags?limit=3000")
+    @GET("/api/enumerator/{username}/unused_tags?limit=10000000")
     suspend fun getAllUnusedEnumeratorTag(
         @Path("username") username: String
     ): Response<AllUnusedEnumeratorTagResponse>

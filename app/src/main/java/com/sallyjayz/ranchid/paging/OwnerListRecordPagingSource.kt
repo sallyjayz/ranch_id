@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.paging
 
 import androidx.paging.PagingSource
@@ -7,9 +8,11 @@ import com.sallyjayz.ranchid.service.report.ReportListApiService
 import retrofit2.HttpException
 import java.io.IOException
 
+*/
 /**
  * Created by Salama Jatau on 05-Aug-23.
- */
+ *//*
+
 
 const val OWNER_STARTING_INDEX = 1
 
@@ -40,4 +43,4 @@ class OwnerListRecordPagingSource(private val reportListApiService: ReportListAp
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.sallyjayz.ranchid.report.owner
 
 import android.os.Bundle
@@ -119,4 +120,4 @@ class ListOwnerReportFragment : Fragment(), OwnerReportAdapter.OnClickListener {
         findNavController().navigate(action)
     }
 
-}
+}*/

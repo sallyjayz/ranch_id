@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -29,7 +30,7 @@ class TagLivestockStepTwoFragment : Fragment() {
     private val allOwnerViewModel: AllOwnerViewModel by viewModels()
     private val allKeeperViewModel: AllKeeperViewModel by viewModels()
     private val unusedPassportViewModel: UnusedPassportViewModel by viewModels()
-    /*private var selectedType: String? = null
+    private var selectedType: String? = null
     private var selectedBreed: String? = null
     private var selectedGender: String? = null
     private var selectedHealthStatus: String? = null
@@ -38,9 +39,9 @@ class TagLivestockStepTwoFragment : Fragment() {
     private var selectedOwner: String? = null
     private var keeperSurname: String? = null
     private var keeperOthername: String? = null
-    private var selectedKeeper: String? = null*/
+    private var selectedKeeper: String? = null
     private var selectedPassportId: String = ""
-    private lateinit var selectedType: String
+    /*private lateinit var selectedType: String
     private lateinit var selectedBreed: String
     private lateinit var selectedGender: String
     private lateinit var selectedHealthStatus: String
@@ -49,7 +50,7 @@ class TagLivestockStepTwoFragment : Fragment() {
     private lateinit var selectedOwner: String
     private lateinit var keeperSurname: String
     private lateinit var keeperOthername: String
-    private lateinit var selectedKeeper: String
+    private lateinit var selectedKeeper: String*/
     /*private lateinit var selectedPassportId: String*/
     private var ownerId: Int = 0
     private var keeperId: Int = 0
@@ -61,6 +62,20 @@ class TagLivestockStepTwoFragment : Fragment() {
     private val animalTypeViewModel: AnimalTypeViewModel by viewModels()
     private val animalBreedViewModel: AnimalBreedViewModel by viewModels()
     private val args: TagLivestockStepTwoFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                sharedViewModel.resetStepTwoTagLivestock()
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+
+//        captureSound = MediaPlayer.create(requireContext(), R.raw.camera_shutter)
+    }
 
 
     override fun onCreateView(
@@ -105,7 +120,7 @@ class TagLivestockStepTwoFragment : Fragment() {
         unusedPassportViewModel.readAllUnusedPassport.observe(viewLifecycleOwner) {
             val passportIds = ArrayList<String>()
             for (passport in it) {
-                passportIds.add(passport.passportId)
+                passportIds.add(passport?.passportId.toString())
             }
             passportIdAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_list_item, passportIds)
             (binding.passportId.setAdapter(passportIdAdapter))
@@ -138,7 +153,7 @@ class TagLivestockStepTwoFragment : Fragment() {
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 selectedOwner = allOwnerAdapter.getItem(position).toString()
 
-                allOwnerViewModel.getSelectedOwnerName(ownerSurname, ownerOthername).observe(viewLifecycleOwner) {
+                allOwnerViewModel.getSelectedOwnerName(ownerSurname.toString(), ownerOthername.toString()).observe(viewLifecycleOwner) {
                     ownerId = it.id
                 }
                 /*Toast.makeText(requireContext(), "id: ${ownerId}, " +
@@ -165,7 +180,7 @@ class TagLivestockStepTwoFragment : Fragment() {
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 selectedKeeper = allKeeperAdapter.getItem(position).toString()
 
-                allKeeperViewModel.getSelectedKeeperName(keeperSurname, keeperOthername).observe(viewLifecycleOwner) {
+                allKeeperViewModel.getSelectedKeeperName(keeperSurname.toString(), keeperOthername.toString()).observe(viewLifecycleOwner) {
                     keeperId = it.id
                 }
                 /*Toast.makeText(requireContext(), "id: ${keeperId}, " +
@@ -223,8 +238,8 @@ class TagLivestockStepTwoFragment : Fragment() {
                selectedType = livestockTypeAdapter.getItem(position).toString()
                 binding.livestockBreed.setText("", false)
 
-                animalTypeViewModel.getAnimalTypeName(selectedType).observe(viewLifecycleOwner){
-                    if (selectedType.contains(it.name)) {
+                animalTypeViewModel.getAnimalTypeName(selectedType.toString()).observe(viewLifecycleOwner){
+                    if (selectedType.toString().contains(it.name)) {
                         animalBreedViewModel.getAnimalTypeBreedId(it.id).observe(viewLifecycleOwner) { animalBreedList ->
                             val animalBreeds = ArrayList<String>()
                             for (breed in animalBreedList) {
@@ -335,10 +350,10 @@ class TagLivestockStepTwoFragment : Fragment() {
                 binding.livestockOwner.text.toString(),
                 keeperId.toString(),
                 ownerId.toString(),
-                selectedType,
-                selectedBreed,
-                selectedGender,
-                selectedHealthStatus,
+                selectedType.toString(),
+                selectedBreed.toString(),
+                selectedGender.toString(),
+                selectedHealthStatus.toString(),
                 binding.dob.text.toString(),
 //                binding.birthPeriod.text.toString()
             )

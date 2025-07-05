@@ -10,7 +10,7 @@ import retrofit2.http.Path
  */
 interface UsedEnumeratorTagApiService {
 
-    @GET("/api/enumerator/{username}/used_tags?limit=3000")
+    @GET("/api/enumerator/{username}/used_tags?limit=10000000")
     suspend fun getAllUsedEnumeratorTag(
         @Path("username") username: String
     ): Response<UsedEnumeratorTagResponse>

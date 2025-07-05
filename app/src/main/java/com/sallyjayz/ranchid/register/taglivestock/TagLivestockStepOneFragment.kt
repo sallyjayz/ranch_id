@@ -13,29 +13,26 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.common.util.concurrent.ListenableFuture
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.sallyjayz.ranchid.viewmodel.PermissionViewModel
 import com.sallyjayz.ranchid.R
 import com.sallyjayz.ranchid.databinding.FragmentTagLivestockStepOneBinding
-import com.sallyjayz.ranchid.viewmodel.TokenViewModel
 import com.sallyjayz.ranchid.viewmodel.register.TagLivestockViewModel
 import com.sallyjayz.ranchid.viewmodel.register.UnusedEnumeratorTagViewModel
-import com.sallyjayz.ranchid.viewmodel.register.response.UnusedEnumeratorTagResponseViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class TagLivestockStepOneFragment : Fragment() {
 
-    private lateinit var cameraExecutor: ExecutorService
+    private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
+    private val cameraExecutor = Executors.newSingleThreadExecutor()
     private lateinit var binding: FragmentTagLivestockStepOneBinding
     private lateinit var sharedViewModel: PermissionViewModel
     private val tagSharedViewModel: TagLivestockViewModel by activityViewModels()
@@ -68,9 +65,6 @@ class TagLivestockStepOneFragment : Fragment() {
         binding = FragmentTagLivestockStepOneBinding
             .inflate(layoutInflater, container, false)
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
-
-
         return binding.root
     }
 
@@ -86,7 +80,7 @@ class TagLivestockStepOneFragment : Fragment() {
 
     private fun startCamera() {
 //        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext() as Activity)
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireActivity())
+        cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
 
@@ -109,17 +103,13 @@ class TagLivestockStepOneFragment : Fragment() {
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-            try{
-                cameraProvider.unbindAll()
-                activity?.let {
-                    cameraProvider.bindToLifecycle(
-                        it, cameraSelector, preview, imageAnalyzer
-                    )
-                }
-            } catch (exc: Exception) {
-                exc.printStackTrace()
-            }
-        }, ContextCompat.getMainExecutor(requireActivity()))
+            cameraProvider?.bindToLifecycle(
+                requireActivity() as LifecycleOwner,
+                cameraSelector,
+                preview,
+                imageAnalyzer
+            )
+        }, ContextCompat.getMainExecutor(requireContext()))
 //        }, ContextCompat.getMainExecutor(requireContext() as Activity))
 
     }
@@ -136,6 +126,9 @@ class TagLivestockStepOneFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        if (::cameraProviderFuture.isInitialized) {
+            cameraProviderFuture.get().unbindAll()
+        }
         cameraExecutor.shutdown()
     }
 
@@ -144,34 +137,37 @@ class TagLivestockStepOneFragment : Fragment() {
     inner class BarcodeAnalyzer : ImageAnalysis.Analyzer {
 
         @SuppressLint("UnsafeOptInUsageError")
-        override fun analyze(image: ImageProxy) {
-            val mediaImage = image.image
-            if (mediaImage != null) {
+        override fun analyze(imageProxy: ImageProxy) {
 
-                val inputImage = InputImage.fromMediaImage(mediaImage, image.imageInfo.rotationDegrees)
+            imageProxy.image?.let { image ->
+
+                val inputImage = InputImage.fromMediaImage(
+                    image,
+                    imageProxy.imageInfo.rotationDegrees
+                )
+
+
 
 //                val options = BarcodeScannerOptions.Builder()
 //                    .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
 //                    .build()
 
                 val scanner = BarcodeScanning.getClient()
-                scanner.process(inputImage).addOnSuccessListener { barcodes ->
-                    if (barcodes.isNotEmpty()) {
-                        for (barcode in barcodes) {
-//                            val captureSound: MediaPlayer = MediaPlayer.create(requireContext(), R.raw.camera_shutter)
-                            binding.tagLivestockTag.text = barcode.rawValue
+                scanner.process(inputImage).addOnCompleteListener{ task ->
+
+                    imageProxy.close()
+
+                    if (task.isSuccessful) {
+                        val barcode = task.result.getOrNull(0)
+                        barcode?.rawValue?.let { barcodeValue ->
+                            binding.tagLivestockTag.text = barcodeValue
                             binding.barcodeBoundary.setImageResource(R.drawable.border)
-//                            captureSound.start()
-                            unusedEnumeratorTag(barcode.rawValue.toString())
+                            unusedEnumeratorTag(barcodeValue)
 //                            unusedEnumeratorTag("NGFC123456779")
-
-
                         }
+                    } else {
+                        binding.tagLivestockTag.text = getString(R.string.try_again)
                     }
-                }.addOnFailureListener {
-                    binding.tagLivestockTag.text = getString(R.string.try_again)
-                }.addOnCompleteListener{
-                    image.close()
                 }
             }
         }
